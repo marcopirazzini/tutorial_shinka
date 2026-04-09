@@ -1,0 +1,247 @@
+--- a/original.py
++++ b/original.py
+@@ -1,115 +1,172 @@
+ # EVOLVE-BLOCK-START
+ import numpy as np
+ from scipy.optimize import minimize, linprog
+ 
+-def compute_optimal_radii(centers):
++def compute_optimal_radii(centers: np.ndarray) -> np.ndarray:
+     """
+-    Given center coordinates, find radii r_i that maximize sum(r_i)
+-    subject to:
+-    1) r_i <= centers[i, 0], r_i <= 1 - centers[i, 0]
+-    2) r_i <= centers[i, 1], r_i <= 1 - centers[i, 1]
+-    3) r_i + r_j <= ||c_i - c_j||
++    Compute maximal non-overlapping radii for fixed centers using a linear program.
+     """
+     n = centers.shape[0]
+-    # Costs: minimize -sum(r_i)
+-    c = -np.ones(n)
+-    
+-    # Boundary constraints: r_i <= dist_to_wall
++    c = -np.ones(n, dtype=float)  # maximize sum(r_i)
+     bounds = []
+-    for i in range(n):
+-        cx, cy = centers[i]
++    for cx, cy in centers:
+         limit = min(cx, cy, 1.0 - cx, 1.0 - cy)
+-        bounds.append((0, max(0, limit)))
+-    
+-    # Pairwise constraints: r_i + r_j <= dist_ij
+-    A_ub = []
+-    b_ub = []
++        bounds.append((0.0, max(limit, 0.0)))
++
++    A_rows = []
++    b_vals = []
+     for i in range(n):
+         for j in range(i + 1, n):
+-            row = np.zeros(n)
+-            row[i] = 1
+-            row[j] = 1
++            row = np.zeros(n, dtype=float)
++            row[i] = 1.0
++            row[j] = 1.0
+             dist = np.linalg.norm(centers[i] - centers[j])
+-            A_ub.append(row)
+-            b_ub.append(dist)
+-    
+-    res = linprog(c, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method='highs')
+-    if res.success:
+-        return res.x
+-    return np.zeros(n)
++            A_rows.append(row)
++            b_vals.append(dist)
++
++    if A_rows:
++        A_ub = np.vstack(A_rows)
++        b_ub = np.asarray(b_vals, dtype=float)
++    else:
++        A_ub = None
++        b_ub = None
++
++    res = linprog(c, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method="highs")
++    if res.success and res.x is not None:
++        return np.maximum(res.x, 0.0)
++
++    # Fallback: iterative shrink to maintain feasibility
++    radii = np.array([min(cx, 1 - cx, cy, 1 - cy) for cx, cy in centers], dtype=float)
++    for _ in range(5):
++        for i in range(n):
++            for j in range(i + 1, n):
++                d = np.linalg.norm(centers[i] - centers[j])
++                if radii[i] + radii[j] > d and d > 0:
++                    scale = d / (radii[i] + radii[j])
++                    radii[i] *= scale
++                    radii[j] *= scale
++    return np.maximum(radii, 0.0)
+ 
+ def construct_packing():
+     """
+-    Uses a hybrid approach: optimization of centers via local search
+-    to maximize the sum of radii calculated via LP.
++    Use Packomania-inspired seed plus simulated annealing restarts and a final
++    L-BFGS-B refinement to push the sum of radii above 2.63.
+     """
+     n = 26
+-    
+-    # 1. Initial State: Hexagonal-ish grid with noise
+-    grid_size = int(np.ceil(np.sqrt(n)))
+-    x = np.linspace(0.1, 0.9, grid_size)
+-    y = np.linspace(0.1, 0.9, grid_size)
+-    xv, yv = np.meshgrid(x, y)
+-    centers = np.vstack([xv.ravel(), yv.ravel()]).T[:n]
+-    
+-    # Add a bit of jitter to break symmetry
+-    np.random.seed(42)
+-    centers += np.random.uniform(-0.02, 0.02, centers.shape)
+-    centers = np.clip(centers, 0.05, 0.95)
++    base_centers = np.array([
++        [0.5107, 0.5061],
++        [0.7840, 0.5052],
++        [0.7146, 0.7022],
++        [0.5194, 0.7810],
++        [0.3082, 0.7176],
++        [0.2332, 0.5077],
++        [0.2962, 0.2926],
++        [0.5110, 0.2276],
++        [0.7129, 0.3045],
++        [0.9419, 0.5054],
++        [0.9086, 0.6512],
++        [0.8836, 0.8576],
++        [0.6762, 0.9039],
++        [0.5258, 0.9411],
++        [0.3817, 0.9116],
++        [0.1965, 0.9029],
++        [0.0951, 0.7396],
++        [0.0714, 0.5747],
++        [0.0738, 0.4295],
++        [0.0887, 0.2675],
++        [0.1825, 0.1018],
++        [0.3740, 0.0901],
++        [0.5230, 0.0618],
++        [0.6781, 0.0977],
++        [0.8841, 0.1534],
++        [0.9087, 0.3596],
++    ], dtype=float)
+ 
+-    def objective(flat_centers):
+-        # We want to maximize sum(radii), so minimize -sum(radii)
+-        curr_centers = flat_centers.reshape((n, 2))
+-        # Note: Optimization of centers via full LP is slow inside minimize.
+-        # Instead, we use a heuristic update for speed or a slightly simpler model.
+-        # For this implementation, we use an iterative approach.
+-        r = compute_heuristic_radii(curr_centers)
+-        return -np.sum(r)
++    seeds = [11, 37, 73]
++    best_centers_global = base_centers.copy()
++    best_radii_global = compute_optimal_radii(best_centers_global)
++    best_score_global = float(np.sum(best_radii_global))
+ 
+-    def compute_heuristic_radii(centers):
+-        # Fast approximation of optimal radii for the optimizer
+-        n_c = centers.shape[0]
+-        r = np.array([min(c[0], 1-c[0], c[1], 1-c[1]) for c in centers])
+-        for _ in range(3):
+-            for i in range(n_c):
+-                for j in range(i + 1, n_c):
+-                    d = np.linalg.norm(centers[i] - centers[j])
+-                    if r[i] + r[j] > d:
+-                        scale = d / (r[i] + r[j])
+-                        r[i] *= scale
+-                        r[j] *= scale
+-        return r
++    def anneal(seed_centers, rng, steps=400):
++        current_centers = seed_centers.copy()
++        current_radii = compute_optimal_radii(current_centers)
++        current_score = float(np.sum(current_radii))
++        best_centers = current_centers.copy()
++        best_radii = current_radii.copy()
++        best_score = current_score
+ 
+-    # Optimize center positions
++        for step in range(steps):
++            scale = 0.026 * ((1.0 - step / steps) ** 0.5)
++            candidate_centers = current_centers + rng.normal(scale=scale, size=current_centers.shape)
++            candidate_centers = np.clip(candidate_centers, 0.005, 0.995)
++            candidate_radii = compute_optimal_radii(candidate_centers)
++            candidate_score = float(np.sum(candidate_radii))
++
++            delta = candidate_score - current_score
++            temp = 0.018 * (1.0 - step / steps) + 0.002
++            acceptance_probability = 1.0 if delta > 1e-6 else np.exp(max(-60.0, delta / temp))
++
++            if delta > 1e-6 or rng.random() < acceptance_probability:
++                current_centers = candidate_centers
++                current_radii = candidate_radii
++                current_score = candidate_score
++
++                if candidate_score > best_score:
++                    best_centers = candidate_centers
++                    best_radii = candidate_radii
++                    best_score = candidate_score
++
++        return best_centers, best_radii, best_score
++
++    for seed in seeds:
++        rng = np.random.default_rng(seed)
++        jittered = np.clip(base_centers + rng.normal(scale=0.008, size=base_centers.shape), 0.005, 0.995)
++        centers_candidate, radii_candidate, score_candidate = anneal(jittered, rng, steps=420)
++
++        if score_candidate > best_score_global:
++            best_centers_global = centers_candidate
++            best_radii_global = radii_candidate
++            best_score_global = score_candidate
++
++    # Final gradient-aware polishing
++    def negative_sum_radii(flat_centers):
++        trial_centers = flat_centers.reshape((n, 2))
++        return -float(np.sum(compute_optimal_radii(trial_centers)))
++
++    bounds = [(0.0, 1.0)] * (2 * n)
+     res = minimize(
+-        objective, 
+-        centers.flatten(), 
+-        method='L-BFGS-B',
+-        bounds=[(0, 1)] * (2 * n),
+-        options={'maxiter': 50}
++        negative_sum_radii,
++        best_centers_global.flatten(),
++        method="L-BFGS-B",
++        bounds=bounds,
++        options={"maxiter": 100, "ftol": 1e-7, "gtol": 1e-7},
+     )
+-    
+-    refined_centers = res.x.reshape((n, 2))
+-    # Finally, compute the mathematically optimal radii for these centers
++
++    if res.success and res.x is not None:
++        refined_centers = res.x.reshape((n, 2))
++    else:
++        refined_centers = best_centers_global
++
++    refined_centers = np.clip(refined_centers, 0.0, 1.0)
+     final_radii = compute_optimal_radii(refined_centers)
+-    
++
+     return refined_centers, final_radii
+ 
+ # EVOLVE-BLOCK-END
+ 
+ 
+ # ── Fixed interface (not evolved) ─────────────────────────────────────────────
+ 
+ def run_packing():
+     """
+     Main entrypoint called by the evaluator.
+ 
+     Returns
+     -------
+     centers      : np.ndarray, shape (26, 2)
+     radii        : np.ndarray, shape (26,)
+     sum_of_radii : float
+     """
+     centers, radii = construct_packing()
+     sum_of_radii = float(np.sum(radii))
+     return centers, radii, sum_of_radii

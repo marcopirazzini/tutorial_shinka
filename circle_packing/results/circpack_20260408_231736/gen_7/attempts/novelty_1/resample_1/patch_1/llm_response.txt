@@ -1,0 +1,89 @@
+<NAME>
+hexgrid-relax-anneal_multistart
+</NAME>
+
+<DESCRIPTION>
+Introduce a hexagonal lattice initialisation to improve initial center packing density, and add a lightweight second-start annealing pass to diversify the search and escape local optima. The hex-grid is generated locally around the square center using a triangular lattice basis, ensuring no overlaps near walls and better space-filling than two fixed rings. A second independent restart (with a different RNG seed) refines the arrangement further, potentially increasing the total sum of radii beyond prior runs. These changes are designed to be incremental and self-contained, preserving the existing interface while likely boosting performance without relying on external libraries.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+    # Clip centres safely inside [0, 1]
+    centers = np.clip(centers, 0.01, 0.99)
+
+    # Compute maximum valid radii given these centre positions
+    radii = compute_max_radii(centers)
+=======
+    # --- Hex-grid initialisation for dense packing (embedded helper) ---
+    def hex_grid_centers(n, center=(0.5, 0.5), s=0.08):
+        cx, cy = center
+        a1 = np.array([s, 0.0])
+        a2 = np.array([s/2.0, (np.sqrt(3)/2.0) * s])
+        pts = []
+        K = 6
+        for i in range(-K, K+1):
+            for j in range(-K, K+1):
+                off = i * a1 + j * a2
+                pos = np.array([cx, cy]) + off
+                if 0.01 <= pos[0] <= 0.99 and 0.01 <= pos[1] <= 0.99:
+                    pts.append(pos)
+        pts = np.array(pts)
+        if pts.shape[0] == 0:
+            return np.zeros((n, 2))
+        dists = np.linalg.norm(pts - np.array([cx, cy]), axis=1)
+        idx = np.argsort(dists)
+        centers_hex = pts[idx, :][:n]
+        if centers_hex.shape[0] < n:
+            pad = np.zeros((n - centers_hex.shape[0], 2))
+            centers_hex = np.vstack([centers_hex, pad])
+        return centers_hex
+
+    centers = hex_grid_centers(n, center=(0.5, 0.5), s=0.08)
+    centers = np.clip(centers, 0.01, 0.99)
+
+    # Gentle relaxation before radii computation
+    centers = relax_layout(centers, iterations=400, step=0.06)
+
+    # Compute maximum valid radii given these centre positions
+    radii = compute_max_radii(centers)
+>>>>>>> REPLACE
+</DIFF>
+
+<DIFF>
+<<<<<<< SEARCH
+    return best_centers, best_radii
+=======
+    # Optional: second independent restart to diversify search
+    rng2 = np.random.default_rng(98765)
+    best_centers2 = best_centers.copy()
+    best_radii2 = best_radii.copy()
+    best_sum2 = float(np.sum(best_radii2))
+    initial_step2 = 0.10
+    steps2 = 1200
+    for k in range(steps2):
+        t = max(0.0, 1.0 - k / steps2)
+        step = initial_step2 * (0.5 + 0.5 * t)
+
+        i2 = rng2.integers(0, n)
+        old_pos2 = best_centers2[i2].copy()
+        delta2 = step * rng2.normal(size=2)
+        new_pos2 = old_pos2 + delta2
+        new_pos2 = np.clip(new_pos2, 0.01, 0.99)
+
+        trial_centers2 = best_centers2.copy()
+        trial_centers2[i2] = new_pos2
+        trial_radii2 = compute_max_radii(trial_centers2)
+        trial_sum2 = float(np.sum(trial_radii2))
+
+        if trial_sum2 > best_sum2 or rng2.random() < np.exp((trial_sum2 - best_sum2) / max(1e-6, t * 0.1)):
+            best_centers2[i2] = new_pos2
+            best_radii2 = trial_radii2
+            best_sum2 = trial_sum2
+
+    if best_sum2 > best_sum:
+        best_centers = best_centers2
+        best_radii = best_radii2
+
+    return best_centers, best_radii
+>>>>>>> REPLACE
+</DIFF>

@@ -1,0 +1,215 @@
+<NAME>
+joint_nlp_centers_radii
+</NAME>
+
+<DESCRIPTION>
+Propose a joint optimization of circle centers and radii using a single nonlinear program (NLP). This replaces the two-stage approach (center optimization with an approximate radii then a separate radii computation) with a single, coherent NLP that directly maximizes the sum of radii under all containment and non-overlap constraints. This should allow the optimizer to discover tighter packings (especially leveraging corner/edge placements) and potentially exceed the previous best around 2.63 for 26 circles. The approach uses SciPy's SLSQP with nonlinear pairwise constraints r_i + r_j <= distance(c_i, c_j) and wall constraints r_i <= min(x_i, 1-x_i, y_i, 1-y_i). It starts from a hex/near-grid seed and refines both centers and radii simultaneously.
+
+Edits:
+- Introduce joint_optimize(centers) that formulates and solves the NLP:
+  - decision vars: centers (2n) and radii (n)
+  - objective: maximize sum(r_i) -> minimize -sum(r_i)
+  - nonlinear inequality constraints for non-overlap
+  - linear-like wall constraints folded into inequality constraints
+  - bounds for centers in [0,1], radii in [0,1] (safe upper bound)
+  - fallback to a reasonable center/radius initialization if optimization fails
+- Replace compute_optimal_radii usage with a call to joint_optimize in construct_packing.
+- Replace the old two-stage, heuristic-based optimization with the new joint NLP to more effectively explore the feasible space and exploit edge/corner placements.
+
+If successful, this can push the combined score higher by allowing denser packings (and more symmetric, corner-leaning layouts) than the previous radii-only or heuristic-centered refinements.
+
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def compute_optimal_radii(centers):
+    """
+    Given center coordinates, find radii r_i that maximize sum(r_i)
+    subject to:
+    1) r_i <= centers[i, 0], r_i <= 1 - centers[i, 0]
+    2) r_i <= centers[i, 1], r_i <= 1 - centers[i, 1]
+    3) r_i + r_j <= ||c_i - c_j||
+    """
+    n = centers.shape[0]
+    # Costs: minimize -sum(r_i)
+    c = -np.ones(n)
+    
+    # Boundary constraints: r_i <= dist_to_wall
+    bounds = []
+    for i in range(n):
+        cx, cy = centers[i]
+        limit = min(cx, cy, 1.0 - cx, 1.0 - cy)
+        bounds.append((0, max(0, limit)))
+    
+    # Pairwise constraints: r_i + r_j <= dist_ij
+    A_ub = []
+    b_ub = []
+    for i in range(n):
+        for j in range(i + 1, n):
+            row = np.zeros(n)
+            row[i] = 1
+            row[j] = 1
+            dist = np.linalg.norm(centers[i] - centers[j])
+            A_ub.append(row)
+            b_ub.append(dist)
+    
+    res = linprog(c, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method='highs')
+    if res.success:
+        return res.x
+    return np.zeros(n)
+=======
+def joint_optimize(centers):
+    """
+    Jointly optimize centers and radii to maximize sum(r_i)
+    subject to wall containment and non-overlap constraints.
+    Returns (centers_opt, radii_opt)
+    """
+    n = centers.shape[0]
+    # Initial guess for radii from simple wall-distance with light pairwise shrink
+    def initial_radii_from_centers(centers):
+        r = np.array([min(cx, cy, 1.0 - cx, 1.0 - cy) for cx, cy in centers])
+        # couple passes to enforce non-overlap roughly
+        for _ in range(2):
+            for i in range(n):
+                for j in range(i + 1, n):
+                    d = np.linalg.norm(centers[i] - centers[j])
+                    if r[i] + r[j] > d and d > 0:
+                        scale = d / (r[i] + r[j])
+                        r[i] *= scale
+                        r[j] *= scale
+        return r
+    r0 = initial_radii_from_centers(centers)
+
+    x0 = np.hstack([centers.ravel(), r0])
+
+    bounds = []
+    for _ in range(n):
+        bounds.append((0.0, 1.0))  # center x
+    for _ in range(n):
+        bounds.append((0.0, 1.0))  # center y
+    for _ in range(n):
+        bounds.append((0.0, 1.0))  # radius
+
+    # Helper to return all inequality constraints as a vector
+    def constraint_fun(x):
+        c = x[:2*n].reshape((n, 2))
+        r = x[2*n:]
+        cons = []
+        # walls: r_i <= x_i and r_i <= 1 - x_i for both axes
+        for i in range(n):
+            cons.append(r[i] - c[i, 0])
+            cons.append(r[i] + c[i, 0] - 1.0)
+            cons.append(r[i] - c[i, 1])
+            cons.append(r[i] + c[i, 1] - 1.0)
+        # pairwise: r_i + r_j <= dist(c_i, c_j)
+        for i in range(n):
+            for j in range(i+1, n):
+                dist = np.linalg.norm(c[i] - c[j])
+                cons.append(r[i] + r[j] - dist)
+        return np.asarray(cons, dtype=float)
+
+    def objective(x):
+        r = x[2*n:]
+        return -float(np.sum(r))
+
+    res = minimize(
+        objective,
+        x0,
+        method='SLSQP',
+        bounds=bounds,
+        constraints=[{'type':'ineq', 'fun': constraint_fun}],
+        options={'maxiter': 400, 'ftol': 1e-9}
+    )
+
+    if res.success:
+        x = res.x
+        centers_opt = x[:2*n].reshape((n, 2))
+        radii_opt = x[2*n:]
+        return centers_opt, radii_opt
+    radii = r0
+    return centers, radii
+>>>>>>> REPLACE
+</DIFF>
+
+<DIFF>
+<<<<<<< SEARCH
+def construct_packing():
+    """
+    Uses a hybrid approach: optimization of centers via local search
+    to maximize the sum of radii calculated via LP.
+    """
+    n = 26
+    
+    # 1. Initial State: Hexagonal-ish grid with noise
+    grid_size = int(np.ceil(np.sqrt(n)))
+    x = np.linspace(0.1, 0.9, grid_size)
+    y = np.linspace(0.1, 0.9, grid_size)
+    xv, yv = np.meshgrid(x, y)
+    centers = np.vstack([xv.ravel(), yv.ravel()]).T[:n]
+    
+    # Add a bit of jitter to break symmetry
+    np.random.seed(42)
+    centers += np.random.uniform(-0.02, 0.02, centers.shape)
+    centers = np.clip(centers, 0.05, 0.95)
+
+    def objective(flat_centers):
+        # We want to maximize sum(radii), so minimize -sum(radii)
+        curr_centers = flat_centers.reshape((n, 2))
+        # Note: Optimization of centers via full LP is slow inside minimize.
+        # Instead, we use a heuristic update for speed or a slightly simpler model.
+        # For this implementation, we use an iterative approach.
+        r = compute_heuristic_radii(curr_centers)
+        return -np.sum(r)
+
+    def compute_heuristic_radii(centers):
+        # Fast approximation of optimal radii for the optimizer
+        n_c = centers.shape[0]
+        r = np.array([min(c[0], 1-c[0], c[1], 1-c[1]) for c in centers])
+        for _ in range(3):
+            for i in range(n_c):
+                for j in range(i + 1, n_c):
+                    d = np.linalg.norm(centers[i] - centers[j])
+                    if r[i] + r[j] > d:
+                        scale = d / (r[i] + r[j])
+                        r[i] *= scale
+                        r[j] *= scale
+        return r
+
+    # Optimize center positions
+    res = minimize(
+        objective, 
+        centers.flatten(), 
+        method='L-BFGS-B',
+        bounds=[(0, 1)] * (2 * n),
+        options={'maxiter': 50}
+    )
+    
+    refined_centers = res.x.reshape((n, 2))
+    # Finally, compute the mathematically optimal radii for these centers
+    final_radii = compute_max_radii(refined_centers)
+    
+    return refined_centers, final_radii
+=======
+def construct_packing():
+    """
+    Uses a joint optimization of centers and radii to maximize sum of radii.
+    """
+    n = 26
+    
+    # 1. Initial State: Hexagonal-ish grid with noise
+    grid_size = int(np.ceil(np.sqrt(n)))
+    x = np.linspace(0.1, 0.9, grid_size)
+    y = np.linspace(0.1, 0.9, grid_size)
+    xv, yv = np.meshgrid(x, y)
+    centers = np.vstack([xv.ravel(), yv.ravel()]).T[:n]
+    
+    # Add a bit of jitter to break symmetry
+    np.random.seed(42)
+    centers += np.random.uniform(-0.02, 0.02, centers.shape)
+    centers = np.clip(centers, 0.05, 0.95)
+
+    centers_opt, radii_opt = joint_optimize(centers)
+    
+    return centers_opt, radii_opt
+>>>>>>> REPLACE
+</DIFF>

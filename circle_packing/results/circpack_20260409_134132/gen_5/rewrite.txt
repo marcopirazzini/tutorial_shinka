@@ -1,0 +1,125 @@
+import numpy as np
+from scipy.optimize import minimize, linprog
+
+# EVOLVE-BLOCK-START
+
+def get_initial_centers(n, seed):
+    """Generates a jittered hexagonal-like grid for 26 circles."""
+    rng = np.random.default_rng(seed)
+    # 26 is roughly 5x5 + 1. We'll use a 5x6 grid and take the first 26.
+    cols = 5
+    rows = 6
+    x = np.linspace(0.1, 0.9, cols)
+    y = np.linspace(0.1, 0.9, rows)
+    xv, yv = np.meshgrid(x, y)
+    centers = np.vstack([xv.ravel(), yv.ravel()]).T
+    
+    # Add hexagonal offset to even rows
+    centers[::2, 0] += (x[1] - x[0]) / 2
+    centers = centers[:n]
+    
+    # Add jitter
+    centers += rng.uniform(-0.03, 0.03, centers.shape)
+    return np.clip(centers, 0.05, 0.95)
+
+def compute_optimal_radii(centers):
+    """
+    Solves the Linear Program to find radii r_i that maximize sum(r_i).
+    Constraints:
+    - r_i <= distance to walls
+    - r_i + r_j <= distance between centers c_i and c_j
+    """
+    n = centers.shape[0]
+    c = -np.ones(n)  # Maximize sum <=> Minimize -sum
+    
+    # Boundary constraints
+    bounds = []
+    for i in range(n):
+        cx, cy = centers[i]
+        limit = min(cx, cy, 1.0 - cx, 1.0 - cy)
+        bounds.append((0, max(1e-9, limit)))
+    
+    # Pairwise constraints
+    A_ub = []
+    b_ub = []
+    for i in range(n):
+        for j in range(i + 1, n):
+            dist = np.linalg.norm(centers[i] - centers[j])
+            row = np.zeros(n)
+            row[i] = 1
+            row[j] = 1
+            A_ub.append(row)
+            b_ub.append(dist)
+            
+    res = linprog(c, A_ub=np.array(A_ub), b_ub=np.array(b_ub), bounds=bounds, method='highs')
+    return res.x if res.success else np.zeros(n)
+
+def soft_radius_objective(flat_centers, n):
+    """
+    Differentiable approximation of the sum of radii.
+    Uses a soft-min approach to penalize overlaps and wall violations.
+    """
+    centers = flat_centers.reshape((n, 2))
+    
+    # Distance to walls
+    d_wall = np.concatenate([centers[:, 0], 1.0 - centers[:, 0], 
+                             centers[:, 1], 1.0 - centers[:, 1]])
+    
+    # Pairwise distances
+    # We use a heuristic: each circle 'wants' to be a certain size
+    # but is constrained by its nearest neighbor.
+    # sum(r_i) is roughly sum(0.5 * min_j(dist_ij))
+    
+    total_r = 0
+    for i in range(n):
+        # Distance to walls for circle i
+        wi = min(centers[i, 0], 1.0 - centers[i, 0], centers[i, 1], 1.0 - centers[i, 1])
+        
+        # Distances to all other centers
+        dists = np.linalg.norm(centers - centers[i], axis=1)
+        dists[i] = 1e9 # ignore self
+        
+        # Heuristic radius: min(wall_dist, 0.5 * nearest_neighbor_dist)
+        # We use a smooth approximation of min
+        nearest_d = np.min(dists)
+        ri = 0.5 * min(2.0 * wi, nearest_d)
+        total_r += ri
+        
+    return -total_r # Minimize negative sum
+
+def construct_packing():
+    n = 26
+    best_sum = -1
+    best_centers = None
+    best_radii = None
+    
+    # Try a few different seeds to find the best local optima
+    for seed in [42, 123, 999]:
+        init_centers = get_initial_centers(n, seed)
+        
+        res = minimize(
+            soft_radius_objective,
+            init_centers.flatten(),
+            args=(n,),
+            method='L-BFGS-B',
+            bounds=[(0.01, 0.99)] * (2 * n),
+            options={'maxiter': 60, 'ftol': 1e-4}
+        )
+        
+        refined_centers = res.x.reshape((n, 2))
+        radii = compute_optimal_radii(refined_centers)
+        current_sum = np.sum(radii)
+        
+        if current_sum > best_sum:
+            best_sum = current_sum
+            best_centers = refined_centers
+            best_radii = radii
+            
+    return best_centers, best_radii
+
+# EVOLVE-BLOCK-END
+
+def run_packing():
+    centers, radii = construct_packing()
+    sum_of_radii = float(np.sum(radii))
+    return centers, radii, sum_of_radii

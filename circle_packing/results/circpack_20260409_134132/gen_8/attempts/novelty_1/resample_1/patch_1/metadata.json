@@ -1,0 +1,14 @@
+{
+  "generation": 8,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "lp_refined_simulated_annealing_packing",
+  "patch_description": "This implementation combines a simulated annealing global search with Linear Programming (LP) for optimal radius calculation. \n\n1. **Initial Grid**: Uses a high-density jittered grid for initialization.\n2. **Local Perturbation**: In each step, a center is randomly perturbed within a shrinking range.\n3. **Linear Programming (LP)**: Instead of proportional shrinking, the code uses `scipy.optimize.linprog` (Highs method) to find the absolute maximum sum of radii for any given set of center coordinates. This is the optimal way to determine radii for fixed centers.\n4. **Metropolis Acceptance**: Moves are accepted based on a temperature-driven probability, allowing the algorithm to escape local minima.\n5. **Multiple Restarts**: Multiple runs with different seeds ensure better coverage of the search space.",
+  "error_msg": null,
+  "timestamp": "2026-04-09T13:48:16.526019",
+  "llm_cost": 0.008806999999999999,
+  "llm_model": null
+}

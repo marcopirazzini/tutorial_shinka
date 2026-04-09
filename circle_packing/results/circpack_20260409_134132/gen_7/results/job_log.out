@@ -1,0 +1,5 @@
+==========Running program evaluation 1/1...==========
+Evaluation error: index 26 is out of bounds for axis 0 with size 26
+Correctness and error status saved to results/circpack_20260409_134132/gen_7/results/correct.json
+Metrics saved to results/circpack_20260409_134132/gen_7/results/metrics.json
+FAILED: index 26 is out of bounds for axis 0 with size 26

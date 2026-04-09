@@ -1,0 +1,14 @@
+{
+  "generation": 9,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "annealed_packing",
+  "patch_description": "This version builds on the best known layout (Packomania-style) and boosts it via stochastic annealing followed by a final L-BFGS-B refinement. The LP-based radius computation guarantees feasibility, while the annealing loop juggles variable-sized circles, edge/corner attraction, and accepts uphill moves for exploration. Multi-seed restarts plus jittered starts diversify the search, and the final local optimization tweaks centers and radii together to further lift the sum above 2.63.",
+  "error_msg": null,
+  "timestamp": "2026-04-09T13:48:53.602443",
+  "llm_cost": 0.01651925,
+  "llm_model": null
+}

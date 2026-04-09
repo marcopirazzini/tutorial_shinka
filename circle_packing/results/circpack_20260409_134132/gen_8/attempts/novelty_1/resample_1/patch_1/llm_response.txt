@@ -1,0 +1,126 @@
+<NAME>
+lp_refined_simulated_annealing_packing
+</NAME>
+
+<DESCRIPTION>
+This implementation combines a simulated annealing global search with Linear Programming (LP) for optimal radius calculation. 
+
+1. **Initial Grid**: Uses a high-density jittered grid for initialization.
+2. **Local Perturbation**: In each step, a center is randomly perturbed within a shrinking range.
+3. **Linear Programming (LP)**: Instead of proportional shrinking, the code uses `scipy.optimize.linprog` (Highs method) to find the absolute maximum sum of radii for any given set of center coordinates. This is the optimal way to determine radii for fixed centers.
+4. **Metropolis Acceptance**: Moves are accepted based on a temperature-driven probability, allowing the algorithm to escape local minima.
+5. **Multiple Restarts**: Multiple runs with different seeds ensure better coverage of the search space.
+</DESCRIPTION>
+
+<CODE>
+```python
+# EVOLVE-BLOCK-START
+import numpy as np
+from scipy.optimize import linprog
+
+def _compute_lp_radii(centers):
+    """
+    Given fixed centers, solve an LP to maximize the sum of radii.
+    Constraints:
+      1. r[i] <= dist_to_walls
+      2. r[i] + r[j] <= dist(c[i], c[j])
+    """
+    n = centers.shape[0]
+    
+    # Objective: maximize sum(r) -> minimize -sum(r)
+    c = -np.ones(n)
+    
+    # Wall constraints as individual bounds
+    wall_dist = np.minimum.reduce([
+        centers[:, 0], centers[:, 1],
+        1.0 - centers[:, 0], 1.0 - centers[:, 1]
+    ])
+    bounds = [(0.0, max(0.0, wd)) for wd in wall_dist]
+    
+    # Overlap constraints: r[i] + r[j] <= dist(c[i], c[j])
+    A_ub = []
+    b_ub = []
+    for i in range(n):
+        for j in range(i + 1, n):
+            dist = np.linalg.norm(centers[i] - centers[j])
+            row = np.zeros(n)
+            row[i] = 1.0
+            row[j] = 1.0
+            A_ub.append(row)
+            b_ub.append(dist)
+    
+    try:
+        res = linprog(c, A_ub=np.array(A_ub), b_ub=np.array(b_ub), 
+                      bounds=bounds, method='highs')
+        if res.success:
+            return res.x
+    except:
+        pass
+    
+    # Fallback to simple zero radii if LP fails
+    return np.zeros(n)
+
+def construct_packing():
+    """
+    Constructs a 26-circle packing using simulated annealing and LP-based 
+    radius optimization to maximize the sum of radii.
+    """
+    n = 26
+    rng = np.random.default_rng(42)
+    
+    best_centers = None
+    best_radii = None
+    max_sum = -1.0
+    
+    # Perform several restarts to explore different basin areas
+    for restart in range(4):
+        # Initialization: Jittered grid
+        side = int(np.ceil(np.sqrt(n)))
+        grid = np.linspace(0.1, 0.9, side)
+        coords = np.array(np.meshgrid(grid, grid)).T.reshape(-1, 2)
+        idx = rng.choice(len(coords), n, replace=False)
+        current_centers = coords[idx] + rng.uniform(-0.05, 0.05, (n, 2))
+        current_centers = np.clip(current_centers, 0.01, 0.99)
+        
+        current_radii = _compute_lp_radii(current_centers)
+        current_sum = np.sum(current_radii)
+        
+        # Annealing parameters
+        T = 0.1
+        cooling_rate = 0.985
+        
+        for iteration in range(250):
+            # Perturb a random center
+            idx_to_move = rng.integers(n)
+            old_pos = current_centers[idx_to_move].copy()
+            
+            shift = rng.normal(0, 0.1 * (iteration / 250 + 0.1)**-1 * T)
+            current_centers[idx_to_move] += rng.uniform(-0.1, 0.1, 2) * T
+            current_centers[idx_to_move] = np.clip(current_centers[idx_to_move], 0.001, 0.999)
+            
+            new_radii = _compute_lp_radii(current_centers)
+            new_sum = np.sum(new_radii)
+            
+            # Acceptance criteria
+            if new_sum > current_sum or rng.random() < np.exp((new_sum - current_sum) / T):
+                current_sum = new_sum
+                current_radii = new_radii
+            else:
+                current_centers[idx_to_move] = old_pos
+            
+            if current_sum > max_sum:
+                max_sum = current_sum
+                best_centers = current_centers.copy()
+                best_radii = current_radii.copy()
+            
+            T *= cooling_rate
+
+    return best_centers, best_radii
+
+def run_packing():
+    centers, radii = construct_packing()
+    sum_of_radii = float(np.sum(radii))
+    return centers, radii, sum_of_radii
+# EVOLVE-BLOCK-END
+```
+</CODE>

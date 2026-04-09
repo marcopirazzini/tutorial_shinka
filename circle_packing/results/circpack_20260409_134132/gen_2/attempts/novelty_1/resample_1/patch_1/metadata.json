@@ -1,0 +1,14 @@
+{
+  "generation": 2,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "annealed_pack26",
+  "patch_description": "This rewrite introduces a structured grid + randomized initialization, simulated annealing-inspired perturbation, and coordinate-wise refinement to push the sum of the 26 circle radii higher. The radius computation is upgraded to iteratively enforce wall and pairwise constraints via vectorized limits, while the search combines multiple seeded annealing runs with occasional global jitter and a final deterministic tuning phase. This keeps the original interface but should yield notably better packings.",
+  "error_msg": null,
+  "timestamp": "2026-04-09T13:43:26.215625",
+  "llm_cost": 0.031185749999999998,
+  "llm_model": null
+}

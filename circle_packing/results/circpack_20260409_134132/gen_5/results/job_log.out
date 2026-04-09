@@ -1,0 +1,5 @@
+==========Running program evaluation 1/1...==========
+Evaluation error: name 'np' is not defined
+Correctness and error status saved to results/circpack_20260409_134132/gen_5/results/correct.json
+Metrics saved to results/circpack_20260409_134132/gen_5/results/metrics.json
+FAILED: name 'np' is not defined

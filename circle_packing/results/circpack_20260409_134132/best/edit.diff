@@ -1,0 +1,225 @@
+--- a/original.py
++++ b/original.py
+@@ -1,97 +1,200 @@
+ # EVOLVE-BLOCK-START
+ import numpy as np
++from scipy.optimize import minimize
+ 
+ def construct_packing():
+     """
+     Construct an arrangement of 26 non-overlapping circles inside [0,1]^2
+     that attempts to maximise the sum of their radii.
++
++    Uses a greedy placement strategy: place circles one at a time, each
++    maximizing its radius given previously placed circles.
+ 
+     Returns
+     -------
+     centers : np.ndarray, shape (26, 2)
+         (x, y) centre coordinates, all in [0,1].
+     radii : np.ndarray, shape (26,)
+         Radius of each circle (non-negative, satisfying containment + non-overlap).
+     """
+     n = 26
+     centers = np.zeros((n, 2))
+-
+-    # --- Simple structured initialisation ---
+-    # Place one circle at the centre
+-    centers[0] = [0.5, 0.5]
+-
+-    # 8 circles in an inner ring
+-    for i in range(8):
+-        angle = 2 * np.pi * i / 8
+-        centers[i + 1] = [0.5 + 0.28 * np.cos(angle),
+-                          0.5 + 0.28 * np.sin(angle)]
+-
+-    # 17 circles in an outer ring
+-    for i in range(17):
+-        angle = 2 * np.pi * i / 17
+-        centers[i + 9] = [0.5 + 0.44 * np.cos(angle),
+-                          0.5 + 0.44 * np.sin(angle)]
+-
+-    # Clip centres safely inside [0, 1]
+-    centers = np.clip(centers, 0.01, 0.99)
+-
+-    # Compute maximum valid radii given these centre positions
+-    radii = compute_max_radii(centers)
++    radii = np.zeros(n)
++
++    # Strategic initial positions: corners, edges, center, and grid points
++    initial_positions = [
++        [0.5, 0.5],      # center
++        [0.1, 0.1], [0.9, 0.1], [0.1, 0.9], [0.9, 0.9],  # corners
++        [0.5, 0.1], [0.5, 0.9], [0.1, 0.5], [0.9, 0.5],  # edge midpoints
++    ]
++
++    # Add hexagonal grid points for remaining circles
++    hex_positions = _generate_hexagonal_grid(26 - len(initial_positions))
++    initial_positions.extend(hex_positions)
++
++    # Greedy placement: place each circle to maximize its radius
++    for idx in range(n):
++        if idx < len(initial_positions):
++            centers[idx] = np.array(initial_positions[idx])
++        else:
++            # Random position in [0.1, 0.9]^2 for remaining circles
++            centers[idx] = np.array([np.random.uniform(0.1, 0.9),
++                                      np.random.uniform(0.1, 0.9)])
++
++        # Compute maximum radius for this circle given all previously placed ones
++        radii[idx] = _compute_max_radius_for_circle(idx, centers, radii)
++
++    # Joint optimization: refine all positions and radii together
++    centers, radii = _optimize_packing(centers, radii)
++
+     return centers, radii
++
++
++def _generate_hexagonal_grid(num_points):
++    """Generate hexagonal grid points within [0.05, 0.95]^2."""
++    positions = []
++    spacing = 0.15
++    for row in range(10):
++        for col in range(10):
++            x = 0.05 + col * spacing + (row % 2) * spacing / 2
++            y = 0.05 + row * spacing
++            if 0.05 <= x <= 0.95 and 0.05 <= y <= 0.95 and len(positions) < num_points:
++                positions.append([x, y])
++    return positions[:num_points]
++
++
++def _compute_max_radius_for_circle(idx, centers, radii):
++    """
++    Compute the maximum radius for circle idx given all previously placed circles.
++    """
++    cx, cy = centers[idx]
++
++    # Constraint 1: fit inside [0, 1]^2
++    max_r = min(cx, cy, 1.0 - cx, 1.0 - cy)
++
++    # Constraint 2: don't overlap with previously placed circles
++    for j in range(idx):
++        if radii[j] > 0:
++            dist = np.linalg.norm(centers[idx] - centers[j])
++            # r_idx + r_j <= dist  =>  r_idx <= dist - r_j
++            max_r = min(max_r, max(0, dist - radii[j]))
++
++    return max(0, max_r)
++
++
++def _optimize_packing(centers, radii):
++    """
++    Refine the packing by joint optimization of positions and radii.
++    """
++    n = len(radii)
++
++    def objective(x):
++        # x = [c0_x, c0_y, r0, c1_x, c1_y, r1, ..., cn_x, cn_y, rn]
++        c = x[:2*n].reshape((n, 2))
++        r = x[2*n:]
++
++        # Negative sum of radii (we minimize, so negate to maximize)
++        return -np.sum(r)
++
++    def constraint_containment(x):
++        """All circles must fit in [0, 1]^2."""
++        c = x[:2*n].reshape((n, 2))
++        r = x[2*n:]
++        violations = []
++        for i in range(n):
++            violations.append(c[i, 0] - r[i])  # >= 0
++            violations.append(c[i, 1] - r[i])  # >= 0
++            violations.append(1.0 - c[i, 0] - r[i])  # >= 0
++            violations.append(1.0 - c[i, 1] - r[i])  # >= 0
++        return np.array(violations)
++
++    def constraint_nonoverlap(x):
++        """No two circles overlap."""
++        c = x[:2*n].reshape((n, 2))
++        r = x[2*n:]
++        violations = []
++        for i in range(n):
++            for j in range(i + 1, n):
++                dist = np.linalg.norm(c[i] - c[j])
++                violations.append(dist - r[i] - r[j])  # >= 0
++        return np.array(violations)
++
++    # Flatten initial state
++    x0 = np.concatenate([centers.flatten(), radii])
++
++    # Constraints
++    constraints = [
++        {'type': 'ineq', 'fun': constraint_containment},
++        {'type': 'ineq', 'fun': constraint_nonoverlap},
++    ]
++
++    # Bounds: centers in [0, 1], radii in [0, 0.5]
++    bounds = [(0, 1) for _ in range(2*n)] + [(0, 0.5) for _ in range(n)]
++
++    # Optimize
++    result = minimize(objective, x0, method='SLSQP', bounds=bounds,
++                     constraints=constraints, options={'maxiter': 200, 'ftol': 1e-6})
++
++    # Extract result
++    x_opt = result.x
++    centers_opt = x_opt[:2*n].reshape((n, 2))
++    radii_opt = np.maximum(x_opt[2*n:], 0.0)
++
++    return centers_opt, radii_opt
+ 
+ 
+ def compute_max_radii(centers: np.ndarray) -> np.ndarray:
+     """
+     Given fixed circle centres, compute the largest radii such that:
+       - every circle fits inside [0, 1]^2  (radius <= distance to nearest wall)
+       - no two circles overlap             (r_i + r_j <= dist(c_i, c_j))
+ 
+     Uses an iterative shrink-until-feasible approach.
+ 
+     Parameters
+     ----------
+     centers : np.ndarray, shape (n, 2)
+ 
+     Returns
+     -------
+     radii : np.ndarray, shape (n,)
+     """
+     n = centers.shape[0]
+ 
+     # Upper bound from wall distances
+     radii = np.array([
+         min(cx, cy, 1.0 - cx, 1.0 - cy)
+         for cx, cy in centers
+     ], dtype=float)
+ 
+     # Shrink pairwise overlapping radii proportionally (multiple passes for stability)
+     for _ in range(5):
+         for i in range(n):
+             for j in range(i + 1, n):
+                 dist = np.linalg.norm(centers[i] - centers[j])
+                 if radii[i] + radii[j] > dist:
+                     scale = dist / (radii[i] + radii[j])
+                     radii[i] *= scale
+                     radii[j] *= scale
+ 
+     radii = np.maximum(radii, 0.0)
+     return radii
+ 
+ # EVOLVE-BLOCK-END
+ 
+ 
+ # ── Fixed interface (not evolved) ─────────────────────────────────────────────
+ 
+ def run_packing():
+     """
+     Main entrypoint called by the evaluator.
+ 
+     Returns
+     -------
+     centers      : np.ndarray, shape (26, 2)
+     radii        : np.ndarray, shape (26,)
+     sum_of_radii : float
+     """
+     centers, radii = construct_packing()
+     sum_of_radii = float(np.sum(radii))
+     return centers, radii, sum_of_radii

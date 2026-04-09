@@ -1,0 +1,311 @@
+--- a/original.py
++++ b/original.py
+@@ -1,177 +1,248 @@
+ # EVOLVE-BLOCK-START
+ import numpy as np
+ 
+ def construct_packing():
+     """
+     Construct an arrangement of 26 non-overlapping circles inside [0,1]^2
+     that attempts to maximise the sum of their radii.
+ 
+     Returns
+     -------
+     centers : np.ndarray, shape (26, 2)
+         (x, y) centre coordinates, all in [0,1].
+     radii : np.ndarray, shape (26,)
+         Radius of each circle (non-negative, satisfying containment + non-overlap).
+     """
+     n = 26
+-    centers = np.zeros((n, 2))
+-
+-    # --- Simple structured initialisation ---
+-    # Place one circle at the centre
+-    centers[0] = [0.5, 0.5]
+-
+-    # 8 circles in an inner ring
+-    for i in range(8):
+-        angle = 2 * np.pi * i / 8
+-        centers[i + 1] = [0.5 + 0.28 * np.cos(angle),
+-                          0.5 + 0.28 * np.sin(angle)]
+-
+-    # 17 circles in an outer ring
+-    for i in range(17):
+-        angle = 2 * np.pi * i / 17
+-        centers[i + 9] = [0.5 + 0.44 * np.cos(angle),
+-                          0.5 + 0.44 * np.sin(angle)]
+-
+-    # Clip centres safely inside [0, 1]
+-    centers = np.clip(centers, 0.01, 0.99)
+-
+-    # Relax layout to improve initial spacing
+-    centers = relax_layout(centers, iterations=200, step=0.08)
+-
+-    # Compute maximum valid radii given these centre positions
++    rng = np.random.default_rng(12345)
++
++    # Phase 1: Greedy initialization with candidate positions
++    # Use a grid of candidate positions focusing on corners/edges and interior
++    candidate_positions = _generate_candidate_positions()
++    centers = _greedy_place_circles(n, candidate_positions, rng)
++
++    # Phase 2: Relax layout to improve initial spacing (radius-aware)
++    centers = relax_layout_radius_aware(centers, iterations=250, step=0.10)
++
++    # Phase 3: Compute maximum valid radii
+     radii = compute_max_radii(centers)
+-
+-    # Local search: perturb centres to potentially enlarge radii
+     best_centers = centers.copy()
+     best_radii = radii.copy()
+     best_sum = float(np.sum(best_radii))
+-    rng = np.random.default_rng(12345)
+-
+-    # Simple simulated-annealing style hill-climb
+-    initial_step = 0.12
+-    steps = 2500
++
++    # Phase 4: Simulated annealing with adaptive moves
++    initial_step = 0.14
++    steps = 3000
+     for k in range(steps):
+-        # temperature-like factor decreasing over time
+         t = max(0.0, 1.0 - k / steps)
+         step = initial_step * (0.5 + 0.5 * t)
+ 
+-        # propose move: pick random circle and perturb center
+-        i = rng.integers(0, n)
++        # Biased selection: perturb circles with smaller radii more aggressively
++        radii_normalized = best_radii / (np.max(best_radii) + 1e-9)
++        # Inverse: smaller radii get higher probability
++        selection_weights = 1.0 - radii_normalized * 0.7
++        selection_weights /= np.sum(selection_weights)
++        i = rng.choice(n, p=selection_weights)
++
+         old_pos = best_centers[i].copy()
+         delta = step * rng.normal(size=2)
+         new_pos = old_pos + delta
+         new_pos = np.clip(new_pos, 0.01, 0.99)
+ 
+         trial_centers = best_centers.copy()
+         trial_centers[i] = new_pos
+         trial_radii = compute_max_radii(trial_centers)
+-
+         trial_sum = float(np.sum(trial_radii))
+ 
+-        if trial_sum > best_sum or rng.random() < np.exp((trial_sum - best_sum) / max(1e-6, t * 0.1)):
+-            best_centers[i] = new_pos
+-            centers = trial_centers
+-            radii = trial_radii
++        accept = trial_sum > best_sum
++        if not accept and t > 1e-6:
++            accept = rng.random() < np.exp((trial_sum - best_sum) / max(1e-6, t * 0.15))
++
++        if accept:
+             best_centers = trial_centers
+             best_radii = trial_radii
+             best_sum = trial_sum
+ 
+     return best_centers, best_radii
++
++
++def _generate_candidate_positions(grid_res: int = 8) -> np.ndarray:
++    """Generate candidate positions biased toward corners and edges."""
++    candidates = []
++
++    # Corner regions (high priority - walls provide constraint)
++    corner_margin = 0.15
++    for cx in [corner_margin, 0.5, 1.0 - corner_margin]:
++        for cy in [corner_margin, 0.5, 1.0 - corner_margin]:
++            if not (0.4 < cx < 0.6 and 0.4 < cy < 0.6):  # Avoid center cluster
++                candidates.append([cx, cy])
++
++    # Edge positions
++    for x in np.linspace(0.1, 0.9, 6):
++        candidates.append([x, 0.1])
++        candidates.append([x, 0.9])
++        candidates.append([0.1, x])
++        candidates.append([0.9, x])
++
++    # Interior grid
++    for x in np.linspace(0.2, 0.8, grid_res):
++        for y in np.linspace(0.2, 0.8, grid_res):
++            candidates.append([x, y])
++
++    return np.array(candidates, dtype=float)
++
++
++def _greedy_place_circles(n: int, candidates: np.ndarray, rng: np.random.Generator) -> np.ndarray:
++    """Greedily place n circles from candidate positions."""
++    centers = []
++
++    for circle_idx in range(n):
++        best_score = -np.inf
++        best_pos = None
++
++        # Evaluate each candidate
++        for cand in candidates:
++            if np.any(np.abs(cand - np.array(centers)) < 1e-6 if len(centers) > 0 else False):
++                continue  # Skip already used positions
++
++            # Score based on distance to walls and existing circles
++            wall_dist = min(cand[0], cand[1], 1.0 - cand[0], 1.0 - cand[1])
++
++            if len(centers) == 0:
++                score = wall_dist
++            else:
++                centers_arr = np.array(centers)
++                min_dist_to_existing = np.min(np.linalg.norm(centers_arr - cand, axis=1))
++                # Prefer positions far from walls (interior) for large circles
++                # and close to walls for small circles (will be optimized later)
++                score = wall_dist + 0.5 * min_dist_to_existing
++
++            if score > best_score:
++                best_score = score
++                best_pos = cand.copy()
++
++        if best_pos is not None:
++            centers.append(best_pos)
++        else:
++            # Fallback: random position
++            centers.append(rng.uniform(0.01, 0.99, size=2))
++
++    return np.array(centers, dtype=float)
+ 
+ 
+ def compute_max_radii(centers: np.ndarray) -> np.ndarray:
+     """
+     Given fixed circle centres, compute the largest radii such that:
+       - every circle fits inside [0, 1]^2  (radius <= distance to nearest wall)
+       - no two circles overlap             (r_i + r_j <= dist(c_i, c_j))
+ 
+     Uses an iterative shrink-until-feasible approach.
+ 
+     Parameters
+     ----------
+     centers : np.ndarray, shape (n, 2)
+ 
+     Returns
+     -------
+     radii : np.ndarray, shape (n,)
+     """
+     n = centers.shape[0]
+ 
+     # Upper bound from wall distances
+     radii = np.array([
+         min(cx, cy, 1.0 - cx, 1.0 - cy)
+         for cx, cy in centers
+     ], dtype=float)
+ 
+     # Shrink pairwise overlapping radii proportionally (multiple passes for stability)
+     for _ in range(5):
+         for i in range(n):
+             for j in range(i + 1, n):
+                 dist = np.linalg.norm(centers[i] - centers[j])
+                 if radii[i] + radii[j] > dist:
+                     scale = dist / (radii[i] + radii[j])
+                     radii[i] *= scale
+                     radii[j] *= scale
+ 
+     radii = np.maximum(radii, 0.0)
+     return radii
+ 
+-def relax_layout(centers: np.ndarray, iterations: int = 200, step: float = 0.08) -> np.ndarray:
+-    """
+-    Relaxes the layout of circle centers using simple repulsive adjustments.
+-    Returns a new array of centers after a few relaxation passes.
+-    Radii are not modified here; they are recomputed as needed by the caller.
++def relax_layout_radius_aware(centers: np.ndarray, iterations: int = 250, step: float = 0.10) -> np.ndarray:
++    """
++    Relaxes the layout of circle centers using repulsive adjustments weighted by radius.
++    Larger circles contribute more to repulsion forces.
+     """
+     centers = centers.copy()
+     rng = np.random.default_rng(123456)
+-    for _ in range(iterations):
++
++    for iteration in range(iterations):
+         radii = compute_max_radii(centers)
+         n = centers.shape[0]
+         disp = np.zeros_like(centers)
+-        # Pairwise repulsion
++
++        # Normalize radii for weighting
++        max_radius = np.max(radii) + 1e-9
++        radius_weights = radii / max_radius
++
++        # Pairwise repulsion with radius weighting
+         for i in range(n):
+             for j in range(i + 1, n):
+                 diff = centers[i] - centers[j]
+                 dist = np.hypot(diff[0], diff[1])
+                 if dist < 1e-12:
+                     diff = rng.normal(size=2) * 1e-3
+                     dist = np.hypot(diff[0], diff[1])
++
+                 overlap = radii[i] + radii[j] - dist
+                 if overlap > 0:
+-                    dir = diff / dist
+-                    push = min(overlap * 0.6, step)
+-                    disp[i] += dir * push
+-                    disp[j] -= dir * push
+-        # Gentle wall repulsion
++                    direction = diff / dist
++                    # Weight by radius: larger circles push harder
++                    weight_i = radius_weights[i]
++                    weight_j = radius_weights[j]
++                    total_weight = weight_i + weight_j + 1e-9
++
++                    push = min(overlap * 0.7, step)
++                    disp[i] += direction * push * (weight_j / total_weight)
++                    disp[j] -= direction * push * (weight_i / total_weight)
++
++        # Boundary repulsion - gentle but consistent
+         for i in range(n):
+             cx, cy = centers[i]
+-            if cx < 0.25:
+-                disp[i,0] += 0.02
+-            elif cx > 0.75:
+-                disp[i,0] -= 0.02
+-            if cy < 0.25:
+-                disp[i,1] += 0.02
+-            elif cy > 0.75:
+-                disp[i,1] -= 0.02
++            margin = 0.15
++
++            if cx < margin:
++                disp[i, 0] += (margin - cx) * 0.1
++            elif cx > 1.0 - margin:
++                disp[i, 0] -= (cx - (1.0 - margin)) * 0.1
++
++            if cy < margin:
++                disp[i, 1] += (margin - cy) * 0.1
++            elif cy > 1.0 - margin:
++                disp[i, 1] -= (cy - (1.0 - margin)) * 0.1
++
+         centers += disp
+         centers = np.clip(centers, 0.01, 0.99)
++
++        # Cooling: reduce step size over iterations
++        step *= (1.0 - iteration / (iterations * 2.0))
++
+     return centers
+ 
+ # EVOLVE-BLOCK-END
+ 
+ 
+ # ── Fixed interface (not evolved) ─────────────────────────────────────────────
+ 
+ def run_packing():
+     """
+     Main entrypoint called by the evaluator.
+ 
+     Returns
+     -------
+     centers      : np.ndarray, shape (26, 2)
+     radii        : np.ndarray, shape (26,)
+     sum_of_radii : float
+     """
+     centers, radii = construct_packing()
+     sum_of_radii = float(np.sum(radii))
+     return centers, radii, sum_of_radii

@@ -1,0 +1,196 @@
+<NAME>
+hybrid-hex-init-sa-improve
+</NAME>
+
+<DESCRIPTION>
+Proposes a two-pronged enhancement to push the sum of radii higher:
+1) Replace the rigid hex-grid initialization with a flexible hex-grid generator and multiple seed configurations to diversify basins of attraction.
+2) Replace the single-run annealing loop with a richer, multi-seed hybrid approach: a set of deterministic and semi-random initial configurations, each refined by an adaptive simulated annealing-like process while optimizing radii via LP given centers. This aims to better exploit the LP-radii subproblem and escape local optima that limit the current 1.98–2.55 range, with a goal to surpass the 2.63 target previously noted.
+
+Key changes:
+- Make the hex-grid generator accept spacing and margins, generating a more versatile distribution of candidate centers.
+- Introduce multiple initial configurations (deterministic anchors, hex grids at different spacings, jittered lattices) and refine each with a temperature-controlled loop that adapts step sizes.
+- Maintain the LP-based radii computation, but rely on richer center configurations to allow larger radii overall.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def _generate_hexagonal_grid(num_points):
+    """Generate hexagonal grid points within [0.05, 0.95]^2."""
+    positions = []
+    spacing = 0.15
+    for row in range(10):
+        for col in range(10):
+            x = 0.05 + col * spacing + (row % 2) * spacing / 2
+            y = 0.05 + row * spacing
+            if 0.05 <= x <= 0.95 and 0.05 <= y <= 0.95 and len(positions) < num_points:
+                positions.append([x, y])
+    return positions[:num_points]
+=======
+def _generate_hexagonal_grid(num_points, spacing=0.15, margin=0.05):
+    """Generate hexagonal grid points within [margin, 1-margin]^2 with configurable spacing."""
+    points = []
+    dy = spacing * (np.sqrt(3) / 2.0)
+    y = margin
+    row = 0
+    while len(points) < num_points and y <= 1.0 - margin + 1e-9:
+        x_start = margin + (row % 2) * (spacing / 2.0)
+        x = x_start
+        while len(points) < num_points and x <= 1.0 - margin + 1e-9:
+            # add point if within bounds
+            if margin <= x <= 1.0 - margin and margin <= y <= 1.0 - margin:
+                points.append([float(x), float(y)])
+            x += spacing
+        y += dy
+        row += 1
+    return points[:num_points]
+>>>>>>> REPLACE
+</DIFF>
+
+<DIFF>
+<<<<<<< SEARCH
+def construct_packing():
+    """
+    Constructs a 26-circle packing using simulated annealing and LP-based 
+    radius optimization to maximize the sum of radii.
+    """
+    n = 26
+    rng = np.random.default_rng(42)
+    
+    best_centers = None
+    best_radii = None
+    max_sum = -1.0
+    
+    # Perform several restarts to explore different basin areas
+    for restart in range(4):
+        # Initialization: Jittered grid
+        side = int(np.ceil(np.sqrt(n)))
+        grid = np.linspace(0.1, 0.9, side)
+        coords = np.array(np.meshgrid(grid, grid)).T.reshape(-1, 2)
+        idx = rng.choice(len(coords), n, replace=False)
+        current_centers = coords[idx] + rng.uniform(-0.05, 0.05, (n, 2))
+        current_centers = np.clip(current_centers, 0.01, 0.99)
+        
+        current_radii = _compute_lp_radii(current_centers)
+        current_sum = np.sum(current_radii)
+        
+        # Annealing parameters
+        T = 0.1
+        cooling_rate = 0.985
+        
+        for iteration in range(250):
+            # Perturb a random center
+            idx_to_move = rng.integers(n)
+            old_pos = current_centers[idx_to_move].copy()
+            
+            shift = rng.normal(0, 0.1 * (iteration / 250 + 0.1)**-1 * T)
+            current_centers[idx_to_move] += rng.uniform(-0.1, 0.1) * T
+            current_centers[idx_to_move] = np.clip(current_centers[idx_to_move], 0.1, 0.9)
+            
+            new_radii = _compute_lp_radii(current_centers)
+            new_sum = np.sum(new_radii)
+            
+            # Acceptance criteria
+            if new_sum > current_sum or rng.random() < np.exp((new_sum - current_sum) / T):
+                current_sum = new_sum
+                current_radii = new_radii
+            else:
+                current_centers[idx_to_move] = old_pos
+            
+            if current_sum > max_sum:
+                max_sum = current_sum
+                best_centers = current_centers.copy()
+                best_radii = current_radii.copy()
+            
+            T *= cooling_rate
+
+    return best_centers, best_radii
+=======
+def construct_packing():
+    """
+    Constructs a 26-circle packing using a hybrid approach:
+    informed initialisation plus stochastic refinement with LP radii.
+    """
+    n = 26
+    rng = np.random.default_rng(202101)
+
+    best_centers = None
+    best_radii = None
+    best_sum = -1.0
+
+    # Seed initial configurations to diversify basins
+    initial_configurations = []
+
+    # 1) Deterministic anchor: center + wall anchors + edges
+    init1 = [
+        [0.5, 0.5],
+        [0.1, 0.1], [0.9, 0.1], [0.1, 0.9], [0.9, 0.9],
+        [0.5, 0.1], [0.5, 0.9], [0.1, 0.5], [0.9, 0.5],
+    ]
+    initial_configurations.append(init1)
+
+    # 2) Hex grid with moderate spacing
+    init2 = _generate_hexagonal_grid(26 - len(init1), spacing=0.14, margin=0.05)
+    initial_configurations.append(init2)
+
+    # 3) Denser hex grid
+    init3 = _generate_hexagonal_grid(26, spacing=0.12, margin=0.05)
+    initial_configurations.append(init3[:26])
+
+    # 4) Random jittered lattice
+    side = int(np.ceil(np.sqrt(n)))
+    grid_vals = np.linspace(0.1, 0.9, side)
+    coords = np.array(np.meshgrid(grid_vals, grid_vals)).T.reshape(-1, 2)
+    jittered = coords[np.random.choice(len(coords), n, replace=False)]
+    jittered = jittered + rng.normal(scale=0.04, size=(n,2))
+    jittered = np.clip(jittered, 0.01, 0.99)
+    initial_configurations.append(jittered.tolist())
+
+    for init in initial_configurations:
+        centers = np.zeros((n, 2))
+        radii = np.zeros(n)
+
+        for i in range(n):
+            if i < len(init):
+                centers[i] = init[i]
+            else:
+                centers[i] = rng.uniform(0.1, 0.9, size=2)
+
+        radii = _compute_lp_radii(centers)
+        current_sum = float(np.sum(radii))
+
+        # Local refinement schedule
+        T = 0.25
+        cooling = 0.992
+
+        for iter in range(450):
+            i = rng.integers(n)
+            old = centers[i].copy()
+            # Step size scales with temperature
+            centers[i] += rng.normal(0, 0.12 * (T / 0.25), size=2)
+            centers[i] = np.clip(centers[i], 0.001, 0.999)
+
+            new_radii = _compute_lp_radii(centers)
+            new_sum = float(np.sum(new_radii))
+
+            if new_sum > current_sum or rng.random() < np.exp((new_sum - current_sum) / max(1e-9, T)):
+                current_sum = new_sum
+                radii = new_radii
+            else:
+                centers[i] = old
+
+            if current_sum > best_sum:
+                best_sum = current_sum
+                best_centers = centers.copy()
+                best_radii = radii.copy()
+
+            T *= cooling
+
+    # Fallback
+    if best_centers is None:
+        best_centers = np.zeros((n, 2))
+        best_radii = np.zeros(n)
+
+    return best_centers, best_radii
+>>>>>>> REPLACE
+</DIFF>

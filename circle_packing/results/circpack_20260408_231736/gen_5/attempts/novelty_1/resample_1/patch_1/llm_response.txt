@@ -1,0 +1,215 @@
+<NAME>
+adaptive_sa_packing
+</NAME>
+
+<DESCRIPTION>
+This rewrite uses a more robust stochastic search that jointly tunes circle centers and their resulting radii. It preserves the fixed interface (26 centers, 26 radii, sum of radii) but enhances exploration with multi-start ring-based initial layouts and a simulated-annealing style local search that perturbs centers and recomputes radii via a dedicated compute_max_radii routine. Key param adjustments include: multiple restarts (to escape local optima), ring-based initialization with controlled jitter, adaptive step sizes and temperature, and occasional re-seeding perturbations. The radii computation uses a stable shrink-wrapping pass (increased stability) to guarantee feasibility. The overall approach aims to push the sum of radii higher than previous runs while maintaining feasibility within [0,1]^2.
+</DESCRIPTION>
+
+<CODE>
+```{python}
+# EVOLVE-BLOCK-START
+import numpy as np
+
+def compute_max_radii(centers: np.ndarray) -> np.ndarray:
+    """
+    Given fixed circle centres, compute the largest radii such that:
+      - every circle fits inside [0, 1]^2  (radius <= distance to nearest wall)
+      - no two circles overlap             (r_i + r_j <= dist(c_i, c_j))
+
+    Uses an iterative shrink-until-feasible approach with enhanced stability.
+
+    Parameters
+    ----------
+    centers : np.ndarray, shape (n, 2)
+
+    Returns
+    -------
+    radii : np.ndarray, shape (n,)
+    """
+    n = centers.shape[0]
+
+    # Upper bound from wall distances
+    radii = np.array([
+        min(cx, cy, 1.0 - cx, 1.0 - cy)
+        for cx, cy in centers
+    ], dtype=float)
+
+    # Shrink pairwise overlapping radii proportionally (more passes for stability)
+    for _ in range(8):
+        for i in range(n):
+            for j in range(i + 1, n):
+                dist = np.linalg.norm(centers[i] - centers[j])
+                if radii[i] + radii[j] > dist:
+                    scale = dist / (radii[i] + radii[j])
+                    radii[i] *= scale
+                    radii[j] *= scale
+
+    radii = np.maximum(radii, 0.0)
+    return radii
+
+def initialize_ring_layout(rng: np.random.Generator, n: int, jitter_scale: float) -> np.ndarray:
+    """
+    Return a 2D array of center positions in a ring-layout with optional jitter.
+
+    - center at (0.5, 0.5)
+    - 8 inner ring around (0.5, 0.5) with radius ~0.28
+    - 17 outer ring around (0.5, 0.5) with radius ~0.44
+    """
+    centers = np.zeros((n, 2), dtype=float)
+    centers[0] = np.array([0.5, 0.5], dtype=float)
+
+    # inner ring
+    for i in range(8):
+        angle = 2 * np.pi * i / 8
+        pt = np.array([0.5 + 0.28 * np.cos(angle),
+                       0.5 + 0.28 * np.sin(angle)])
+        if jitter_scale > 0.0:
+            pt += rng.normal(scale=jitter_scale, size=2)
+        centers[i + 1] = pt
+
+    # outer ring
+    for i in range(17):
+        angle = 2 * np.pi * i / 17
+        pt = np.array([0.5 + 0.44 * np.cos(angle),
+                       0.5 + 0.44 * np.sin(angle)])
+        if jitter_scale > 0.0:
+            pt += rng.normal(scale=jitter_scale, size=2)
+        centers[i + 9] = pt
+
+    centers = np.clip(centers, 0.01, 0.99)
+    return centers
+
+def local_sa_optimization(rng: np.random.Generator,
+                        centers_init: np.ndarray,
+                        steps: int = 1200,
+                        initial_step: float = 0.08) -> (np.ndarray, np.ndarray, float):
+    """
+    Simulated annealing style local search on centers with radii recomputed each step.
+
+    Returns the best centers, radii, and their sum found in this run.
+    """
+    n = centers_init.shape[0]
+    centers_cur = centers_init.copy()
+    radii_cur = compute_max_radii(centers_cur)
+    sum_cur = float(np.sum(radii_cur))
+
+    best_centers = centers_cur.copy()
+    best_radii = radii_cur.copy()
+    best_sum = sum_cur
+
+    for k in range(steps):
+        t = max(0.0, 1.0 - k / steps)
+        step = initial_step * (0.5 + 0.5 * t)
+
+        i = int(rng.integers(0, n))
+        old_pos = centers_cur[i].copy()
+        delta = step * rng.normal(size=2)
+        new_pos = old_pos + delta
+        new_pos = np.clip(new_pos, 0.01, 0.99)
+
+        trial_centers = centers_cur.copy()
+        trial_centers[i] = new_pos
+        trial_radii = compute_max_radii(trial_centers)
+        trial_sum = float(np.sum(trial_radii))
+
+        # Metropolis acceptance
+        if trial_sum > sum_cur or rng.random() < np.exp((trial_sum - sum_cur) / max(1e-9, t * 0.75)):
+            centers_cur[i] = new_pos
+            radii_cur = trial_radii
+            sum_cur = trial_sum
+
+            if trial_sum > best_sum:
+                best_centers = trial_centers.copy()
+                best_radii = trial_radii.copy()
+                best_sum = trial_sum
+
+        # Optional perturbation to escape stagnation
+        if (k % 200 == 0) and (rng.random() < 0.15):
+            jitter = 0.015
+            centers_cur += rng.normal(scale=jitter, size=centers_cur.shape)
+            centers_cur = np.clip(centers_cur, 0.01, 0.99)
+            radii_cur = compute_max_radii(centers_cur)
+            sum_cur = float(np.sum(radii_cur))
+
+    return best_centers, best_radii, float(best_sum)
+
+def construct_packing():
+    """
+    Construct an arrangement of 26 non-overlapping circles inside [0,1]^2
+    that attempts to maximise the sum of their radii.
+
+    Returns
+    -------
+    centers : np.ndarray, shape (26, 2)
+        (x, y) centre coordinates, all in [0,1].
+    radii : np.ndarray, shape (26,)
+        Radius of each circle (non-negative, satisfying containment + non-overlap).
+    """
+    n = 26
+    global_best_centers = None
+    global_best_radii = None
+    global_best_sum = -np.inf
+
+    rng_master = np.random.default_rng(42)
+
+    # Multi-start strategy: mix ring-based starts with occasional random starts
+    n_restarts = 6
+    for s in range(n_restarts):
+        rng = np.random.default_rng(1000 + s * 1337)
+
+        # Start type: 0-2 ring-based with jitter, 3-5 random seeds
+        if s < 3:
+            jitter_scale = 0.04 if s == 0 else (0.02 if s == 1 else 0.03)
+            centers_init = initialize_ring_layout(rng, n, jitter_scale)
+        else:
+            centers_init = rng.uniform(0.01, 0.99, size=(n, 2))
+
+        # Ensure centers are nicely inside
+        centers_init = np.clip(centers_init, 0.01, 0.99)
+
+        # Local search
+        best_centers, best_radii, best_sum = local_sa_optimization(
+            rng, centers_init, steps=1200, initial_step=0.08
+        )
+
+        if best_sum > global_best_sum:
+            global_best_sum = best_sum
+            global_best_centers = best_centers
+            global_best_radii = best_radii
+
+    # Final refinement with a dedicated small additional SA pass
+    if global_best_centers is None:
+        # Fallback: one more direct ring layout if something went wrong
+        rng = np.random.default_rng(999)
+        centers = initialize_ring_layout(rng, n, jitter_scale=0.03)
+        global_best_centers = centers
+        global_best_radii = compute_max_radii(centers)
+        global_best_sum = float(np.sum(global_best_radii))
+
+    # Optional final polishing pass
+    rng_final = np.random.default_rng(777)
+    best_centers_final, best_radii_final, best_sum_final = local_sa_optimization(
+        rng_final, global_best_centers, steps=900, initial_step=0.05
+    )
+
+    return best_centers_final, best_radii_final
+
+# EVOLVE-BLOCK-END
+# ── Fixed interface (not evolved) ─────────────────────────────────────────────
+
+def run_packing():
+    """
+    Main entrypoint called by the evaluator.
+
+    Returns
+    -------
+    centers      : np.ndarray, shape (26, 2)
+    radii        : np.ndarray, shape (26,)
+    sum_of_radii : float
+    """
+    centers, radii = construct_packing()
+    sum_of_radii = float(np.sum(radii))
+    return centers, radii, sum_of_radii
+``` 
+</CODE>

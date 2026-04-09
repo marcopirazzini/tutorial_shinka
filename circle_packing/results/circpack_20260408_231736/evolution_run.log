@@ -1,0 +1,1168 @@
+  @@@@@@@@@@@@@@@@@@@@@      ░██████╗██╗░░██╗██╗███╗░░██╗██╗░░██╗░█████╗░
+  @                   @      ██╔════╝██║░░██║██║████╗░██║██║░██╔╝██╔══██╗
+  @          @        @      ╚█████╗░███████║██║██╔██╗██║█████═╝░███████║
+  @    @@   @@  @@    @      ░╚═══██╗██╔══██║██║██║╚████║██╔═██╗░██╔══██║
+  @   @     @    @@   @      ██████╔╝██║░░██║██║██║░╚███║██║░╚██╗██║░░██║
+  @    @@  @    @     @      ╚═════╝░╚═╝░░╚═╝╚═╝╚═╝░░╚══╝╚═╝░░╚═╝╚═╝░░╚═╝
+  @        @          @      @@@@@@@@@@@@@@@
+  @                   @   @@                 @@@@@
+  @@@@@@@@@@@@@@@@@@@@ @@                       @  @@                 █▀▀
+                      @                          @@  @                ██▄
+                    @      @@                      @  @@
+                   @       @         @              @   @             █░█
+                   @                 @               @  @             ▀▄▀
+                     @@@@@          @     @           @  @
+                      @            @          @       @ @@            █▀█
+                   @@    @@     @@       @@   @        @              █▄█
+                  @@        @@         @     @         @
+                 @@       @@   @@       @@@@@          @        @@    █░░
+              @ @@                @                    @              █▄▄
+             @ @@@@@             @@ @@                 @      @@
+            @                  @       @@              @    @@        █░█
+       @@@@@@@@@@@@@@@@@@@@@@             @@@          @@@@@@@  @@    ▀▄▀
+       @     @         @                      @@         @@@  @@
+        @@               @                      @      @   @  @@      █▀▀
+          @@@@@@@@@@@@@@@@@@                   @    @   @   @@        ██▄
+                                               @  @  @   @
+                                               @  @  @@@@
+                                               @  @@
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO - 🖥️  System resources detected:
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO -    • CPU cores: 8
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO -    • Memory: 16.0 GB
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO - 🔧 Concurrency settings:
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO -    • Evaluation jobs: 2
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO -    • Proposal jobs: 1
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO -    • DB workers: 4
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO -    • Total threads: 7
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO - ================================================================================
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO - ASYNC EVOLUTION RUN STARTED
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO - ================================================================================
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO - Max evaluation jobs: 2
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO - Max proposal jobs: 1
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO - Target generations: 10
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO - Language: python
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO - Results directory: results/circpack_20260408_231736
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO - Log file: results/circpack_20260408_231736/evolution_run.log
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO - ================================================================================
+2026-04-08 23:17:39 - shinka.database.async_dbase - INFO - 🔧 AsyncDB initialized with 4 workers, 4 concurrent DB ops (WAL mode)
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO - Copying initial program from initial_program.py
+2026-04-08 23:17:39 - shinka.core.async_runner - INFO - Starting initial program evaluation: results/circpack_20260408_231736/gen_0/main.py
+2026-04-08 23:17:39 - shinka.launch.local - INFO - Submitted local process with PID: 37183
+2026-04-08 23:17:39 - shinka.launch.local - INFO - Launched local command: bash -lc set -e; source "/Users/mp2557/Documents/Research/ShinkaEvolve/.venv/bin/activate"; exec python evaluate.py --program_path results/circpack_20260408_231736/gen_0/main.py --results_dir results/circpack_20260408_231736/gen_0/results
+2026-04-08 23:17:49 - shinka.core.async_runner - INFO - Initial program evaluation completed in 10.02s
+2026-04-08 23:17:49 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-08 23:17:50 - shinka.embed.embedding - WARNING - Embedding model 'openrouter/openai/text-embedding-3-small' has no pricing entry. Defaulting embedding cost to 0.
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - Initial program embedding computed (cost: $0.0000)
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - Initial program evaluated - correct: True, combined_score: 1.8212275215939195
+2026-04-08 23:17:50 - shinka.database.dbase - INFO - Program 3c03d31c-51b8-4886-9c74-f85bf6fa8a2d added to DB - score: 1.8212275215939195.
+2026-04-08 23:17:50 - shinka.database.dbase - INFO - New best program: 3c03d31c-51b8-4886-9c74-f85bf6fa8a2d (gen: 0, score: 1.8212, initialized island: 0).
+[3m                                 [0m[1;3mProgram Evaluation Summary - Gen 0 | Total Cost: $0.00[0m[3m                                 [0m
+╭─────────────┬─────────┬───────────────┬─────────┬─────────────────────────────────┬────────┬────────┬─────────┬──────╮
+│[1m [0m[1m GenID: 0  [0m[1m [0m│[1m [0m[1mIsland [0m[1m [0m│[1m [0m[1m   Status    [0m[1m [0m│[1m [0m[1m  Score[0m[1m [0m│[1m [0m[1mPatch Name                     [0m[1m [0m│[1m [0m[1mType  [0m[1m [0m│[1m [0m[1mCompl…[0m[1m [0m│[1m [0m[1m   Cost[0m[1m [0m│[1m [0m[1mTime[0m[1m [0m│
+├─────────────┼─────────┼───────────────┼─────────┼─────────────────────────────────┼────────┼────────┼─────────┼──────┤
+│ Best: [1m1.821[0m │   I-0   │   [1m✓ Correct[0m   │   [1m1.821[0m │ initial_program                 │ init   │    0.9 │  $0.000 │ 10.… │
+╰─────────────┴─────────┴───────────────┴─────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────╯
+2026-04-08 23:17:50 - shinka.database.dbase - INFO - Creating copies of initial program 3c03d31c-51b8-4886-9c74-f85bf6fa8a2d for all islands
+2026-04-08 23:17:50 - shinka.database.islands - INFO - Created copy 88c3942d... of program 3c03d31c... for island 1
+2026-04-08 23:17:50 - shinka.database.islands - INFO - Created 1 copies of program 3c03d31c... for islands 1-1
+2026-04-08 23:17:50 - shinka.core.summarizer - INFO - Added program 3c03d31c-51b8-4886-9c74-f85bf6fa8a2d to meta memory tracking (correct=True, total: 1)
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - Setup initial program: 3c03d31c-51b8-4886-9c74-f85bf6fa8a2d
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - Generation 0 completed during setup
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - Verifying database is ready for sampling...
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - Database ready - 2 program(s) available for sampling
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - Database verification completed - ready for proposal generation
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - 🔄 Job monitor task started
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - Proposal target=2 (sampling_ewma=0.00s, evaluation_ewma=0.00s, timing_samples=0, active_proposals=0, running_jobs=0)
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - Starting 1 new proposals. Pipeline: 0/2 (running_jobs=0, active_proposals=0/1), Proposals remaining: 9 (submitted=1/10)
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - Started proposal task for generation 1 (cost: $0.0000)
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - 🔄 Meta summarizer task started
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - 🔍 Meta task check: completed_gens=1, target=10, pending_work=9, running_eval_jobs=0, running_proposal_jobs=1, api_costs=$0.0000, should_stop=False, is_stuck=False, stuck_count=0, time_since_progress=0.0s
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - Generating proposal for generation 1
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - Getting meta recs for gen 1, sample_single_meta_rec=True
+2026-04-08 23:17:50 - shinka.core.summarizer - INFO - get_sampled_recommendation called, meta_recommendations exists: False
+2026-04-08 23:17:50 - shinka.core.summarizer - INFO - No meta recommendations available to sample from
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - meta_recs result: False
+2026-04-08 23:17:50 - shinka.database.parents - INFO - Island 1 => Probabilities: [1.0]
+2026-04-08 23:17:50 - shinka.database.parents - INFO - Island 1 => Scores: [1.8212275215939195]
+2026-04-08 23:17:50 - shinka.database.parents - INFO - Sampled parent 88c3942d-27c5-4201-a5ac-e3a46c4c73e2 (Gen: 0, Score: 1.8212, Children: 0, Island: 1)
+[3m              [0m[1;3mParent & Context Sampling Summary - Gen 1 | Total Cost: $0.00 (Novelty: 1/3, Resample: 1/3)[0m[3m               [0m
+┏━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━┓
+┃[1m [0m[1mRole       [0m[1m [0m┃[1m [0m[1mGen [0m[1m [0m┃[1m [0m[1mIsland [0m[1m [0m┃[1m [0m[1m ✓/✗ [0m[1m [0m┃[1m [0m[1m   Score[0m[1m [0m┃[1m [0m[1mPatch Name                     [0m[1m [0m┃[1m [0m[1mType  [0m[1m [0m┃[1m [0m[1mCompl…[0m[1m [0m┃[1m [0m[1m   Cost[0m[1m [0m┃[1m [0m[1mTime[0m[1m [0m┃
+┡━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━┩
+│[1m [0m[1mPARENT[0m[1m     [0m[1m [0m│  0   │   I-1   │   [1m✓[0m   │    [1m1.821[0m │ initial_program                 │ init   │    0.9 │  $0.000 │ 10.… │
+└─────────────┴──────┴─────────┴───────┴──────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────┘
+2026-04-08 23:17:50 - shinka.core.async_runner - INFO - Generated patch type: diff
+2026-04-08 23:17:50 - shinka.llm.llm - INFO - ==> SAMPLING:
+  openrouter/anthropic/claude-haiku-4-5   1.0000
+  openrouter/openai/gpt-5.1-codex-mini   0.0000
+  openrouter/openai/gpt-5-nano     0.0000
+  openrouter/google/gemini-3-flash-preview   0.0000
+2026-04-08 23:17:50 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/anthropic/claude-haiku-4-5', '0.0', '16384']
+2026-04-08 23:17:51 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:18:10 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0189
+2026-04-08 23:18:10 - shinka.core.async_runner - INFO - Applying patch with language: python
+2026-04-08 23:18:10 - shinka.core.async_runner - INFO - Patch type for application: diff
+[3m                         [0m[1;3mPatch Metadata - Gen 1/10 - Novelty: 1/3 - Resample: 1/3 - Patch: 1/1[0m[3m                          [0m
+╭──────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────╮
+│[1m [0m[1mField                   [0m[1m [0m│[1m [0m[1mValue                                                                                    [0m[1m [0m│
+├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┤
+│[1m [0m[1mpatch_type              [0m[1m [0m│ diff                                                                                      │
+│[1m [0m[1mpatch_name              [0m[1m [0m│ none                                                                                      │
+│[1m [0m[1mpatch_description       [0m[1m [0m│ none                                                                                      │
+│[1m [0m[1mnum_applied             [0m[1m [0m│ 2                                                                                         │
+│[1m [0m[1mapi_costs               [0m[1m [0m│ $0.0189                                                                                   │
+│[1m [0m[1merror_attempt           [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1msystem_prompt_id        [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1mmodel_name              [0m[1m [0m│ openrouter/anthropic/claude-haiku-4-5                                                     │
+│[1m [0m[1mtemperature             [0m[1m [0m│ 0.0                                                                                       │
+│[1m [0m[1mmax_output_tokens       [0m[1m [0m│ 16384                                                                                     │
+│[1m [0m[1mdiff_summary            [0m[1m [0m│ added: 114; deleted: 0; modified: 26;                                                     │
+╰──────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────╯
+2026-04-08 23:18:10 - shinka.core.async_runner - INFO - Getting code embedding for generation 1...
+2026-04-08 23:18:10 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-08 23:18:11 - shinka.embed.embedding - WARNING - Embedding model 'openrouter/openai/text-embedding-3-small' has no pricing entry. Defaulting embedding cost to 0.
+2026-04-08 23:18:11 - shinka.core.async_runner - INFO - Code embedding completed for generation 1 (cost: $0.0000)
+2026-04-08 23:18:11 - shinka.core.async_novelty_judge - INFO - Top-5 similarity scores: ['0.96']
+2026-04-08 23:18:11 - shinka.core.async_novelty_judge - INFO - NOVELTY CHECK: Accepting program due to low similarity (0.961 <= 0.99)
+2026-04-08 23:18:11 - shinka.launch.local - INFO - Submitted local process with PID: 37203
+2026-04-08 23:18:11 - shinka.launch.local - INFO - Launched local command: bash -lc set -e; source "/Users/mp2557/Documents/Research/ShinkaEvolve/.venv/bin/activate"; exec python evaluate.py --program_path results/circpack_20260408_231736/gen_1/main.py --results_dir results/circpack_20260408_231736/gen_1/results
+2026-04-08 23:18:11 - shinka.core.async_runner - INFO - Proposal → Eval: gen 1 submitted for eval (cost: $0.0189, total: $0.0189). Running jobs: 1/2, Proposals: 1/1
+2026-04-08 23:18:11 - shinka.core.async_runner - INFO - Starting 1 new proposals. Pipeline: 1/2 (running_jobs=1, active_proposals=0/1), Proposals remaining: 8 (submitted=2/10)
+2026-04-08 23:18:11 - shinka.core.async_runner - INFO - Started proposal task for generation 2 (cost: $0.0189)
+2026-04-08 23:18:11 - shinka.core.async_runner - INFO - Generating proposal for generation 2
+2026-04-08 23:18:11 - shinka.core.async_runner - INFO - Getting meta recs for gen 2, sample_single_meta_rec=True
+2026-04-08 23:18:11 - shinka.core.summarizer - INFO - get_sampled_recommendation called, meta_recommendations exists: False
+2026-04-08 23:18:11 - shinka.core.summarizer - INFO - No meta recommendations available to sample from
+2026-04-08 23:18:11 - shinka.core.async_runner - INFO - meta_recs result: False
+2026-04-08 23:18:11 - shinka.database.parents - INFO - Island 0 => Probabilities: [1.0]
+2026-04-08 23:18:11 - shinka.database.parents - INFO - Island 0 => Scores: [1.8212275215939195]
+2026-04-08 23:18:11 - shinka.database.parents - INFO - Sampled parent 3c03d31c-51b8-4886-9c74-f85bf6fa8a2d (Gen: 0, Score: 1.8212, Children: 0, Island: 0)
+[3m              [0m[1;3mParent & Context Sampling Summary - Gen 2 | Total Cost: $0.00 (Novelty: 1/3, Resample: 1/3)[0m[3m               [0m
+┏━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━┓
+┃[1m [0m[1mRole       [0m[1m [0m┃[1m [0m[1mGen [0m[1m [0m┃[1m [0m[1mIsland [0m[1m [0m┃[1m [0m[1m ✓/✗ [0m[1m [0m┃[1m [0m[1m   Score[0m[1m [0m┃[1m [0m[1mPatch Name                     [0m[1m [0m┃[1m [0m[1mType  [0m[1m [0m┃[1m [0m[1mCompl…[0m[1m [0m┃[1m [0m[1m   Cost[0m[1m [0m┃[1m [0m[1mTime[0m[1m [0m┃
+┡━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━┩
+│[1m [0m[1mPARENT[0m[1m     [0m[1m [0m│  0   │   I-0   │   [1m✓[0m   │    [1m1.821[0m │ initial_program                 │ init   │    0.9 │  $0.000 │ 10.… │
+└─────────────┴──────┴─────────┴───────┴──────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────┘
+2026-04-08 23:18:11 - shinka.core.async_runner - INFO - Generated patch type: diff
+2026-04-08 23:18:11 - shinka.llm.llm - INFO - ==> SAMPLING:
+  openrouter/anthropic/claude-haiku-4-5   0.0000
+  openrouter/openai/gpt-5.1-codex-mini   1.0000
+  openrouter/openai/gpt-5-nano     0.0000
+  openrouter/google/gemini-3-flash-preview   0.0000
+2026-04-08 23:18:11 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/openai/gpt-5.1-codex-mini', '1.0', '16384']
+2026-04-08 23:18:11 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:18:15 - shinka.core.async_runner - INFO - ✅ Job ProcessWithLogging(PID: 37203) completed (gen 1) after 25.4s
+2026-04-08 23:18:15 - shinka.core.async_runner - INFO - 🔄 Processing 1 completed jobs: gens [1] (cost: $0.0189)
+2026-04-08 23:18:15 - shinka.core.async_runner - INFO - 🔄 SAFE PROCESSING: Starting job ProcessWithLogging(PID: 37203) (gen 1)
+2026-04-08 23:18:15 - shinka.launch.local - INFO - Monitoring local process with PID: 37203...
+2026-04-08 23:18:15 - shinka.launch.local - INFO - Process 37203 completed with return code: 0
+2026-04-08 23:18:15 - shinka.core.async_runner - INFO - 📂 RESULTS: Got results for ProcessWithLogging(PID: 37203): True
+2026-04-08 23:18:15 - shinka.core.async_runner - INFO - ✅ VALID RESULTS: ProcessWithLogging(PID: 37203) has valid results - correct=True, score=1.942528608676178
+2026-04-08 23:18:15 - shinka.core.async_runner - INFO - 💾 DB ADD: Adding program to database for ProcessWithLogging(PID: 37203) (gen 1)...
+2026-04-08 23:18:15 - shinka.database.dbase - INFO - Program 9f91441e-5b24-4b9f-9b59-59a56a530dd3 added to DB - score: 1.942528608676178.
+2026-04-08 23:18:15 - shinka.database.dbase - INFO - New best program: 9f91441e-5b24-4b9f-9b59-59a56a530dd3 (gen: 0 → 1, score: 1.8212 → 1.9425, island: 0 → 1)
+[3m                                 [0m[1;3mProgram Evaluation Summary - Gen 1 | Total Cost: $0.02[0m[3m                                 [0m
+╭─────────────┬─────────┬───────────────┬─────────┬─────────────────────────────────┬────────┬────────┬─────────┬──────╮
+│[1m [0m[1m GenID: 1  [0m[1m [0m│[1m [0m[1mIsland [0m[1m [0m│[1m [0m[1m   Status    [0m[1m [0m│[1m [0m[1m  Score[0m[1m [0m│[1m [0m[1mPatch Name                     [0m[1m [0m│[1m [0m[1mType  [0m[1m [0m│[1m [0m[1mCompl…[0m[1m [0m│[1m [0m[1m   Cost[0m[1m [0m│[1m [0m[1mTime[0m[1m [0m│
+├─────────────┼─────────┼───────────────┼─────────┼─────────────────────────────────┼────────┼────────┼─────────┼──────┤
+│ Best: [1m1.943[0m │   I-1   │   [1m✓ Correct[0m   │   [1m1.943[0m │ none                            │ diff   │    1.0 │  $0.019 │ 4.2s │
+╰─────────────┴─────────┴───────────────┴─────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────╯
+2026-04-08 23:18:15 - shinka.core.async_runner - INFO - ✅ DB SUCCESS: Program 9f91441e-5b24-4b9f-9b59-59a56a530dd3 successfully added to database for ProcessWithLogging(PID: 37203) (gen 1)
+2026-04-08 23:18:15 - shinka.core.summarizer - INFO - Added program 9f91441e-5b24-4b9f-9b59-59a56a530dd3 to meta memory tracking (correct=True, total: 2)
+[3m     AsymmetricUCB (c=1.000, eps=0.200, adaptive=True, asym=True, exp_base=1.000, shift_base=True, shift_parent=True, lo[0m
+[3m                                                      cost_c=0.100, cost_pow=1.00, cost_pct=50)                         [0m
+╭────────────────────┬────┬─────────┬────────┬───────────┬───────────┬────────────┬──────────┬──────────┬────────────┬──
+│[1m [0m[1marm               [0m[1m [0m│[1m [0m[1m n[0m[1m [0m│[1m [0m[1m n_cost[0m[1m [0m│[1m [0m[1m   div[0m[1m [0m│[1m [0m[1m log mean[0m[1m [0m│[1m [0m[1m tot_cost[0m[1m [0m│[1m [0m[1m mean_cost[0m[1m [0m│[1m [0m[1m exploit[0m[1m [0m│[1m [0m[1m explore[0m[1m [0m│[1m [0m[1m score_raw[0m[1m [0m│[1m [0m[1m [0m
+├────────────────────┼────┼─────────┼────────┼───────────┼───────────┼────────────┼──────────┼──────────┼────────────┼──
+│ claude-haiku-4-5   │  1 │       1 │  0.950 │   -2.0546 │    0.0189 │     0.0189 │   1.0000 │   1.1774 │     2.1774 │  
+│ gpt-5.1-codex-mini │  1 │       0 │  0.000 │      -inf │    0.0000 │          - │   0.0000 │   1.1774 │     1.1774 │  
+│ gpt-5-nano         │  0 │       0 │  0.000 │      -inf │    0.0000 │          - │   0.0000 │   1.1774 │     1.1774 │  
+│ gemini-3-flash-pr… │  0 │       0 │  0.000 │      -inf │    0.0000 │          - │   0.0000 │   1.1774 │     1.1774 │  
+╰────────────────────┴────┴─────────┴────────┴───────────┴───────────┴────────────┴──────────┴──────────┴────────────┴──
+2026-04-08 23:18:15 - shinka.core.async_runner - INFO - New best program found: gen 1, id 9f9144... Copied to results/circpack_20260408_231736/best
+2026-04-08 23:18:15 - shinka.core.async_runner - INFO - ✅ JOB COMPLETE: Finished processing ProcessWithLogging(PID: 37203) - program 9f91441e-5b24-4b9f-9b59-59a56a530dd3 added (gen 1)
+2026-04-08 23:18:15 - shinka.core.async_runner - INFO - ✅ Successfully processed 1/1 jobs
+2026-04-08 23:18:15 - shinka.core.async_runner - INFO - ✅ Completed generations updated: 1 -> 2 (cost: $0.0189)
+2026-04-08 23:18:15 - shinka.core.async_runner - INFO - Proposal target=2 (sampling_ewma=21.17s, evaluation_ewma=4.19s, timing_samples=1, active_proposals=1, running_jobs=0)
+2026-04-08 23:18:20 - shinka.core.async_runner - INFO - 🔍 Meta task check: completed_gens=2, target=10, pending_work=8, running_eval_jobs=0, running_proposal_jobs=1, api_costs=$0.0189, should_stop=False, is_stuck=False, stuck_count=0, time_since_progress=4.6s
+2026-04-08 23:19:00 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0174
+2026-04-08 23:19:00 - shinka.core.async_runner - INFO - Applying patch with language: python
+2026-04-08 23:19:00 - shinka.core.async_runner - INFO - Patch type for application: diff
+[3m                         [0m[1;3mPatch Metadata - Gen 2/10 - Novelty: 1/3 - Resample: 1/3 - Patch: 1/1[0m[3m                          [0m
+╭──────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────╮
+│[1m [0m[1mField                   [0m[1m [0m│[1m [0m[1mValue                                                                                    [0m[1m [0m│
+├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┤
+│[1m [0m[1mpatch_type              [0m[1m [0m│ diff                                                                                      │
+│[1m [0m[1mpatch_name              [0m[1m [0m│ greedy_point_sampling                                                                     │
+│[1m [0m[1mpatch_description       [0m[1m [0m│ Introduces a more adaptive placement strategy by seeding a few anchors and then greedily  │
+│[1m                          [0m│ sampling candidate points, choosing the one that stretches the available gap the most     │
+│[1m                          [0m│ before adding another circle. This also adds a helper to assess candidate radii and       │
+│[1m                          [0m│ slightly increases the number of shrink iterations, allowing `compute_max_radii` to       │
+│[1m                          [0m│ better resolve overlaps during the repeated adjustment steps. These targeted changes seek │
+│[1m                          [0m│ a higher sum of radii without altering the fixed interface.                               │
+│[1m [0m[1mnum_applied             [0m[1m [0m│ 1                                                                                         │
+│[1m [0m[1mapi_costs               [0m[1m [0m│ $0.0174                                                                                   │
+│[1m [0m[1merror_attempt           [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1msystem_prompt_id        [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1mmodel_name              [0m[1m [0m│ openrouter/openai/gpt-5.1-codex-mini                                                      │
+│[1m [0m[1mtemperature             [0m[1m [0m│ 0.0                                                                                       │
+│[1m [0m[1mmax_output_tokens       [0m[1m [0m│ 16384                                                                                     │
+│[1m [0m[1mdiff_summary            [0m[1m [0m│ added: 22; deleted: 0; modified: 23;                                                      │
+╰──────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────╯
+2026-04-08 23:19:00 - shinka.core.async_runner - INFO - Getting code embedding for generation 2...
+2026-04-08 23:19:00 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-08 23:19:00 - shinka.embed.embedding - WARNING - Embedding model 'openrouter/openai/text-embedding-3-small' has no pricing entry. Defaulting embedding cost to 0.
+2026-04-08 23:19:00 - shinka.core.async_runner - INFO - Code embedding completed for generation 2 (cost: $0.0000)
+2026-04-08 23:19:00 - shinka.core.async_novelty_judge - INFO - Top-5 similarity scores: ['0.99']
+2026-04-08 23:19:00 - shinka.core.async_novelty_judge - INFO - NOVELTY CHECK: Accepting program due to low similarity (0.989 <= 0.99)
+2026-04-08 23:19:00 - shinka.launch.local - INFO - Submitted local process with PID: 37240
+2026-04-08 23:19:00 - shinka.launch.local - INFO - Launched local command: bash -lc set -e; source "/Users/mp2557/Documents/Research/ShinkaEvolve/.venv/bin/activate"; exec python evaluate.py --program_path results/circpack_20260408_231736/gen_2/main.py --results_dir results/circpack_20260408_231736/gen_2/results
+2026-04-08 23:19:00 - shinka.core.async_runner - INFO - Proposal → Eval: gen 2 submitted for eval (cost: $0.0174, total: $0.0364). Running jobs: 1/2, Proposals: 1/1
+2026-04-08 23:19:00 - shinka.core.async_runner - INFO - Starting 1 new proposals. Pipeline: 1/2 (running_jobs=1, active_proposals=0/1), Proposals remaining: 7 (submitted=3/10)
+2026-04-08 23:19:00 - shinka.core.async_runner - INFO - Started proposal task for generation 3 (cost: $0.0364)
+2026-04-08 23:19:00 - shinka.core.async_runner - INFO - Generating proposal for generation 3
+2026-04-08 23:19:00 - shinka.core.async_runner - INFO - Getting meta recs for gen 3, sample_single_meta_rec=True
+2026-04-08 23:19:00 - shinka.core.summarizer - INFO - get_sampled_recommendation called, meta_recommendations exists: False
+2026-04-08 23:19:00 - shinka.core.summarizer - INFO - No meta recommendations available to sample from
+2026-04-08 23:19:00 - shinka.core.async_runner - INFO - meta_recs result: False
+2026-04-08 23:19:00 - shinka.database.parents - INFO - Island 0 => Probabilities: [1.0]
+2026-04-08 23:19:00 - shinka.database.parents - INFO - Island 0 => Scores: [1.8212275215939195]
+2026-04-08 23:19:00 - shinka.database.parents - INFO - Sampled parent 3c03d31c-51b8-4886-9c74-f85bf6fa8a2d (Gen: 0, Score: 1.8212, Children: 0, Island: 0)
+[3m              [0m[1;3mParent & Context Sampling Summary - Gen 3 | Total Cost: $0.02 (Novelty: 1/3, Resample: 1/3)[0m[3m               [0m
+┏━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━┓
+┃[1m [0m[1mRole       [0m[1m [0m┃[1m [0m[1mGen [0m[1m [0m┃[1m [0m[1mIsland [0m[1m [0m┃[1m [0m[1m ✓/✗ [0m[1m [0m┃[1m [0m[1m   Score[0m[1m [0m┃[1m [0m[1mPatch Name                     [0m[1m [0m┃[1m [0m[1mType  [0m[1m [0m┃[1m [0m[1mCompl…[0m[1m [0m┃[1m [0m[1m   Cost[0m[1m [0m┃[1m [0m[1mTime[0m[1m [0m┃
+┡━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━┩
+│[1m [0m[1mPARENT[0m[1m     [0m[1m [0m│  0   │   I-0   │   [1m✓[0m   │    [1m1.821[0m │ initial_program                 │ init   │    0.9 │  $0.000 │ 10.… │
+└─────────────┴──────┴─────────┴───────┴──────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────┘
+2026-04-08 23:19:00 - shinka.core.async_runner - INFO - Generated patch type: diff
+2026-04-08 23:19:00 - shinka.llm.llm - INFO - ==> SAMPLING:
+  openrouter/anthropic/claude-haiku-4-5   0.0000
+  openrouter/openai/gpt-5.1-codex-mini   0.0000
+  openrouter/openai/gpt-5-nano     1.0000
+  openrouter/google/gemini-3-flash-preview   0.0000
+2026-04-08 23:19:00 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/openai/gpt-5-nano', '0.0', '16384']
+2026-04-08 23:19:01 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:19:03 - shinka.core.async_runner - INFO - ✅ Job ProcessWithLogging(PID: 37240) completed (gen 2) after 52.4s
+2026-04-08 23:19:03 - shinka.core.async_runner - INFO - 🔄 Processing 1 completed jobs: gens [2] (cost: $0.0364)
+2026-04-08 23:19:03 - shinka.core.async_runner - INFO - 🔄 SAFE PROCESSING: Starting job ProcessWithLogging(PID: 37240) (gen 2)
+2026-04-08 23:19:03 - shinka.launch.local - INFO - Monitoring local process with PID: 37240...
+2026-04-08 23:19:03 - shinka.launch.local - INFO - Process 37240 completed with return code: 0
+2026-04-08 23:19:03 - shinka.core.async_runner - INFO - 📂 RESULTS: Got results for ProcessWithLogging(PID: 37240): True
+2026-04-08 23:19:03 - shinka.core.async_runner - INFO - ✅ VALID RESULTS: ProcessWithLogging(PID: 37240) has valid results - correct=True, score=1.778733395489039
+2026-04-08 23:19:03 - shinka.core.async_runner - INFO - 💾 DB ADD: Adding program to database for ProcessWithLogging(PID: 37240) (gen 2)...
+2026-04-08 23:19:03 - shinka.database.dbase - INFO - Program b3b051e4-4634-4b35-9545-91e21a580660 added to DB - score: 1.778733395489039.
+[3m                                 [0m[1;3mProgram Evaluation Summary - Gen 2 | Total Cost: $0.04[0m[3m                                 [0m
+╭─────────────┬─────────┬───────────────┬─────────┬─────────────────────────────────┬────────┬────────┬─────────┬──────╮
+│[1m [0m[1m GenID: 2  [0m[1m [0m│[1m [0m[1mIsland [0m[1m [0m│[1m [0m[1m   Status    [0m[1m [0m│[1m [0m[1m  Score[0m[1m [0m│[1m [0m[1mPatch Name                     [0m[1m [0m│[1m [0m[1mType  [0m[1m [0m│[1m [0m[1mCompl…[0m[1m [0m│[1m [0m[1m   Cost[0m[1m [0m│[1m [0m[1mTime[0m[1m [0m│
+├─────────────┼─────────┼───────────────┼─────────┼─────────────────────────────────┼────────┼────────┼─────────┼──────┤
+│ Best: [1m1.943[0m │   I-0   │   [1m✓ Correct[0m   │   [1m1.779[0m │ greedy_point_sampling           │ diff   │    1.0 │  $0.017 │ 3.0s │
+╰─────────────┴─────────┴───────────────┴─────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────╯
+2026-04-08 23:19:03 - shinka.core.async_runner - INFO - ✅ DB SUCCESS: Program b3b051e4-4634-4b35-9545-91e21a580660 successfully added to database for ProcessWithLogging(PID: 37240) (gen 2)
+2026-04-08 23:19:03 - shinka.core.summarizer - INFO - Added program b3b051e4-4634-4b35-9545-91e21a580660 to meta memory tracking (correct=True, total: 3)
+[3m     AsymmetricUCB (c=1.000, eps=0.200, adaptive=True, asym=True, exp_base=1.000, shift_base=True, shift_parent=True, lo[0m
+[3m                                                      cost_c=0.100, cost_pow=1.00, cost_pct=50)                         [0m
+╭────────────────────┬────┬─────────┬────────┬───────────┬───────────┬────────────┬──────────┬──────────┬────────────┬──
+│[1m [0m[1marm               [0m[1m [0m│[1m [0m[1m n[0m[1m [0m│[1m [0m[1m n_cost[0m[1m [0m│[1m [0m[1m   div[0m[1m [0m│[1m [0m[1m log mean[0m[1m [0m│[1m [0m[1m tot_cost[0m[1m [0m│[1m [0m[1m mean_cost[0m[1m [0m│[1m [0m[1m exploit[0m[1m [0m│[1m [0m[1m explore[0m[1m [0m│[1m [0m[1m score_raw[0m[1m [0m│[1m [0m[1m [0m
+├────────────────────┼────┼─────────┼────────┼───────────┼───────────┼────────────┼──────────┼──────────┼────────────┼──
+│ claude-haiku-4-5   │  1 │       1 │  0.902 │   -2.0607 │    0.0189 │     0.0189 │   1.0000 │   1.4823 │     2.4823 │  
+│ gpt-5.1-codex-mini │  1 │       1 │  0.950 │      -inf │    0.0174 │     0.0174 │   0.0000 │   1.4823 │     1.4823 │  
+│ gpt-5-nano         │  1 │       0 │  0.000 │      -inf │    0.0000 │          - │   0.0000 │   1.4823 │     1.4823 │  
+│ gemini-3-flash-pr… │  0 │       0 │  0.000 │      -inf │    0.0000 │          - │   0.0000 │   1.4823 │     1.4823 │  
+╰────────────────────┴────┴─────────┴────────┴───────────┴───────────┴────────────┴──────────┴──────────┴────────────┴──
+2026-04-08 23:19:03 - shinka.core.async_runner - INFO - ✅ JOB COMPLETE: Finished processing ProcessWithLogging(PID: 37240) - program b3b051e4-4634-4b35-9545-91e21a580660 added (gen 2)
+2026-04-08 23:19:03 - shinka.core.async_runner - INFO - ✅ Successfully processed 1/1 jobs
+2026-04-08 23:19:03 - shinka.core.async_runner - INFO - ✅ Completed generations updated: 2 -> 3 (cost: $0.0364)
+2026-04-08 23:19:03 - shinka.core.async_runner - INFO - Proposal target=2 (sampling_ewma=29.66s, evaluation_ewma=3.82s, timing_samples=2, active_proposals=1, running_jobs=0)
+2026-04-08 23:19:20 - shinka.core.async_runner - INFO - 🔍 Meta task check: completed_gens=3, target=10, pending_work=7, running_eval_jobs=0, running_proposal_jobs=1, api_costs=$0.0364, should_stop=False, is_stuck=False, stuck_count=0, time_since_progress=16.4s
+2026-04-08 23:19:35 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0018
+2026-04-08 23:19:35 - shinka.core.async_runner - INFO - Applying patch with language: python
+2026-04-08 23:19:35 - shinka.core.async_runner - INFO - Patch type for application: diff
+[3m                         [0m[1;3mPatch Metadata - Gen 3/10 - Novelty: 1/3 - Resample: 1/3 - Patch: 1/1[0m[3m                          [0m
+╭──────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────╮
+│[1m [0m[1mField                   [0m[1m [0m│[1m [0m[1mValue                                                                                    [0m[1m [0m│
+├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┤
+│[1m [0m[1mpatch_type              [0m[1m [0m│ diff                                                                                      │
+│[1m [0m[1mpatch_name              [0m[1m [0m│ local-search-centers-radii                                                                │
+│[1m [0m[1mpatch_description       [0m[1m [0m│ Introduce a lightweight local-search (simulated-annealing style hill-climb) step that     │
+│[1m                          [0m│ jointly refines circle centers to allow larger radii while maintaining non-overlap and    │
+│[1m                          [0m│ containment. The radii are recomputed after each proposed center perturbation. This       │
+│[1m                          [0m│ explores nearby configurations beyond the rigid-ring initialization, potentially          │
+│[1m                          [0m│ increasing the sum of radii. The search is deterministic (fixed RNG seed) and lightweight │
+│[1m                          [0m│ to keep runtime reasonable, and it preserves the original interface and validity          │
+│[1m                          [0m│ constraints.                                                                              │
+│[1m [0m[1mnum_applied             [0m[1m [0m│ 1                                                                                         │
+│[1m [0m[1mapi_costs               [0m[1m [0m│ $0.0018                                                                                   │
+│[1m [0m[1merror_attempt           [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1msystem_prompt_id        [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1mmodel_name              [0m[1m [0m│ openrouter/openai/gpt-5-nano                                                              │
+│[1m [0m[1mtemperature             [0m[1m [0m│ 0.5                                                                                       │
+│[1m [0m[1mmax_output_tokens       [0m[1m [0m│ 16384                                                                                     │
+│[1m [0m[1mdiff_summary            [0m[1m [0m│ added: 36; deleted: 0; modified: 1;                                                       │
+╰──────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────╯
+2026-04-08 23:19:35 - shinka.core.async_runner - INFO - Getting code embedding for generation 3...
+2026-04-08 23:19:35 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-08 23:19:36 - shinka.embed.embedding - WARNING - Embedding model 'openrouter/openai/text-embedding-3-small' has no pricing entry. Defaulting embedding cost to 0.
+2026-04-08 23:19:36 - shinka.core.async_runner - INFO - Code embedding completed for generation 3 (cost: $0.0000)
+2026-04-08 23:19:36 - shinka.core.async_novelty_judge - INFO - Top-5 similarity scores: ['0.99', '0.99']
+2026-04-08 23:19:36 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/openai/o4-mini', '0.75', '4096']
+2026-04-08 23:19:36 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:19:43 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0051
+2026-04-08 23:19:43 - shinka.core.async_novelty_judge - INFO - NOVELTY CHECK: Accepting program despite high similarity (0.991 > 0.99) due to LLM novelty check (cost: 0.0051).
+2026-04-08 23:19:43 - shinka.launch.local - INFO - Submitted local process with PID: 37257
+2026-04-08 23:19:43 - shinka.launch.local - INFO - Launched local command: bash -lc set -e; source "/Users/mp2557/Documents/Research/ShinkaEvolve/.venv/bin/activate"; exec python evaluate.py --program_path results/circpack_20260408_231736/gen_3/main.py --results_dir results/circpack_20260408_231736/gen_3/results
+2026-04-08 23:19:43 - shinka.core.async_runner - INFO - Proposal → Eval: gen 3 submitted for eval (cost: $0.0070, total: $0.0433). Running jobs: 1/2, Proposals: 1/1
+2026-04-08 23:19:43 - shinka.core.async_runner - INFO - Starting 1 new proposals. Pipeline: 1/2 (running_jobs=1, active_proposals=0/1), Proposals remaining: 6 (submitted=4/10)
+2026-04-08 23:19:43 - shinka.core.async_runner - INFO - Started proposal task for generation 4 (cost: $0.0433)
+2026-04-08 23:19:43 - shinka.core.async_runner - INFO - Generating proposal for generation 4
+2026-04-08 23:19:43 - shinka.core.async_runner - INFO - Getting meta recs for gen 4, sample_single_meta_rec=True
+2026-04-08 23:19:43 - shinka.core.summarizer - INFO - get_sampled_recommendation called, meta_recommendations exists: False
+2026-04-08 23:19:43 - shinka.core.summarizer - INFO - No meta recommendations available to sample from
+2026-04-08 23:19:43 - shinka.core.async_runner - INFO - meta_recs result: False
+2026-04-08 23:19:43 - shinka.database.parents - INFO - Island 1 => Probabilities: [2.2699449604533173e-05, 0.9999773005503955]
+2026-04-08 23:19:43 - shinka.database.parents - INFO - Island 1 => Scores: [1.8212275215939195, 1.942528608676178]
+2026-04-08 23:19:43 - shinka.database.parents - INFO - Sampled parent 9f91441e-5b24-4b9f-9b59-59a56a530dd3 (Gen: 1, Score: 1.9425, Children: 0, Island: 1)
+2026-04-08 23:19:43 - shinka.database.inspirations - INFO - Sampled 1 archive inspirations: ['88c3942d-27c5-4201-a5ac-e3a46c4c73e2 (Gen: 0, Score: 1.8212, Island: 1)']
+[3m              [0m[1;3mParent & Context Sampling Summary - Gen 4 | Total Cost: $0.04 (Novelty: 1/3, Resample: 1/3)[0m[3m               [0m
+┏━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━┓
+┃[1m [0m[1mRole       [0m[1m [0m┃[1m [0m[1mGen [0m[1m [0m┃[1m [0m[1mIsland [0m[1m [0m┃[1m [0m[1m ✓/✗ [0m[1m [0m┃[1m [0m[1m   Score[0m[1m [0m┃[1m [0m[1mPatch Name                     [0m[1m [0m┃[1m [0m[1mType  [0m[1m [0m┃[1m [0m[1mCompl…[0m[1m [0m┃[1m [0m[1m   Cost[0m[1m [0m┃[1m [0m[1mTime[0m[1m [0m┃
+┡━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━┩
+│[1m [0m[1mPARENT[0m[1m     [0m[1m [0m│  1   │   I-1   │   [1m✓[0m   │    [1m1.943[0m │ none                            │ diff   │    1.0 │  $0.019 │ 4.2s │
+│[1m [0m[1mArchive-1  [0m[1m [0m│  0   │   I-1   │   [1m✓[0m   │    [1m1.821[0m │ initial_program                 │ init   │    0.9 │  $0.000 │ 10.… │
+└─────────────┴──────┴─────────┴───────┴──────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────┘
+2026-04-08 23:19:43 - shinka.database.inspirations - INFO - Built context: 1 programs (ascending, scores: ['1.8212'])
+2026-04-08 23:19:43 - shinka.core.async_runner - INFO - Generated patch type: diff
+2026-04-08 23:19:43 - shinka.llm.llm - INFO - ==> SAMPLING:
+  openrouter/anthropic/claude-haiku-4-5   0.0000
+  openrouter/openai/gpt-5.1-codex-mini   0.0000
+  openrouter/openai/gpt-5-nano     0.0000
+  openrouter/google/gemini-3-flash-preview   1.0000
+2026-04-08 23:19:43 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/google/gemini-3-flash-preview', '0.0', '16384']
+2026-04-08 23:19:44 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:19:50 - shinka.core.async_runner - INFO - ✅ Job ProcessWithLogging(PID: 37257) completed (gen 3) after 49.7s
+2026-04-08 23:19:50 - shinka.core.async_runner - INFO - 🔄 Processing 1 completed jobs: gens [3] (cost: $0.0433)
+2026-04-08 23:19:50 - shinka.core.async_runner - INFO - 🔄 SAFE PROCESSING: Starting job ProcessWithLogging(PID: 37257) (gen 3)
+2026-04-08 23:19:50 - shinka.launch.local - INFO - Monitoring local process with PID: 37257...
+2026-04-08 23:19:50 - shinka.launch.local - INFO - Process 37257 completed with return code: 0
+2026-04-08 23:19:50 - shinka.core.async_runner - INFO - 📂 RESULTS: Got results for ProcessWithLogging(PID: 37257): True
+2026-04-08 23:19:50 - shinka.core.async_runner - INFO - ✅ VALID RESULTS: ProcessWithLogging(PID: 37257) has valid results - correct=True, score=1.8526168354574788
+2026-04-08 23:19:50 - shinka.core.async_runner - INFO - 💾 DB ADD: Adding program to database for ProcessWithLogging(PID: 37257) (gen 3)...
+2026-04-08 23:19:50 - shinka.database.dbase - INFO - Program 4bfd21a0-1717-4e20-bf6c-d3de5f94321c added to DB - score: 1.8526168354574788.
+[3m                                 [0m[1;3mProgram Evaluation Summary - Gen 3 | Total Cost: $0.04[0m[3m                                 [0m
+╭─────────────┬─────────┬───────────────┬─────────┬─────────────────────────────────┬────────┬────────┬─────────┬──────╮
+│[1m [0m[1m GenID: 3  [0m[1m [0m│[1m [0m[1mIsland [0m[1m [0m│[1m [0m[1m   Status    [0m[1m [0m│[1m [0m[1m  Score[0m[1m [0m│[1m [0m[1mPatch Name                     [0m[1m [0m│[1m [0m[1mType  [0m[1m [0m│[1m [0m[1mCompl…[0m[1m [0m│[1m [0m[1m   Cost[0m[1m [0m│[1m [0m[1mTime[0m[1m [0m│
+├─────────────┼─────────┼───────────────┼─────────┼─────────────────────────────────┼────────┼────────┼─────────┼──────┤
+│ Best: [1m1.943[0m │   I-0   │   [1m✓ Correct[0m   │   [1m1.853[0m │ local-search-centers-radii      │ diff   │    1.0 │  $0.007 │ 7.3s │
+╰─────────────┴─────────┴───────────────┴─────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────╯
+2026-04-08 23:19:50 - shinka.core.async_runner - INFO - ✅ DB SUCCESS: Program 4bfd21a0-1717-4e20-bf6c-d3de5f94321c successfully added to database for ProcessWithLogging(PID: 37257) (gen 3)
+2026-04-08 23:19:50 - shinka.core.summarizer - INFO - Added program 4bfd21a0-1717-4e20-bf6c-d3de5f94321c to meta memory tracking (correct=True, total: 4)
+[3m     AsymmetricUCB (c=1.000, eps=0.200, adaptive=True, asym=True, exp_base=1.000, shift_base=True, shift_parent=True, lo[0m
+[3m                                                      cost_c=0.100, cost_pow=1.00, cost_pct=50)                         [0m
+╭────────────────────┬────┬─────────┬────────┬───────────┬───────────┬────────────┬──────────┬──────────┬────────────┬──
+│[1m [0m[1marm               [0m[1m [0m│[1m [0m[1m n[0m[1m [0m│[1m [0m[1m n_cost[0m[1m [0m│[1m [0m[1m   div[0m[1m [0m│[1m [0m[1m log mean[0m[1m [0m│[1m [0m[1m tot_cost[0m[1m [0m│[1m [0m[1m mean_cost[0m[1m [0m│[1m [0m[1m exploit[0m[1m [0m│[1m [0m[1m explore[0m[1m [0m│[1m [0m[1m score_raw[0m[1m [0m│[1m [0m[1m [0m
+├────────────────────┼────┼─────────┼────────┼───────────┼───────────┼────────────┼──────────┼──────────┼────────────┼──
+│ claude-haiku-4-5   │  1 │       1 │  0.857 │   -2.0664 │    0.0189 │     0.0189 │   1.0000 │   1.6651 │     2.6651 │  
+│ gpt-5.1-codex-mini │  1 │       1 │  0.902 │      -inf │    0.0174 │     0.0174 │   0.0000 │   1.6651 │     1.6651 │  
+│ gpt-5-nano         │  1 │       1 │  0.950 │   -3.4471 │    0.0018 │     0.0018 │   0.2514 │   1.6651 │     1.9165 │  
+│ gemini-3-flash-pr… │  1 │       0 │  0.000 │      -inf │    0.0000 │          - │   0.0000 │   1.6651 │     1.6651 │  
+╰────────────────────┴────┴─────────┴────────┴───────────┴───────────┴────────────┴──────────┴──────────┴────────────┴──
+2026-04-08 23:19:50 - shinka.core.async_runner - INFO - ✅ JOB COMPLETE: Finished processing ProcessWithLogging(PID: 37257) - program 4bfd21a0-1717-4e20-bf6c-d3de5f94321c added (gen 3)
+2026-04-08 23:19:50 - shinka.core.async_runner - INFO - ✅ Successfully processed 1/1 jobs
+2026-04-08 23:19:50 - shinka.core.async_runner - INFO - ✅ Completed generations updated: 3 -> 4 (cost: $0.0433)
+2026-04-08 23:19:50 - shinka.core.async_runner - INFO - Proposal target=2 (sampling_ewma=33.51s, evaluation_ewma=4.85s, timing_samples=3, active_proposals=1, running_jobs=0)
+2026-04-08 23:19:59 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0103
+2026-04-08 23:19:59 - shinka.core.async_runner - INFO - Applying patch with language: python
+2026-04-08 23:19:59 - shinka.core.async_runner - INFO - Patch type for application: diff
+[3m                         [0m[1;3mPatch Metadata - Gen 4/10 - Novelty: 1/3 - Resample: 1/3 - Patch: 1/1[0m[3m                          [0m
+╭──────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────╮
+│[1m [0m[1mField                   [0m[1m [0m│[1m [0m[1mValue                                                                                    [0m[1m [0m│
+├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┤
+│[1m [0m[1mpatch_type              [0m[1m [0m│ diff                                                                                      │
+│[1m [0m[1mpatch_name              [0m[1m [0m│ iterative_radii_expansion_and_shaking                                                     │
+│[1m [0m[1mpatch_description       [0m[1m [0m│ The current approach uses a joint optimization that often gets stuck in local minima      │
+│[1m                          [0m│ because the radii and positions are coupled in a way that SLSQP struggles to navigate.    │
+│[1m                          [0m│                                                                                           │
+│[1m                          [0m│ I am proposing a more robust optimization strategy:                                       │
+│[1m                          [0m│ 1.  **Iterative Expansion**: Instead of treating radii as variables in the NLP, we treat  │
+│[1m                          [0m│ the problem as a "hard-sphere" packing where we try to maximize a global scaling factor   │
+│[1m                          [0m│ $r$ for all circles, then locally "grow" each circle to its maximum possible size.        │
+│[1m                          [0m│ 2.  **Shaking/Perturbation**: To escape local optima, we apply small random perturbations │
+│[1m                          [0m│ to the centers and re-optimize.                                                           │
+│[1m                          [0m│ 3.  **Improved Feasibility**: The `compute_max_radii` function is replaced with a more    │
+│[1m                          [0m│ efficient version that uses a greedy "first-come-first-served" expansion or a balanced    │
+│[1m                          [0m│ expansion to ensure no overlaps while maximizing the sum.                                 │
+│[1m                          [0m│ 4.  **Better Initialization**: Using a jittered grid and multiple restarts to find a      │
+│[1m                          [0m│ better starting basin.                                                                    │
+│[1m [0m[1mnum_applied             [0m[1m [0m│ 2                                                                                         │
+│[1m [0m[1mapi_costs               [0m[1m [0m│ $0.0103                                                                                   │
+│[1m [0m[1merror_attempt           [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1msystem_prompt_id        [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1mmodel_name              [0m[1m [0m│ openrouter/google/gemini-3-flash-preview                                                  │
+│[1m [0m[1mtemperature             [0m[1m [0m│ 0.5                                                                                       │
+│[1m [0m[1mmax_output_tokens       [0m[1m [0m│ 16384                                                                                     │
+│[1m [0m[1mdiff_summary            [0m[1m [0m│ added: 34; deleted: 0; modified: 92;                                                      │
+╰──────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────╯
+2026-04-08 23:19:59 - shinka.core.async_runner - INFO - Getting code embedding for generation 4...
+2026-04-08 23:19:59 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-08 23:19:59 - shinka.embed.embedding - WARNING - Embedding model 'openrouter/openai/text-embedding-3-small' has no pricing entry. Defaulting embedding cost to 0.
+2026-04-08 23:19:59 - shinka.core.async_runner - INFO - Code embedding completed for generation 4 (cost: $0.0000)
+2026-04-08 23:19:59 - shinka.core.async_novelty_judge - INFO - Top-5 similarity scores: ['0.97', '0.96']
+2026-04-08 23:19:59 - shinka.core.async_novelty_judge - INFO - NOVELTY CHECK: Accepting program due to low similarity (0.972 <= 0.99)
+2026-04-08 23:19:59 - shinka.launch.local - INFO - Submitted local process with PID: 37265
+2026-04-08 23:19:59 - shinka.launch.local - INFO - Launched local command: bash -lc set -e; source "/Users/mp2557/Documents/Research/ShinkaEvolve/.venv/bin/activate"; exec python evaluate.py --program_path results/circpack_20260408_231736/gen_4/main.py --results_dir results/circpack_20260408_231736/gen_4/results
+2026-04-08 23:19:59 - shinka.core.async_runner - INFO - Proposal → Eval: gen 4 submitted for eval (cost: $0.0103, total: $0.0536). Running jobs: 1/2, Proposals: 1/1
+2026-04-08 23:19:59 - shinka.core.async_runner - INFO - Starting 1 new proposals. Pipeline: 1/2 (running_jobs=1, active_proposals=0/1), Proposals remaining: 5 (submitted=5/10)
+2026-04-08 23:19:59 - shinka.core.async_runner - INFO - Started proposal task for generation 5 (cost: $0.0536)
+2026-04-08 23:19:59 - shinka.core.async_runner - INFO - Generating proposal for generation 5
+2026-04-08 23:19:59 - shinka.core.async_runner - INFO - Getting meta recs for gen 5, sample_single_meta_rec=True
+2026-04-08 23:19:59 - shinka.core.summarizer - INFO - get_sampled_recommendation called, meta_recommendations exists: False
+2026-04-08 23:19:59 - shinka.core.summarizer - INFO - No meta recommendations available to sample from
+2026-04-08 23:19:59 - shinka.core.async_runner - INFO - meta_recs result: False
+2026-04-08 23:19:59 - shinka.database.parents - INFO - Island 0 => Probabilities: [0.1428625403334729, 1.131594780846433e-06, 0.8571363280717462]
+2026-04-08 23:19:59 - shinka.database.parents - INFO - Island 0 => Scores: [1.8212275215939195, 1.778733395489039, 1.8526168354574788]
+2026-04-08 23:19:59 - shinka.database.parents - INFO - Sampled parent 4bfd21a0-1717-4e20-bf6c-d3de5f94321c (Gen: 3, Score: 1.8526, Children: 0, Island: 0)
+2026-04-08 23:19:59 - shinka.database.inspirations - INFO - Sampled 1 archive inspirations: ['3c03d31c-51b8-4886-9c74-f85bf6fa8a2d (Gen: 0, Score: 1.8212, Island: 0)']
+2026-04-08 23:19:59 - shinka.database.inspirations - INFO - Selected 1 top-k inspirations from archive on island 0: ['b3b051e4-4634-4b35-9545-91e21a580660 (Gen: 2, Score: 1.7787, Island: 0)']
+[3m              [0m[1;3mParent & Context Sampling Summary - Gen 5 | Total Cost: $0.04 (Novelty: 1/3, Resample: 1/3)[0m[3m               [0m
+┏━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━┓
+┃[1m [0m[1mRole       [0m[1m [0m┃[1m [0m[1mGen [0m[1m [0m┃[1m [0m[1mIsland [0m[1m [0m┃[1m [0m[1m ✓/✗ [0m[1m [0m┃[1m [0m[1m   Score[0m[1m [0m┃[1m [0m[1mPatch Name                     [0m[1m [0m┃[1m [0m[1mType  [0m[1m [0m┃[1m [0m[1mCompl…[0m[1m [0m┃[1m [0m[1m   Cost[0m[1m [0m┃[1m [0m[1mTime[0m[1m [0m┃
+┡━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━┩
+│[1m [0m[1mPARENT[0m[1m     [0m[1m [0m│  3   │   I-0   │   [1m✓[0m   │    [1m1.853[0m │ local-search-centers-radii      │ diff   │    1.0 │  $0.007 │ 7.3s │
+│[1m [0m[1mArchive-1  [0m[1m [0m│  0   │   I-0   │   [1m✓[0m   │    [1m1.821[0m │ initial_program                 │ init   │    0.9 │  $0.000 │ 10.… │
+│[1m [0m[1mTopK-1     [0m[1m [0m│  2   │   I-0   │   [1m✓[0m   │    [1m1.779[0m │ greedy_point_sampling           │ diff   │    1.0 │  $0.017 │ 3.0s │
+└─────────────┴──────┴─────────┴───────┴──────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────┘
+2026-04-08 23:19:59 - shinka.database.inspirations - INFO - Built context: 2 programs (ascending, scores: ['1.7787', '1.8212'])
+2026-04-08 23:19:59 - shinka.core.async_runner - INFO - Generated patch type: full
+2026-04-08 23:19:59 - shinka.llm.llm - INFO - ==> SAMPLING:
+  openrouter/anthropic/claude-haiku-4-5   0.0000
+  openrouter/openai/gpt-5.1-codex-mini   0.0000
+  openrouter/openai/gpt-5-nano     1.0000
+  openrouter/google/gemini-3-flash-preview   0.0000
+2026-04-08 23:19:59 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/openai/gpt-5-nano', '0.0', '16384']
+2026-04-08 23:20:00 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:20:02 - shinka.core.async_runner - INFO - ✅ Job ProcessWithLogging(PID: 37265) completed (gen 4) after 19.3s
+2026-04-08 23:20:02 - shinka.core.async_runner - INFO - 🔄 Processing 1 completed jobs: gens [4] (cost: $0.0536)
+2026-04-08 23:20:02 - shinka.core.async_runner - INFO - 🔄 SAFE PROCESSING: Starting job ProcessWithLogging(PID: 37265) (gen 4)
+2026-04-08 23:20:02 - shinka.launch.local - INFO - Monitoring local process with PID: 37265...
+2026-04-08 23:20:02 - shinka.launch.local - INFO - Process 37265 completed with return code: 0
+2026-04-08 23:20:02 - shinka.core.async_runner - INFO - 📂 RESULTS: Got results for ProcessWithLogging(PID: 37265): True
+2026-04-08 23:20:02 - shinka.core.async_runner - INFO - ✅ VALID RESULTS: ProcessWithLogging(PID: 37265) has valid results - correct=False, score=0.0
+2026-04-08 23:20:02 - shinka.core.async_runner - INFO - 💾 DB ADD: Adding program to database for ProcessWithLogging(PID: 37265) (gen 4)...
+2026-04-08 23:20:02 - shinka.database.dbase - INFO - Program 4be834f7-d95e-44b0-81c8-9f5e63dc2eb2 added to DB - score: 0.0.
+[3m                                 [0m[1;3mProgram Evaluation Summary - Gen 4 | Total Cost: $0.05[0m[3m                                 [0m
+╭─────────────┬─────────┬───────────────┬─────────┬─────────────────────────────────┬────────┬────────┬─────────┬──────╮
+│[1m [0m[1m GenID: 4  [0m[1m [0m│[1m [0m[1mIsland [0m[1m [0m│[1m [0m[1m   Status    [0m[1m [0m│[1m [0m[1m  Score[0m[1m [0m│[1m [0m[1mPatch Name                     [0m[1m [0m│[1m [0m[1mType  [0m[1m [0m│[1m [0m[1mCompl…[0m[1m [0m│[1m [0m[1m   Cost[0m[1m [0m│[1m [0m[1mTime[0m[1m [0m│
+├─────────────┼─────────┼───────────────┼─────────┼─────────────────────────────────┼────────┼────────┼─────────┼──────┤
+│ Best: [1m1.943[0m │   I-1   │  [1m✗ Incorrect[0m  │   0.000 │ iterative_radii_expansion_and_  │ diff   │    0.9 │  $0.010 │ 2.8s │
+╰─────────────┴─────────┴───────────────┴─────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────╯
+2026-04-08 23:20:02 - shinka.core.async_runner - INFO - ✅ DB SUCCESS: Program 4be834f7-d95e-44b0-81c8-9f5e63dc2eb2 successfully added to database for ProcessWithLogging(PID: 37265) (gen 4)
+2026-04-08 23:20:02 - shinka.core.summarizer - INFO - Added program 4be834f7-d95e-44b0-81c8-9f5e63dc2eb2 to meta memory tracking (correct=False, total: 5)
+[3m     AsymmetricUCB (c=1.000, eps=0.200, adaptive=True, asym=True, exp_base=1.000, shift_base=True, shift_parent=True, lo[0m
+[3m                                                      cost_c=0.100, cost_pow=1.00, cost_pct=50)                         [0m
+╭────────────────────┬────┬─────────┬────────┬───────────┬───────────┬────────────┬──────────┬──────────┬────────────┬──
+│[1m [0m[1marm               [0m[1m [0m│[1m [0m[1m n[0m[1m [0m│[1m [0m[1m n_cost[0m[1m [0m│[1m [0m[1m   div[0m[1m [0m│[1m [0m[1m log mean[0m[1m [0m│[1m [0m[1m tot_cost[0m[1m [0m│[1m [0m[1m mean_cost[0m[1m [0m│[1m [0m[1m exploit[0m[1m [0m│[1m [0m[1m explore[0m[1m [0m│[1m [0m[1m score_raw[0m[1m [0m│[1m [0m[1m [0m
+├────────────────────┼────┼─────────┼────────┼───────────┼───────────┼────────────┼──────────┼──────────┼────────────┼──
+│ claude-haiku-4-5   │  1 │       1 │  0.815 │   -2.0719 │    0.0189 │     0.0189 │   1.0000 │   1.7941 │     2.7941 │  
+│ gpt-5.1-codex-mini │  1 │       1 │  0.857 │      -inf │    0.0174 │     0.0174 │   0.0000 │   1.7941 │     1.7941 │  
+│ gpt-5-nano         │  2 │       1 │  0.902 │   -3.4487 │    0.0018 │     0.0018 │   0.2524 │   1.2686 │     1.5210 │  
+│ gemini-3-flash-pr… │  1 │       1 │  0.950 │      -inf │    0.0103 │     0.0103 │   0.0000 │   1.7941 │     1.7941 │  
+╰────────────────────┴────┴─────────┴────────┴───────────┴───────────┴────────────┴──────────┴──────────┴────────────┴──
+2026-04-08 23:20:02 - shinka.core.async_runner - INFO - ✅ JOB COMPLETE: Finished processing ProcessWithLogging(PID: 37265) - program 4be834f7-d95e-44b0-81c8-9f5e63dc2eb2 added (gen 4)
+2026-04-08 23:20:02 - shinka.core.async_runner - INFO - ✅ Successfully processed 1/1 jobs
+2026-04-08 23:20:02 - shinka.core.async_runner - INFO - ✅ Completed generations updated: 4 -> 5 (cost: $0.0536)
+2026-04-08 23:20:02 - shinka.core.async_runner - INFO - Proposal target=2 (sampling_ewma=28.43s, evaluation_ewma=4.22s, timing_samples=4, active_proposals=1, running_jobs=0)
+2026-04-08 23:20:20 - shinka.core.async_runner - INFO - 🔍 Meta task check: completed_gens=5, target=10, pending_work=5, running_eval_jobs=0, running_proposal_jobs=1, api_costs=$0.0536, should_stop=False, is_stuck=False, stuck_count=0, time_since_progress=17.5s
+2026-04-08 23:20:38 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0026
+2026-04-08 23:20:38 - shinka.core.async_runner - INFO - Applying patch with language: python
+2026-04-08 23:20:38 - shinka.core.async_runner - INFO - Patch type for application: full
+2026-04-08 23:20:38 - shinka.database.parents - INFO - Island 0 => Probabilities: [0.1428625403334729, 1.131594780846433e-06, 0.8571363280717462]
+2026-04-08 23:20:38 - shinka.database.parents - INFO - Island 0 => Scores: [1.8212275215939195, 1.778733395489039, 1.8526168354574788]
+2026-04-08 23:20:38 - shinka.database.parents - INFO - Sampled parent 4bfd21a0-1717-4e20-bf6c-d3de5f94321c (Gen: 3, Score: 1.8526, Children: 0, Island: 0)
+2026-04-08 23:20:38 - shinka.database.inspirations - INFO - Sampled 1 archive inspirations: ['3c03d31c-51b8-4886-9c74-f85bf6fa8a2d (Gen: 0, Score: 1.8212, Island: 0)']
+2026-04-08 23:20:38 - shinka.database.inspirations - INFO - Selected 1 top-k inspirations from archive on island 0: ['b3b051e4-4634-4b35-9545-91e21a580660 (Gen: 2, Score: 1.7787, Island: 0)']
+[3m              [0m[1;3mParent & Context Sampling Summary - Gen 5 | Total Cost: $0.05 (Novelty: 1/3, Resample: 2/3)[0m[3m               [0m
+┏━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━┓
+┃[1m [0m[1mRole       [0m[1m [0m┃[1m [0m[1mGen [0m[1m [0m┃[1m [0m[1mIsland [0m[1m [0m┃[1m [0m[1m ✓/✗ [0m[1m [0m┃[1m [0m[1m   Score[0m[1m [0m┃[1m [0m[1mPatch Name                     [0m[1m [0m┃[1m [0m[1mType  [0m[1m [0m┃[1m [0m[1mCompl…[0m[1m [0m┃[1m [0m[1m   Cost[0m[1m [0m┃[1m [0m[1mTime[0m[1m [0m┃
+┡━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━┩
+│[1m [0m[1mPARENT[0m[1m     [0m[1m [0m│  3   │   I-0   │   [1m✓[0m   │    [1m1.853[0m │ local-search-centers-radii      │ diff   │    1.0 │  $0.007 │ 7.3s │
+│[1m [0m[1mArchive-1  [0m[1m [0m│  0   │   I-0   │   [1m✓[0m   │    [1m1.821[0m │ initial_program                 │ init   │    0.9 │  $0.000 │ 10.… │
+│[1m [0m[1mTopK-1     [0m[1m [0m│  2   │   I-0   │   [1m✓[0m   │    [1m1.779[0m │ greedy_point_sampling           │ diff   │    1.0 │  $0.017 │ 3.0s │
+└─────────────┴──────┴─────────┴───────┴──────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────┘
+2026-04-08 23:20:38 - shinka.database.inspirations - INFO - Built context: 2 programs (ascending, scores: ['1.7787', '1.8212'])
+2026-04-08 23:20:38 - shinka.core.async_runner - INFO - Generated patch type: diff
+2026-04-08 23:20:38 - shinka.llm.llm - INFO - ==> SAMPLING:
+  openrouter/anthropic/claude-haiku-4-5   0.0000
+  openrouter/openai/gpt-5.1-codex-mini   0.0000
+  openrouter/openai/gpt-5-nano     1.0000
+  openrouter/google/gemini-3-flash-preview   0.0000
+2026-04-08 23:20:38 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/openai/gpt-5-nano', '0.5', '16384']
+2026-04-08 23:20:39 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:21:57 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0044
+2026-04-08 23:21:57 - shinka.core.async_runner - INFO - Applying patch with language: python
+2026-04-08 23:21:57 - shinka.core.async_runner - INFO - Patch type for application: diff
+[3m                         [0m[1;3mPatch Metadata - Gen 5/10 - Novelty: 1/3 - Resample: 2/3 - Patch: 1/1[0m[3m                          [0m
+╭──────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────╮
+│[1m [0m[1mField                   [0m[1m [0m│[1m [0m[1mValue                                                                                    [0m[1m [0m│
+├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┤
+│[1m [0m[1mpatch_type              [0m[1m [0m│ diff                                                                                      │
+│[1m [0m[1mpatch_name              [0m[1m [0m│ relax_and_expand_packing                                                                  │
+│[1m [0m[1mpatch_description       [0m[1m [0m│ Introduce a lightweight physics-inspired relaxation step to spread circles more           │
+│[1m                          [0m│ efficiently before the local search. This helps avoid cramped initial configurations and  │
+│[1m                          [0m│ allows larger radii to emerge from the compute_max_radii step. The improvement comprises: │
+│[1m                          [0m│ - A new relax_layout that gently repels overlapping circles and nudges them away from     │
+│[1m                          [0m│ walls.                                                                                    │
+│[1m                          [0m│ - A call to relax_layout immediately after the initial placement, prior to the simulated  │
+│[1m                          [0m│ annealing local search.                                                                   │
+│[1m                          [0m│ - A more aggressive local search (larger initial step and more iterations) to leverage    │
+│[1m                          [0m│ the better starting arrangement.                                                          │
+│[1m                          [0m│                                                                                           │
+│[1m                          [0m│ Overall, this should yield larger total radii and move towards the better-known           │
+│[1m                          [0m│ benchmarks (closer to 2.6+).                                                              │
+│[1m [0m[1mnum_applied             [0m[1m [0m│ 2                                                                                         │
+│[1m [0m[1mapi_costs               [0m[1m [0m│ $0.0044                                                                                   │
+│[1m [0m[1merror_attempt           [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1msystem_prompt_id        [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1mmodel_name              [0m[1m [0m│ openrouter/openai/gpt-5-nano                                                              │
+│[1m [0m[1mtemperature             [0m[1m [0m│ 1.0                                                                                       │
+│[1m [0m[1mmax_output_tokens       [0m[1m [0m│ 16384                                                                                     │
+│[1m [0m[1mdiff_summary            [0m[1m [0m│ added: 44; deleted: 0; modified: 2;                                                       │
+╰──────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────╯
+2026-04-08 23:21:57 - shinka.core.async_runner - INFO - Getting code embedding for generation 5...
+2026-04-08 23:21:57 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-08 23:21:57 - shinka.embed.embedding - WARNING - Embedding model 'openrouter/openai/text-embedding-3-small' has no pricing entry. Defaulting embedding cost to 0.
+2026-04-08 23:21:57 - shinka.core.async_runner - INFO - Code embedding completed for generation 5 (cost: $0.0000)
+2026-04-08 23:21:57 - shinka.core.async_novelty_judge - INFO - Top-5 similarity scores: ['0.99', '0.98', '0.98']
+2026-04-08 23:21:57 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/openai/o4-mini', '0.75', '4096']
+2026-04-08 23:21:58 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:22:02 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0048
+2026-04-08 23:22:02 - shinka.core.async_novelty_judge - INFO - NOVELTY CHECK: Accepting program despite high similarity (0.991 > 0.99) due to LLM novelty check (cost: 0.0048).
+2026-04-08 23:22:02 - shinka.launch.local - INFO - Submitted local process with PID: 37311
+2026-04-08 23:22:02 - shinka.launch.local - INFO - Launched local command: bash -lc set -e; source "/Users/mp2557/Documents/Research/ShinkaEvolve/.venv/bin/activate"; exec python evaluate.py --program_path results/circpack_20260408_231736/gen_5/main.py --results_dir results/circpack_20260408_231736/gen_5/results
+2026-04-08 23:22:02 - shinka.core.async_runner - INFO - Proposal → Eval: gen 5 submitted for eval (cost: $0.0118, total: $0.0654). Running jobs: 1/2, Proposals: 1/1
+2026-04-08 23:22:02 - shinka.core.async_runner - INFO - Starting 1 new proposals. Pipeline: 1/2 (running_jobs=1, active_proposals=0/1), Proposals remaining: 4 (submitted=6/10)
+2026-04-08 23:22:02 - shinka.core.async_runner - INFO - Started proposal task for generation 6 (cost: $0.0654)
+2026-04-08 23:22:02 - shinka.core.async_runner - INFO - Generating proposal for generation 6
+2026-04-08 23:22:02 - shinka.core.async_runner - INFO - Getting meta recs for gen 6, sample_single_meta_rec=True
+2026-04-08 23:22:02 - shinka.core.summarizer - INFO - get_sampled_recommendation called, meta_recommendations exists: False
+2026-04-08 23:22:02 - shinka.core.summarizer - INFO - No meta recommendations available to sample from
+2026-04-08 23:22:02 - shinka.core.async_runner - INFO - meta_recs result: False
+2026-04-08 23:22:02 - shinka.database.parents - INFO - Island 1 => Probabilities: [4.539786870243359e-05, 0.9999546021312976]
+2026-04-08 23:22:02 - shinka.database.parents - INFO - Island 1 => Scores: [1.8212275215939195, 1.942528608676178]
+2026-04-08 23:22:02 - shinka.database.parents - INFO - Sampled parent 9f91441e-5b24-4b9f-9b59-59a56a530dd3 (Gen: 1, Score: 1.9425, Children: 1, Island: 1)
+2026-04-08 23:22:02 - shinka.database.inspirations - INFO - Sampled 1 archive inspirations: ['88c3942d-27c5-4201-a5ac-e3a46c4c73e2 (Gen: 0, Score: 1.8212, Island: 1)']
+[3m              [0m[1;3mParent & Context Sampling Summary - Gen 6 | Total Cost: $0.05 (Novelty: 1/3, Resample: 1/3)[0m[3m               [0m
+┏━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━┓
+┃[1m [0m[1mRole       [0m[1m [0m┃[1m [0m[1mGen [0m[1m [0m┃[1m [0m[1mIsland [0m[1m [0m┃[1m [0m[1m ✓/✗ [0m[1m [0m┃[1m [0m[1m   Score[0m[1m [0m┃[1m [0m[1mPatch Name                     [0m[1m [0m┃[1m [0m[1mType  [0m[1m [0m┃[1m [0m[1mCompl…[0m[1m [0m┃[1m [0m[1m   Cost[0m[1m [0m┃[1m [0m[1mTime[0m[1m [0m┃
+┡━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━┩
+│[1m [0m[1mPARENT[0m[1m     [0m[1m [0m│  1   │   I-1   │   [1m✓[0m   │    [1m1.943[0m │ none                            │ diff   │    1.0 │  $0.019 │ 4.2s │
+│[1m [0m[1mArchive-1  [0m[1m [0m│  0   │   I-1   │   [1m✓[0m   │    [1m1.821[0m │ initial_program                 │ init   │    0.9 │  $0.000 │ 10.… │
+└─────────────┴──────┴─────────┴───────┴──────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────┘
+2026-04-08 23:22:02 - shinka.database.inspirations - INFO - Built context: 1 programs (ascending, scores: ['1.8212'])
+2026-04-08 23:22:02 - shinka.core.async_runner - INFO - Generated patch type: diff
+2026-04-08 23:22:02 - shinka.llm.llm - INFO - ==> SAMPLING:
+  openrouter/anthropic/claude-haiku-4-5   1.0000
+  openrouter/openai/gpt-5.1-codex-mini   0.0000
+  openrouter/openai/gpt-5-nano     0.0000
+  openrouter/google/gemini-3-flash-preview   0.0000
+2026-04-08 23:22:02 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/anthropic/claude-haiku-4-5', '1.0', '16384']
+2026-04-08 23:22:04 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:22:14 - shinka.core.async_runner - INFO - ✅ Job ProcessWithLogging(PID: 37311) completed (gen 5) after 134.7s
+2026-04-08 23:22:14 - shinka.core.async_runner - INFO - 🔄 Processing 1 completed jobs: gens [5] (cost: $0.0654)
+2026-04-08 23:22:14 - shinka.core.async_runner - INFO - 🔄 SAFE PROCESSING: Starting job ProcessWithLogging(PID: 37311) (gen 5)
+2026-04-08 23:22:14 - shinka.launch.local - INFO - Monitoring local process with PID: 37311...
+2026-04-08 23:22:14 - shinka.launch.local - INFO - Process 37311 completed with return code: 0
+2026-04-08 23:22:14 - shinka.core.async_runner - INFO - 📂 RESULTS: Got results for ProcessWithLogging(PID: 37311): True
+2026-04-08 23:22:14 - shinka.core.async_runner - INFO - ✅ VALID RESULTS: ProcessWithLogging(PID: 37311) has valid results - correct=True, score=1.9631940148179807
+2026-04-08 23:22:14 - shinka.core.async_runner - INFO - 💾 DB ADD: Adding program to database for ProcessWithLogging(PID: 37311) (gen 5)...
+2026-04-08 23:22:14 - shinka.database.dbase - INFO - Program c8986feb-e7e8-4322-a53f-8462a0bacce4 added to DB - score: 1.9631940148179807.
+2026-04-08 23:22:14 - shinka.database.dbase - INFO - New best program: c8986feb-e7e8-4322-a53f-8462a0bacce4 (gen: 1 → 5, score: 1.9425 → 1.9632, island: 1 → 0)
+[3m                                 [0m[1;3mProgram Evaluation Summary - Gen 5 | Total Cost: $0.07[0m[3m                                 [0m
+╭─────────────┬─────────┬───────────────┬─────────┬─────────────────────────────────┬────────┬────────┬─────────┬──────╮
+│[1m [0m[1m GenID: 5  [0m[1m [0m│[1m [0m[1mIsland [0m[1m [0m│[1m [0m[1m   Status    [0m[1m [0m│[1m [0m[1m  Score[0m[1m [0m│[1m [0m[1mPatch Name                     [0m[1m [0m│[1m [0m[1mType  [0m[1m [0m│[1m [0m[1mCompl…[0m[1m [0m│[1m [0m[1m   Cost[0m[1m [0m│[1m [0m[1mTime[0m[1m [0m│
+├─────────────┼─────────┼───────────────┼─────────┼─────────────────────────────────┼────────┼────────┼─────────┼──────┤
+│ Best: [1m1.963[0m │   I-0   │   [1m✓ Correct[0m   │   [1m1.963[0m │ relax_and_expand_packing        │ diff   │    1.0 │  $0.012 │ 11.… │
+╰─────────────┴─────────┴───────────────┴─────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────╯
+2026-04-08 23:22:14 - shinka.core.async_runner - INFO - ✅ DB SUCCESS: Program c8986feb-e7e8-4322-a53f-8462a0bacce4 successfully added to database for ProcessWithLogging(PID: 37311) (gen 5)
+2026-04-08 23:22:14 - shinka.core.summarizer - INFO - Added program c8986feb-e7e8-4322-a53f-8462a0bacce4 to meta memory tracking (correct=True, total: 6)
+[3m     AsymmetricUCB (c=1.000, eps=0.200, adaptive=True, asym=True, exp_base=1.000, shift_base=True, shift_parent=True, lo[0m
+[3m                                                      cost_c=0.100, cost_pow=1.00, cost_pct=50)                         [0m
+╭────────────────────┬────┬─────────┬────────┬───────────┬───────────┬────────────┬──────────┬──────────┬────────────┬──
+│[1m [0m[1marm               [0m[1m [0m│[1m [0m[1m n[0m[1m [0m│[1m [0m[1m n_cost[0m[1m [0m│[1m [0m[1m   div[0m[1m [0m│[1m [0m[1m log mean[0m[1m [0m│[1m [0m[1m tot_cost[0m[1m [0m│[1m [0m[1m mean_cost[0m[1m [0m│[1m [0m[1m exploit[0m[1m [0m│[1m [0m[1m explore[0m[1m [0m│[1m [0m[1m score_raw[0m[1m [0m│[1m [0m[1m [0m
+├────────────────────┼────┼─────────┼────────┼───────────┼───────────┼────────────┼──────────┼──────────┼────────────┼──
+│ claude-haiku-4-5   │  2 │       1 │  0.774 │   -2.0770 │    0.0189 │     0.0189 │   1.0000 │   1.3950 │     2.3950 │  
+│ gpt-5.1-codex-mini │  1 │       1 │  0.815 │      -inf │    0.0174 │     0.0174 │   0.0000 │   1.9728 │     1.9728 │  
+│ gpt-5-nano         │  3 │       3 │  1.807 │   -2.5772 │    0.0088 │     0.0029 │   0.6064 │   1.1390 │     1.7454 │  
+│ gemini-3-flash-pr… │  1 │       1 │  0.902 │      -inf │    0.0103 │     0.0103 │   0.0000 │   1.9728 │     1.9728 │  
+╰────────────────────┴────┴─────────┴────────┴───────────┴───────────┴────────────┴──────────┴──────────┴────────────┴──
+2026-04-08 23:22:14 - shinka.core.async_runner - INFO - New best program found: gen 5, id c8986f... Copied to results/circpack_20260408_231736/best
+2026-04-08 23:22:14 - shinka.core.async_runner - INFO - ✅ JOB COMPLETE: Finished processing ProcessWithLogging(PID: 37311) - program c8986feb-e7e8-4322-a53f-8462a0bacce4 added (gen 5)
+2026-04-08 23:22:14 - shinka.core.async_runner - INFO - ✅ Successfully processed 1/1 jobs
+2026-04-08 23:22:14 - shinka.core.async_runner - INFO - ✅ Completed generations updated: 5 -> 6 (cost: $0.0654)
+2026-04-08 23:22:14 - shinka.core.async_runner - INFO - Proposal target=2 (sampling_ewma=56.74s, evaluation_ewma=6.52s, timing_samples=5, active_proposals=1, running_jobs=0)
+2026-04-08 23:22:20 - shinka.core.async_runner - INFO - 🔍 Meta task check: completed_gens=6, target=10, pending_work=4, running_eval_jobs=0, running_proposal_jobs=1, api_costs=$0.0654, should_stop=False, is_stuck=False, stuck_count=0, time_since_progress=5.6s
+2026-04-08 23:22:30 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0326
+2026-04-08 23:22:30 - shinka.core.async_runner - INFO - Applying patch with language: python
+2026-04-08 23:22:30 - shinka.core.async_runner - INFO - Patch type for application: diff
+[3m                         [0m[1;3mPatch Metadata - Gen 6/10 - Novelty: 1/3 - Resample: 1/3 - Patch: 1/1[0m[3m                          [0m
+╭──────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────╮
+│[1m [0m[1mField                   [0m[1m [0m│[1m [0m[1mValue                                                                                    [0m[1m [0m│
+├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┤
+│[1m [0m[1mpatch_type              [0m[1m [0m│ diff                                                                                      │
+│[1m [0m[1mpatch_name              [0m[1m [0m│ multi_start_adaptive_radii                                                                │
+│[1m [0m[1mpatch_description       [0m[1m [0m│ The current code reaches 1.94 but the best known is 2.635. Key improvements:              │
+│[1m                          [0m│                                                                                           │
+│[1m                          [0m│ 1. **Better center initialization**: Instead of hexagonal grid, use a multi-start         │
+│[1m                          [0m│ approach:                                                                                 │
+│[1m                          [0m│    - First attempt: concentric rings with edge-biased placement                           │
+│[1m                          [0m│    - Second attempt: greedy placement maximizing space                                    │
+│[1m                          [0m│                                                                                           │
+│[1m                          [0m│ 2. **Adaptive radius computation**: Replace the simple iterative shrinking with a more    │
+│[1m                          [0m│ aggressive optimization that:                                                             │
+│[1m                          [0m│    - Handles one circle at a time (giving it maximum possible radius)                     │
+│[1m                          [0m│    - Uses multiple sweeps with different orderings to find better solutions               │
+│[1m                          [0m│    - Applies a "radius boost" phase after initial computation                             │
+│[1m                          [0m│                                                                                           │
+│[1m                          [0m│ 3. **Improved local optimization**:                                                       │
+│[1m                          [0m│    - Increase optimization iterations                                                     │
+│[1m                          [0m│    - Better constraint handling with tighter feasibility checks                           │
+│[1m                          [0m│    - Add a post-processing step to slightly increase radii via local adjustments          │
+│[1m                          [0m│                                                                                           │
+│[1m                          [0m│ 4. **Variable-sized circle strategy**: Explicitly bias initialization toward              │
+│[1m                          [0m│ corners/edges for smaller circles and center for larger ones.                             │
+│[1m                          [0m│                                                                                           │
+│[1m                          [0m│ These changes target beating the current 1.94 and approaching the 2.635 benchmark.        │
+│[1m [0m[1mnum_applied             [0m[1m [0m│ 4                                                                                         │
+│[1m [0m[1mapi_costs               [0m[1m [0m│ $0.0326                                                                                   │
+│[1m [0m[1merror_attempt           [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1msystem_prompt_id        [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1mmodel_name              [0m[1m [0m│ openrouter/anthropic/claude-haiku-4-5                                                     │
+│[1m [0m[1mtemperature             [0m[1m [0m│ 1.0                                                                                       │
+│[1m [0m[1mmax_output_tokens       [0m[1m [0m│ 16384                                                                                     │
+│[1m [0m[1mdiff_summary            [0m[1m [0m│ added: 148; deleted: 0; modified: 23;                                                     │
+╰──────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────╯
+2026-04-08 23:22:30 - shinka.core.async_runner - INFO - Getting code embedding for generation 6...
+2026-04-08 23:22:30 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-08 23:22:31 - shinka.embed.embedding - WARNING - Embedding model 'openrouter/openai/text-embedding-3-small' has no pricing entry. Defaulting embedding cost to 0.
+2026-04-08 23:22:31 - shinka.core.async_runner - INFO - Code embedding completed for generation 6 (cost: $0.0000)
+2026-04-08 23:22:31 - shinka.core.async_novelty_judge - INFO - Top-5 similarity scores: ['0.86', '0.86', '0.83']
+2026-04-08 23:22:31 - shinka.core.async_novelty_judge - INFO - NOVELTY CHECK: Accepting program due to low similarity (0.859 <= 0.99)
+2026-04-08 23:22:31 - shinka.launch.local - INFO - Submitted local process with PID: 37361
+2026-04-08 23:22:31 - shinka.launch.local - INFO - Launched local command: bash -lc set -e; source "/Users/mp2557/Documents/Research/ShinkaEvolve/.venv/bin/activate"; exec python evaluate.py --program_path results/circpack_20260408_231736/gen_6/main.py --results_dir results/circpack_20260408_231736/gen_6/results
+2026-04-08 23:22:31 - shinka.core.async_runner - INFO - Proposal → Eval: gen 6 submitted for eval (cost: $0.0326, total: $0.0980). Running jobs: 1/2, Proposals: 1/1
+2026-04-08 23:22:31 - shinka.core.async_runner - INFO - Starting 1 new proposals. Pipeline: 1/2 (running_jobs=1, active_proposals=0/1), Proposals remaining: 3 (submitted=7/10)
+2026-04-08 23:22:31 - shinka.core.async_runner - INFO - Started proposal task for generation 7 (cost: $0.0980)
+2026-04-08 23:22:31 - shinka.core.async_runner - INFO - Generating proposal for generation 7
+2026-04-08 23:22:31 - shinka.core.async_runner - INFO - Getting meta recs for gen 7, sample_single_meta_rec=True
+2026-04-08 23:22:31 - shinka.core.summarizer - INFO - get_sampled_recommendation called, meta_recommendations exists: False
+2026-04-08 23:22:31 - shinka.core.summarizer - INFO - No meta recommendations available to sample from
+2026-04-08 23:22:31 - shinka.core.async_runner - INFO - meta_recs result: False
+2026-04-08 23:22:31 - shinka.database.parents - INFO - Island 0 => Probabilities: [0.003134808695414062, 9.633751297827699e-08, 0.3291535562936107, 0.6677115386734622]
+2026-04-08 23:22:31 - shinka.database.parents - INFO - Island 0 => Scores: [1.8212275215939195, 1.778733395489039, 1.8526168354574788, 1.9631940148179807]
+2026-04-08 23:22:31 - shinka.database.parents - INFO - Sampled parent c8986feb-e7e8-4322-a53f-8462a0bacce4 (Gen: 5, Score: 1.9632, Children: 0, Island: 0)
+2026-04-08 23:22:31 - shinka.database.inspirations - INFO - Sampled 1 archive inspirations: ['4bfd21a0-1717-4e20-bf6c-d3de5f94321c (Gen: 3, Score: 1.8526, Island: 0)']
+2026-04-08 23:22:31 - shinka.database.inspirations - INFO - Selected 1 top-k inspirations from archive on island 0: ['3c03d31c-51b8-4886-9c74-f85bf6fa8a2d (Gen: 0, Score: 1.8212, Island: 0)']
+[3m              [0m[1;3mParent & Context Sampling Summary - Gen 7 | Total Cost: $0.07 (Novelty: 1/3, Resample: 1/3)[0m[3m               [0m
+┏━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━┓
+┃[1m [0m[1mRole       [0m[1m [0m┃[1m [0m[1mGen [0m[1m [0m┃[1m [0m[1mIsland [0m[1m [0m┃[1m [0m[1m ✓/✗ [0m[1m [0m┃[1m [0m[1m   Score[0m[1m [0m┃[1m [0m[1mPatch Name                     [0m[1m [0m┃[1m [0m[1mType  [0m[1m [0m┃[1m [0m[1mCompl…[0m[1m [0m┃[1m [0m[1m   Cost[0m[1m [0m┃[1m [0m[1mTime[0m[1m [0m┃
+┡━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━┩
+│[1m [0m[1mPARENT[0m[1m     [0m[1m [0m│  5   │   I-0   │   [1m✓[0m   │    [1m1.963[0m │ relax_and_expand_packing        │ diff   │    1.0 │  $0.012 │ 11.… │
+│[1m [0m[1mArchive-1  [0m[1m [0m│  3   │   I-0   │   [1m✓[0m   │    [1m1.853[0m │ local-search-centers-radii      │ diff   │    1.0 │  $0.007 │ 7.3s │
+│[1m [0m[1mTopK-1     [0m[1m [0m│  0   │   I-0   │   [1m✓[0m   │    [1m1.821[0m │ initial_program                 │ init   │    0.9 │  $0.000 │ 10.… │
+└─────────────┴──────┴─────────┴───────┴──────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────┘
+2026-04-08 23:22:31 - shinka.database.inspirations - INFO - Built context: 2 programs (ascending, scores: ['1.8212', '1.8526'])
+2026-04-08 23:22:31 - shinka.core.async_runner - INFO - Generated patch type: diff
+2026-04-08 23:22:31 - shinka.llm.llm - INFO - ==> SAMPLING:
+  openrouter/anthropic/claude-haiku-4-5   0.0000
+  openrouter/openai/gpt-5.1-codex-mini   0.0000
+  openrouter/openai/gpt-5-nano     1.0000
+  openrouter/google/gemini-3-flash-preview   0.0000
+2026-04-08 23:22:31 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/openai/gpt-5-nano', '0.5', '16384']
+2026-04-08 23:22:31 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:22:36 - shinka.core.async_runner - INFO - ✅ Job ProcessWithLogging(PID: 37361) completed (gen 6) after 34.2s
+2026-04-08 23:22:36 - shinka.core.async_runner - INFO - 🔄 Processing 1 completed jobs: gens [6] (cost: $0.0980)
+2026-04-08 23:22:36 - shinka.core.async_runner - INFO - 🔄 SAFE PROCESSING: Starting job ProcessWithLogging(PID: 37361) (gen 6)
+2026-04-08 23:22:36 - shinka.launch.local - INFO - Monitoring local process with PID: 37361...
+2026-04-08 23:22:36 - shinka.launch.local - INFO - Process 37361 completed with return code: 0
+2026-04-08 23:22:36 - shinka.core.async_runner - INFO - 📂 RESULTS: Got results for ProcessWithLogging(PID: 37361): True
+2026-04-08 23:22:36 - shinka.core.async_runner - INFO - ✅ VALID RESULTS: ProcessWithLogging(PID: 37361) has valid results - correct=True, score=2.5793498873309244
+2026-04-08 23:22:36 - shinka.core.async_runner - INFO - 💾 DB ADD: Adding program to database for ProcessWithLogging(PID: 37361) (gen 6)...
+2026-04-08 23:22:36 - shinka.database.dbase - INFO - Program 5a683897-6928-404a-8ccb-92550a552e1a added to DB - score: 2.5793498873309244.
+2026-04-08 23:22:36 - shinka.database.dbase - INFO - New best program: 5a683897-6928-404a-8ccb-92550a552e1a (gen: 5 → 6, score: 1.9632 → 2.5793, island: 0 → 1)
+[3m                                 [0m[1;3mProgram Evaluation Summary - Gen 6 | Total Cost: $0.10[0m[3m                                 [0m
+╭─────────────┬─────────┬───────────────┬─────────┬─────────────────────────────────┬────────┬────────┬─────────┬──────╮
+│[1m [0m[1m GenID: 6  [0m[1m [0m│[1m [0m[1mIsland [0m[1m [0m│[1m [0m[1m   Status    [0m[1m [0m│[1m [0m[1m  Score[0m[1m [0m│[1m [0m[1mPatch Name                     [0m[1m [0m│[1m [0m[1mType  [0m[1m [0m│[1m [0m[1mCompl…[0m[1m [0m│[1m [0m[1m   Cost[0m[1m [0m│[1m [0m[1mTime[0m[1m [0m│
+├─────────────┼─────────┼───────────────┼─────────┼─────────────────────────────────┼────────┼────────┼─────────┼──────┤
+│ Best: [1m2.579[0m │   I-1   │   [1m✓ Correct[0m   │   [1m2.579[0m │ multi_start_adaptive_radii      │ diff   │    1.0 │  $0.033 │ 5.7s │
+╰─────────────┴─────────┴───────────────┴─────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────╯
+2026-04-08 23:22:36 - shinka.core.async_runner - INFO - ✅ DB SUCCESS: Program 5a683897-6928-404a-8ccb-92550a552e1a successfully added to database for ProcessWithLogging(PID: 37361) (gen 6)
+2026-04-08 23:22:36 - shinka.core.summarizer - INFO - Added program 5a683897-6928-404a-8ccb-92550a552e1a to meta memory tracking (correct=True, total: 7)
+[3m     AsymmetricUCB (c=1.000, eps=0.200, adaptive=True, asym=True, exp_base=1.000, shift_base=True, shift_parent=True, lo[0m
+[3m                                                      cost_c=0.100, cost_pow=1.00, cost_pct=50)                         [0m
+╭────────────────────┬────┬─────────┬────────┬───────────┬───────────┬────────────┬──────────┬──────────┬────────────┬──
+│[1m [0m[1marm               [0m[1m [0m│[1m [0m[1m n[0m[1m [0m│[1m [0m[1m n_cost[0m[1m [0m│[1m [0m[1m   div[0m[1m [0m│[1m [0m[1m log mean[0m[1m [0m│[1m [0m[1m tot_cost[0m[1m [0m│[1m [0m[1m mean_cost[0m[1m [0m│[1m [0m[1m exploit[0m[1m [0m│[1m [0m[1m explore[0m[1m [0m│[1m [0m[1m score_raw[0m[1m [0m│[1m [0m[1m [0m
+├────────────────────┼────┼─────────┼────────┼───────────┼───────────┼────────────┼──────────┼──────────┼────────────┼──
+│ claude-haiku-4-5   │  2 │       2 │  1.685 │   -0.6340 │    0.0515 │     0.0258 │   0.6550 │   1.4420 │     2.0970 │  
+│ gpt-5.1-codex-mini │  1 │       1 │  0.774 │      -inf │    0.0174 │     0.0174 │   0.0000 │   2.0393 │     2.0393 │  
+│ gpt-5-nano         │  4 │       3 │  1.717 │   -2.5841 │    0.0088 │     0.0029 │   0.0932 │   1.0197 │     1.1128 │  
+│ gemini-3-flash-pr… │  1 │       1 │  0.857 │      -inf │    0.0103 │     0.0103 │   0.0000 │   2.0393 │     2.0393 │  
+╰────────────────────┴────┴─────────┴────────┴───────────┴───────────┴────────────┴──────────┴──────────┴────────────┴──
+2026-04-08 23:22:36 - shinka.core.async_runner - INFO - New best program found: gen 6, id 5a6838... Copied to results/circpack_20260408_231736/best
+2026-04-08 23:22:36 - shinka.core.async_runner - INFO - ✅ JOB COMPLETE: Finished processing ProcessWithLogging(PID: 37361) - program 5a683897-6928-404a-8ccb-92550a552e1a added (gen 6)
+2026-04-08 23:22:36 - shinka.core.async_runner - INFO - ✅ Successfully processed 1/1 jobs
+2026-04-08 23:22:36 - shinka.core.async_runner - INFO - ✅ Completed generations updated: 6 -> 7 (cost: $0.0980)
+2026-04-08 23:22:36 - shinka.core.async_runner - INFO - Proposal target=2 (sampling_ewma=48.27s, evaluation_ewma=6.27s, timing_samples=6, active_proposals=1, running_jobs=0)
+2026-04-08 23:22:50 - shinka.core.async_runner - INFO - 🔍 Meta task check: completed_gens=7, target=10, pending_work=3, running_eval_jobs=0, running_proposal_jobs=1, api_costs=$0.0980, should_stop=False, is_stuck=False, stuck_count=0, time_since_progress=13.3s
+2026-04-08 23:23:30 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0035
+2026-04-08 23:23:30 - shinka.core.async_runner - INFO - Applying patch with language: python
+2026-04-08 23:23:30 - shinka.core.async_runner - INFO - Patch type for application: diff
+2026-04-08 23:23:30 - shinka.database.parents - INFO - Island 1 => Probabilities: [1.9455850906401196e-05, 0.14285436344987051, 0.8571261806992232]
+2026-04-08 23:23:30 - shinka.database.parents - INFO - Island 1 => Scores: [1.8212275215939195, 1.942528608676178, 2.5793498873309244]
+2026-04-08 23:23:30 - shinka.database.parents - INFO - Sampled parent 5a683897-6928-404a-8ccb-92550a552e1a (Gen: 6, Score: 2.5793, Children: 0, Island: 1)
+2026-04-08 23:23:30 - shinka.database.inspirations - INFO - Sampled 1 archive inspirations: ['88c3942d-27c5-4201-a5ac-e3a46c4c73e2 (Gen: 0, Score: 1.8212, Island: 1)']
+2026-04-08 23:23:30 - shinka.database.inspirations - INFO - Selected 1 top-k inspirations from archive on island 1: ['9f91441e-5b24-4b9f-9b59-59a56a530dd3 (Gen: 1, Score: 1.9425, Island: 1)']
+[3m              [0m[1;3mParent & Context Sampling Summary - Gen 7 | Total Cost: $0.10 (Novelty: 1/3, Resample: 2/3)[0m[3m               [0m
+┏━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━┓
+┃[1m [0m[1mRole       [0m[1m [0m┃[1m [0m[1mGen [0m[1m [0m┃[1m [0m[1mIsland [0m[1m [0m┃[1m [0m[1m ✓/✗ [0m[1m [0m┃[1m [0m[1m   Score[0m[1m [0m┃[1m [0m[1mPatch Name                     [0m[1m [0m┃[1m [0m[1mType  [0m[1m [0m┃[1m [0m[1mCompl…[0m[1m [0m┃[1m [0m[1m   Cost[0m[1m [0m┃[1m [0m[1mTime[0m[1m [0m┃
+┡━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━┩
+│[1m [0m[1mPARENT[0m[1m     [0m[1m [0m│  6   │   I-1   │   [1m✓[0m   │    [1m2.579[0m │ multi_start_adaptive_radii      │ diff   │    1.0 │  $0.033 │ 5.7s │
+│[1m [0m[1mArchive-1  [0m[1m [0m│  0   │   I-1   │   [1m✓[0m   │    [1m1.821[0m │ initial_program                 │ init   │    0.9 │  $0.000 │ 10.… │
+│[1m [0m[1mTopK-1     [0m[1m [0m│  1   │   I-1   │   [1m✓[0m   │    [1m1.943[0m │ none                            │ diff   │    1.0 │  $0.019 │ 4.2s │
+└─────────────┴──────┴─────────┴───────┴──────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────┘
+2026-04-08 23:23:30 - shinka.database.inspirations - INFO - Built context: 2 programs (ascending, scores: ['1.8212', '1.9425'])
+2026-04-08 23:23:30 - shinka.core.async_runner - INFO - Generated patch type: diff
+2026-04-08 23:23:30 - shinka.llm.llm - INFO - ==> SAMPLING:
+  openrouter/anthropic/claude-haiku-4-5   0.0000
+  openrouter/openai/gpt-5.1-codex-mini   0.0000
+  openrouter/openai/gpt-5-nano     1.0000
+  openrouter/google/gemini-3-flash-preview   0.0000
+2026-04-08 23:23:30 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/openai/gpt-5-nano', '1.0', '16384']
+2026-04-08 23:23:31 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:24:23 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0032
+2026-04-08 23:24:23 - shinka.core.async_runner - INFO - Applying patch with language: python
+2026-04-08 23:24:23 - shinka.core.async_runner - INFO - Patch type for application: diff
+2026-04-08 23:24:24 - shinka.database.parents - INFO - Island 1 => Probabilities: [1.9455850906401196e-05, 0.14285436344987051, 0.8571261806992232]
+2026-04-08 23:24:24 - shinka.database.parents - INFO - Island 1 => Scores: [1.8212275215939195, 1.942528608676178, 2.5793498873309244]
+2026-04-08 23:24:24 - shinka.database.parents - INFO - Sampled parent 5a683897-6928-404a-8ccb-92550a552e1a (Gen: 6, Score: 2.5793, Children: 0, Island: 1)
+2026-04-08 23:24:24 - shinka.database.inspirations - INFO - Sampled 1 archive inspirations: ['88c3942d-27c5-4201-a5ac-e3a46c4c73e2 (Gen: 0, Score: 1.8212, Island: 1)']
+2026-04-08 23:24:24 - shinka.database.inspirations - INFO - Selected 1 top-k inspirations from archive on island 1: ['9f91441e-5b24-4b9f-9b59-59a56a530dd3 (Gen: 1, Score: 1.9425, Island: 1)']
+[3m              [0m[1;3mParent & Context Sampling Summary - Gen 7 | Total Cost: $0.10 (Novelty: 1/3, Resample: 3/3)[0m[3m               [0m
+┏━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━┓
+┃[1m [0m[1mRole       [0m[1m [0m┃[1m [0m[1mGen [0m[1m [0m┃[1m [0m[1mIsland [0m[1m [0m┃[1m [0m[1m ✓/✗ [0m[1m [0m┃[1m [0m[1m   Score[0m[1m [0m┃[1m [0m[1mPatch Name                     [0m[1m [0m┃[1m [0m[1mType  [0m[1m [0m┃[1m [0m[1mCompl…[0m[1m [0m┃[1m [0m[1m   Cost[0m[1m [0m┃[1m [0m[1mTime[0m[1m [0m┃
+┡━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━┩
+│[1m [0m[1mPARENT[0m[1m     [0m[1m [0m│  6   │   I-1   │   [1m✓[0m   │    [1m2.579[0m │ multi_start_adaptive_radii      │ diff   │    1.0 │  $0.033 │ 5.7s │
+│[1m [0m[1mArchive-1  [0m[1m [0m│  0   │   I-1   │   [1m✓[0m   │    [1m1.821[0m │ initial_program                 │ init   │    0.9 │  $0.000 │ 10.… │
+│[1m [0m[1mTopK-1     [0m[1m [0m│  1   │   I-1   │   [1m✓[0m   │    [1m1.943[0m │ none                            │ diff   │    1.0 │  $0.019 │ 4.2s │
+└─────────────┴──────┴─────────┴───────┴──────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────┘
+2026-04-08 23:24:24 - shinka.database.inspirations - INFO - Built context: 2 programs (ascending, scores: ['1.8212', '1.9425'])
+2026-04-08 23:24:24 - shinka.core.async_runner - INFO - Generated patch type: diff
+2026-04-08 23:24:24 - shinka.llm.llm - INFO - ==> SAMPLING:
+  openrouter/anthropic/claude-haiku-4-5   0.0000
+  openrouter/openai/gpt-5.1-codex-mini   0.0000
+  openrouter/openai/gpt-5-nano     1.0000
+  openrouter/google/gemini-3-flash-preview   0.0000
+2026-04-08 23:24:24 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/openai/gpt-5-nano', '0.0', '16384']
+2026-04-08 23:24:25 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:25:31 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0038
+2026-04-08 23:25:31 - shinka.core.async_runner - INFO - Applying patch with language: python
+2026-04-08 23:25:31 - shinka.core.async_runner - INFO - Patch type for application: diff
+[3m                         [0m[1;3mPatch Metadata - Gen 7/10 - Novelty: 1/3 - Resample: 3/3 - Patch: 1/1[0m[3m                          [0m
+╭──────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────╮
+│[1m [0m[1mField                   [0m[1m [0m│[1m [0m[1mValue                                                                                    [0m[1m [0m│
+├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┤
+│[1m [0m[1mpatch_type              [0m[1m [0m│ diff                                                                                      │
+│[1m [0m[1mpatch_name              [0m[1m [0m│ sim_anneal_refine_in_packing                                                              │
+│[1m [0m[1mpatch_description       [0m[1m [0m│ Introduce a lightweight simulated annealing refinement inside the main packing            │
+│[1m                          [0m│ construction to escape local optima and boost the total sum of radii. The SA operates on  │
+│[1m                          [0m│ both centers and radii by perturbing a small subset of centers, recomputing feasible      │
+│[1m                          [0m│ radii, and accepting improvements (or near-improvements) with a temperature-guided        │
+│[1m                          [0m│ probability. This complements the existing multi-start initializations and the local      │
+│[1m                          [0m│ optimizer, aiming to push the sum of radii beyond prior bests (target > 2.635). The       │
+│[1m                          [0m│ refinement is implemented as a nested function inside construct_packing to avoid altering │
+│[1m                          [0m│ the module-level API and to keep changes localized and reproducible.                      │
+│[1m [0m[1mnum_applied             [0m[1m [0m│ 1                                                                                         │
+│[1m [0m[1mapi_costs               [0m[1m [0m│ $0.0038                                                                                   │
+│[1m [0m[1merror_attempt           [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1msystem_prompt_id        [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1mmodel_name              [0m[1m [0m│ openrouter/openai/gpt-5-nano                                                              │
+│[1m [0m[1mtemperature             [0m[1m [0m│ 0.0                                                                                       │
+│[1m [0m[1mmax_output_tokens       [0m[1m [0m│ 16384                                                                                     │
+│[1m [0m[1mdiff_summary            [0m[1m [0m│ added: 32; deleted: 0; modified: 3;                                                       │
+╰──────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────╯
+2026-04-08 23:25:31 - shinka.core.async_runner - INFO - Getting code embedding for generation 7...
+2026-04-08 23:25:31 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-08 23:25:31 - shinka.embed.embedding - WARNING - Embedding model 'openrouter/openai/text-embedding-3-small' has no pricing entry. Defaulting embedding cost to 0.
+2026-04-08 23:25:31 - shinka.core.async_runner - INFO - Code embedding completed for generation 7 (cost: $0.0000)
+2026-04-08 23:25:31 - shinka.core.async_novelty_judge - INFO - Top-5 similarity scores: ['0.93', '0.87', '0.85', '0.81']
+2026-04-08 23:25:31 - shinka.core.async_novelty_judge - INFO - NOVELTY CHECK: Accepting program due to low similarity (0.933 <= 0.99)
+2026-04-08 23:25:31 - shinka.launch.local - INFO - Submitted local process with PID: 37424
+2026-04-08 23:25:31 - shinka.launch.local - INFO - Launched local command: bash -lc set -e; source "/Users/mp2557/Documents/Research/ShinkaEvolve/.venv/bin/activate"; exec python evaluate.py --program_path results/circpack_20260408_231736/gen_7/main.py --results_dir results/circpack_20260408_231736/gen_7/results
+2026-04-08 23:25:31 - shinka.core.async_runner - INFO - Proposal → Eval: gen 7 submitted for eval (cost: $0.0106, total: $0.1086). Running jobs: 1/2, Proposals: 1/1
+2026-04-08 23:25:31 - shinka.core.async_runner - INFO - Starting 1 new proposals. Pipeline: 1/2 (running_jobs=1, active_proposals=0/1), Proposals remaining: 2 (submitted=8/10)
+2026-04-08 23:25:31 - shinka.core.async_runner - INFO - Started proposal task for generation 8 (cost: $0.1086)
+2026-04-08 23:25:31 - shinka.core.async_runner - INFO - Generating proposal for generation 8
+2026-04-08 23:25:31 - shinka.core.async_runner - INFO - Getting meta recs for gen 8, sample_single_meta_rec=True
+2026-04-08 23:25:31 - shinka.core.summarizer - INFO - get_sampled_recommendation called, meta_recommendations exists: False
+2026-04-08 23:25:31 - shinka.core.summarizer - INFO - No meta recommendations available to sample from
+2026-04-08 23:25:31 - shinka.core.async_runner - INFO - meta_recs result: False
+2026-04-08 23:25:31 - shinka.database.parents - INFO - Island 0 => Probabilities: [0.003134808695414062, 9.633751297827699e-08, 0.3291535562936107, 0.6677115386734622]
+2026-04-08 23:25:31 - shinka.database.parents - INFO - Island 0 => Scores: [1.8212275215939195, 1.778733395489039, 1.8526168354574788, 1.9631940148179807]
+2026-04-08 23:25:31 - shinka.database.parents - INFO - Sampled parent 4bfd21a0-1717-4e20-bf6c-d3de5f94321c (Gen: 3, Score: 1.8526, Children: 1, Island: 0)
+2026-04-08 23:25:31 - shinka.database.inspirations - INFO - Sampled 1 archive inspirations: ['3c03d31c-51b8-4886-9c74-f85bf6fa8a2d (Gen: 0, Score: 1.8212, Island: 0)']
+2026-04-08 23:25:31 - shinka.database.inspirations - INFO - Selected 1 top-k inspirations from archive on island 0: ['c8986feb-e7e8-4322-a53f-8462a0bacce4 (Gen: 5, Score: 1.9632, Island: 0)']
+[3m              [0m[1;3mParent & Context Sampling Summary - Gen 8 | Total Cost: $0.10 (Novelty: 1/3, Resample: 1/3)[0m[3m               [0m
+┏━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━┓
+┃[1m [0m[1mRole       [0m[1m [0m┃[1m [0m[1mGen [0m[1m [0m┃[1m [0m[1mIsland [0m[1m [0m┃[1m [0m[1m ✓/✗ [0m[1m [0m┃[1m [0m[1m   Score[0m[1m [0m┃[1m [0m[1mPatch Name                     [0m[1m [0m┃[1m [0m[1mType  [0m[1m [0m┃[1m [0m[1mCompl…[0m[1m [0m┃[1m [0m[1m   Cost[0m[1m [0m┃[1m [0m[1mTime[0m[1m [0m┃
+┡━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━┩
+│[1m [0m[1mPARENT[0m[1m     [0m[1m [0m│  3   │   I-0   │   [1m✓[0m   │    [1m1.853[0m │ local-search-centers-radii      │ diff   │    1.0 │  $0.007 │ 7.3s │
+│[1m [0m[1mArchive-1  [0m[1m [0m│  0   │   I-0   │   [1m✓[0m   │    [1m1.821[0m │ initial_program                 │ init   │    0.9 │  $0.000 │ 10.… │
+│[1m [0m[1mTopK-1     [0m[1m [0m│  5   │   I-0   │   [1m✓[0m   │    [1m1.963[0m │ relax_and_expand_packing        │ diff   │    1.0 │  $0.012 │ 11.… │
+└─────────────┴──────┴─────────┴───────┴──────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────┘
+2026-04-08 23:25:31 - shinka.database.inspirations - INFO - Built context: 2 programs (ascending, scores: ['1.8212', '1.9632'])
+2026-04-08 23:25:31 - shinka.core.async_runner - INFO - Generated patch type: full
+2026-04-08 23:25:31 - shinka.llm.llm - INFO - ==> SAMPLING:
+  openrouter/anthropic/claude-haiku-4-5   0.0000
+  openrouter/openai/gpt-5.1-codex-mini   0.0000
+  openrouter/openai/gpt-5-nano     0.0000
+  openrouter/google/gemini-3-flash-preview   1.0000
+2026-04-08 23:25:31 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/google/gemini-3-flash-preview', '1.0', '16384']
+2026-04-08 23:25:32 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:25:41 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0077
+2026-04-08 23:25:41 - shinka.core.async_runner - INFO - Applying patch with language: python
+2026-04-08 23:25:41 - shinka.core.async_runner - INFO - Patch type for application: full
+[3m                         [0m[1;3mPatch Metadata - Gen 8/10 - Novelty: 1/3 - Resample: 1/3 - Patch: 1/1[0m[3m                          [0m
+╭──────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────╮
+│[1m [0m[1mField                   [0m[1m [0m│[1m [0m[1mValue                                                                                    [0m[1m [0m│
+├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┤
+│[1m [0m[1mpatch_type              [0m[1m [0m│ full                                                                                      │
+│[1m [0m[1mpatch_name              [0m[1m [0m│ greedy_hexagonal_boundary_refiner                                                         │
+│[1m [0m[1mpatch_description       [0m[1m [0m│ The algorithm uses a high-density Hexagonal Grid initialization followed by a specialized │
+│[1m                          [0m│ force-directed boundary relaxation.                                                       │
+│[1m                          [0m│                                                                                           │
+│[1m                          [0m│ Key changes from previous implementations:                                                │
+│[1m                          [0m│ 1. **Hexagonal Lattice Initialization**: Circles are initially placed on a triangular     │
+│[1m                          [0m│ grid, which is mathematically more efficient for packing than the previous concentric     │
+│[1m                          [0m│ rings.                                                                                    │
+│[1m                          [0m│ 2. **Dynamic Radius Greedy Step**: Instead of just scaling radii, the code calculates the │
+│[1m                          [0m│ maximum possible radius for each center given its Voronoi-like constraints (distance to   │
+│[1m                          [0m│ walls and distance to neighbors).                                                         │
+│[1m                          [0m│ 3. **Boundary-Aware Relaxation**: The local search uses a "Push-Pull" metaphor where      │
+│[1m                          [0m│ centers are repelled by neighbors but attracted to "gaps".                                │
+│[1m                          [0m│ 4. **Iterative Refinement**: Instead of simple SA, we use a deterministic                 │
+│[1m                          [0m│ "Radii-Maximizer" loop that shifts centers to the midpoint of their most constrained      │
+│[1m                          [0m│ constraints, allowing the sum of radii to grow monotonically by finding local             │
+│[1m                          [0m│ equilibriums.                                                                             │
+│[1m [0m[1mnum_applied             [0m[1m [0m│ 1                                                                                         │
+│[1m [0m[1mapi_costs               [0m[1m [0m│ $0.0077                                                                                   │
+│[1m [0m[1merror_attempt           [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1msystem_prompt_id        [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1mmodel_name              [0m[1m [0m│ openrouter/google/gemini-3-flash-preview                                                  │
+│[1m [0m[1mtemperature             [0m[1m [0m│ 0.0                                                                                       │
+│[1m [0m[1mmax_output_tokens       [0m[1m [0m│ 16384                                                                                     │
+│[1m [0m[1mdiff_summary            [0m[1m [0m│ added: 0; deleted: 7; modified: 92;                                                       │
+╰──────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────╯
+2026-04-08 23:25:41 - shinka.core.async_runner - INFO - Getting code embedding for generation 8...
+2026-04-08 23:25:41 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-08 23:25:42 - shinka.embed.embedding - WARNING - Embedding model 'openrouter/openai/text-embedding-3-small' has no pricing entry. Defaulting embedding cost to 0.
+2026-04-08 23:25:42 - shinka.core.async_runner - INFO - Code embedding completed for generation 8 (cost: $0.0000)
+2026-04-08 23:25:42 - shinka.core.async_novelty_judge - INFO - Top-5 similarity scores: ['0.93', '0.93', '0.92', '0.91']
+2026-04-08 23:25:42 - shinka.core.async_novelty_judge - INFO - NOVELTY CHECK: Accepting program due to low similarity (0.930 <= 0.99)
+2026-04-08 23:25:42 - shinka.launch.local - INFO - Submitted local process with PID: 37437
+2026-04-08 23:25:42 - shinka.launch.local - INFO - Launched local command: bash -lc set -e; source "/Users/mp2557/Documents/Research/ShinkaEvolve/.venv/bin/activate"; exec python evaluate.py --program_path results/circpack_20260408_231736/gen_8/main.py --results_dir results/circpack_20260408_231736/gen_8/results
+2026-04-08 23:25:42 - shinka.core.async_runner - INFO - Proposal → Eval: gen 8 submitted for eval (cost: $0.0077, total: $0.1162). Running jobs: 2/2, Proposals: 1/1
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - ✅ Job ProcessWithLogging(PID: 37424) completed (gen 7) after 193.0s
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - 🔄 Processing 1 completed jobs: gens [7] (cost: $0.1162)
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - 🔄 SAFE PROCESSING: Starting job ProcessWithLogging(PID: 37424) (gen 7)
+2026-04-08 23:25:44 - shinka.launch.local - INFO - Monitoring local process with PID: 37424...
+2026-04-08 23:25:44 - shinka.launch.local - INFO - Process 37424 completed with return code: 0
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - 📂 RESULTS: Got results for ProcessWithLogging(PID: 37424): True
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - ✅ VALID RESULTS: ProcessWithLogging(PID: 37424) has valid results - correct=True, score=2.5793498873309244
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - 💾 DB ADD: Adding program to database for ProcessWithLogging(PID: 37424) (gen 7)...
+2026-04-08 23:25:44 - shinka.database.dbase - INFO - Program 91dfa11c-12f7-4c8a-b2ae-dfc4236594e9 added to DB - score: 2.5793498873309244.
+2026-04-08 23:25:44 - shinka.database.dbase - INFO - New best program: 91dfa11c-12f7-4c8a-b2ae-dfc4236594e9 (gen: 6 → 7, score: 2.5793 → 2.5793, island: 1 → 1)
+[3m                                 [0m[1;3mProgram Evaluation Summary - Gen 7 | Total Cost: $0.11[0m[3m                                 [0m
+╭─────────────┬─────────┬───────────────┬─────────┬─────────────────────────────────┬────────┬────────┬─────────┬──────╮
+│[1m [0m[1m GenID: 7  [0m[1m [0m│[1m [0m[1mIsland [0m[1m [0m│[1m [0m[1m   Status    [0m[1m [0m│[1m [0m[1m  Score[0m[1m [0m│[1m [0m[1mPatch Name                     [0m[1m [0m│[1m [0m[1mType  [0m[1m [0m│[1m [0m[1mCompl…[0m[1m [0m│[1m [0m[1m   Cost[0m[1m [0m│[1m [0m[1mTime[0m[1m [0m│
+├─────────────┼─────────┼───────────────┼─────────┼─────────────────────────────────┼────────┼────────┼─────────┼──────┤
+│ Best: [1m2.579[0m │   I-1   │   [1m✓ Correct[0m   │   [1m2.579[0m │ sim_anneal_refine_in_packing    │ diff   │    1.0 │  $0.011 │ 12.… │
+╰─────────────┴─────────┴───────────────┴─────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────╯
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - ✅ DB SUCCESS: Program 91dfa11c-12f7-4c8a-b2ae-dfc4236594e9 successfully added to database for ProcessWithLogging(PID: 37424) (gen 7)
+2026-04-08 23:25:44 - shinka.core.summarizer - INFO - Added program 91dfa11c-12f7-4c8a-b2ae-dfc4236594e9 to meta memory tracking (correct=True, total: 8)
+[3m     AsymmetricUCB (c=1.000, eps=0.200, adaptive=True, asym=True, exp_base=1.000, shift_base=True, shift_parent=True, lo[0m
+[3m                                                      cost_c=0.100, cost_pow=1.00, cost_pct=50)                         [0m
+╭────────────────────┬────┬─────────┬────────┬───────────┬───────────┬────────────┬──────────┬──────────┬────────────┬──
+│[1m [0m[1marm               [0m[1m [0m│[1m [0m[1m n[0m[1m [0m│[1m [0m[1m n_cost[0m[1m [0m│[1m [0m[1m   div[0m[1m [0m│[1m [0m[1m log mean[0m[1m [0m│[1m [0m[1m tot_cost[0m[1m [0m│[1m [0m[1m mean_cost[0m[1m [0m│[1m [0m[1m exploit[0m[1m [0m│[1m [0m[1m explore[0m[1m [0m│[1m [0m[1m score_raw[0m[1m [0m│[1m [0m[1m [0m
+├────────────────────┼────┼─────────┼────────┼───────────┼───────────┼────────────┼──────────┼──────────┼────────────┼──
+│ claude-haiku-4-5   │  2 │       2 │  1.601 │   -0.6777 │    0.0515 │     0.0258 │   0.6867 │   1.5485 │     2.2352 │  
+│ gpt-5.1-codex-mini │  1 │       1 │  0.735 │      -inf │    0.0174 │     0.0174 │   0.0000 │   2.1899 │     2.1899 │  
+│ gpt-5-nano         │  6 │       6 │  2.581 │   -3.0495 │    0.0194 │     0.0032 │   0.0641 │   0.8940 │     0.9581 │  
+│ gemini-3-flash-pr… │  2 │       2 │  0.815 │      -inf │    0.0180 │     0.0090 │   0.0000 │   1.5485 │     1.5485 │  
+╰────────────────────┴────┴─────────┴────────┴───────────┴───────────┴────────────┴──────────┴──────────┴────────────┴──
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - ✅ JOB COMPLETE: Finished processing ProcessWithLogging(PID: 37424) - program 91dfa11c-12f7-4c8a-b2ae-dfc4236594e9 added (gen 7)
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - ✅ Successfully processed 1/1 jobs
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - Proposal target=2 (sampling_ewma=87.90s, evaluation_ewma=8.18s, timing_samples=7, active_proposals=0, running_jobs=1)
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - Starting 1 new proposals. Pipeline: 1/2 (running_jobs=1, active_proposals=0/1), Proposals remaining: 1 (submitted=9/10)
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - Started proposal task for generation 9 (cost: $0.1162)
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - Generating proposal for generation 9
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - Getting meta recs for gen 9, sample_single_meta_rec=True
+2026-04-08 23:25:44 - shinka.core.summarizer - INFO - get_sampled_recommendation called, meta_recommendations exists: False
+2026-04-08 23:25:44 - shinka.core.summarizer - INFO - No meta recommendations available to sample from
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - meta_recs result: False
+2026-04-08 23:25:44 - shinka.database.parents - INFO - Island 0 => Probabilities: [0.003134808695414062, 9.633751297827699e-08, 0.3291535562936107, 0.6677115386734622]
+2026-04-08 23:25:44 - shinka.database.parents - INFO - Island 0 => Scores: [1.8212275215939195, 1.778733395489039, 1.8526168354574788, 1.9631940148179807]
+2026-04-08 23:25:44 - shinka.database.parents - INFO - Sampled parent c8986feb-e7e8-4322-a53f-8462a0bacce4 (Gen: 5, Score: 1.9632, Children: 0, Island: 0)
+2026-04-08 23:25:44 - shinka.database.inspirations - INFO - Sampled 1 archive inspirations: ['4bfd21a0-1717-4e20-bf6c-d3de5f94321c (Gen: 3, Score: 1.8526, Island: 0)']
+2026-04-08 23:25:44 - shinka.database.inspirations - INFO - Selected 1 top-k inspirations from archive on island 0: ['3c03d31c-51b8-4886-9c74-f85bf6fa8a2d (Gen: 0, Score: 1.8212, Island: 0)']
+[3m              [0m[1;3mParent & Context Sampling Summary - Gen 9 | Total Cost: $0.11 (Novelty: 1/3, Resample: 1/3)[0m[3m               [0m
+┏━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━┓
+┃[1m [0m[1mRole       [0m[1m [0m┃[1m [0m[1mGen [0m[1m [0m┃[1m [0m[1mIsland [0m[1m [0m┃[1m [0m[1m ✓/✗ [0m[1m [0m┃[1m [0m[1m   Score[0m[1m [0m┃[1m [0m[1mPatch Name                     [0m[1m [0m┃[1m [0m[1mType  [0m[1m [0m┃[1m [0m[1mCompl…[0m[1m [0m┃[1m [0m[1m   Cost[0m[1m [0m┃[1m [0m[1mTime[0m[1m [0m┃
+┡━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━┩
+│[1m [0m[1mPARENT[0m[1m     [0m[1m [0m│  5   │   I-0   │   [1m✓[0m   │    [1m1.963[0m │ relax_and_expand_packing        │ diff   │    1.0 │  $0.012 │ 11.… │
+│[1m [0m[1mArchive-1  [0m[1m [0m│  3   │   I-0   │   [1m✓[0m   │    [1m1.853[0m │ local-search-centers-radii      │ diff   │    1.0 │  $0.007 │ 7.3s │
+│[1m [0m[1mTopK-1     [0m[1m [0m│  0   │   I-0   │   [1m✓[0m   │    [1m1.821[0m │ initial_program                 │ init   │    0.9 │  $0.000 │ 10.… │
+└─────────────┴──────┴─────────┴───────┴──────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────┘
+2026-04-08 23:25:44 - shinka.database.inspirations - INFO - Built context: 2 programs (ascending, scores: ['1.8212', '1.8526'])
+2026-04-08 23:25:44 - shinka.core.async_runner - INFO - Generated patch type: diff
+2026-04-08 23:25:44 - shinka.llm.llm - INFO - ==> SAMPLING:
+  openrouter/anthropic/claude-haiku-4-5   1.0000
+  openrouter/openai/gpt-5.1-codex-mini   0.0000
+  openrouter/openai/gpt-5-nano     0.0000
+  openrouter/google/gemini-3-flash-preview   0.0000
+2026-04-08 23:25:44 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/anthropic/claude-haiku-4-5', '1.0', '16384']
+2026-04-08 23:25:45 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:25:46 - shinka.core.async_runner - INFO - ✅ Job ProcessWithLogging(PID: 37437) completed (gen 8) after 14.6s
+2026-04-08 23:25:46 - shinka.core.async_runner - INFO - 🔄 Processing 1 completed jobs: gens [8] (cost: $0.1162)
+2026-04-08 23:25:46 - shinka.core.async_runner - INFO - 🔄 SAFE PROCESSING: Starting job ProcessWithLogging(PID: 37437) (gen 8)
+2026-04-08 23:25:46 - shinka.launch.local - INFO - Monitoring local process with PID: 37437...
+2026-04-08 23:25:46 - shinka.launch.local - INFO - Process 37437 completed with return code: 0
+2026-04-08 23:25:46 - shinka.core.async_runner - INFO - 📂 RESULTS: Got results for ProcessWithLogging(PID: 37437): True
+2026-04-08 23:25:46 - shinka.core.async_runner - INFO - ✅ VALID RESULTS: ProcessWithLogging(PID: 37437) has valid results - correct=False, score=0.0
+2026-04-08 23:25:46 - shinka.core.async_runner - INFO - 💾 DB ADD: Adding program to database for ProcessWithLogging(PID: 37437) (gen 8)...
+2026-04-08 23:25:46 - shinka.database.dbase - INFO - Program e992540d-c319-428e-876b-cf5cc6d82a5f added to DB - score: 0.0.
+[3m                                 [0m[1;3mProgram Evaluation Summary - Gen 8 | Total Cost: $0.12[0m[3m                                 [0m
+╭─────────────┬─────────┬───────────────┬─────────┬─────────────────────────────────┬────────┬────────┬─────────┬──────╮
+│[1m [0m[1m GenID: 8  [0m[1m [0m│[1m [0m[1mIsland [0m[1m [0m│[1m [0m[1m   Status    [0m[1m [0m│[1m [0m[1m  Score[0m[1m [0m│[1m [0m[1mPatch Name                     [0m[1m [0m│[1m [0m[1mType  [0m[1m [0m│[1m [0m[1mCompl…[0m[1m [0m│[1m [0m[1m   Cost[0m[1m [0m│[1m [0m[1mTime[0m[1m [0m│
+├─────────────┼─────────┼───────────────┼─────────┼─────────────────────────────────┼────────┼────────┼─────────┼──────┤
+│ Best: [1m2.579[0m │   I-0   │  [1m✗ Incorrect[0m  │   0.000 │ greedy_hexagonal_boundary_refi  │ full   │    1.0 │  $0.008 │ 3.8s │
+╰─────────────┴─────────┴───────────────┴─────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────╯
+2026-04-08 23:25:46 - shinka.core.async_runner - INFO - ✅ DB SUCCESS: Program e992540d-c319-428e-876b-cf5cc6d82a5f successfully added to database for ProcessWithLogging(PID: 37437) (gen 8)
+2026-04-08 23:25:46 - shinka.core.summarizer - INFO - Added program e992540d-c319-428e-876b-cf5cc6d82a5f to meta memory tracking (correct=False, total: 9)
+[3m     AsymmetricUCB (c=1.000, eps=0.200, adaptive=True, asym=True, exp_base=1.000, shift_base=True, shift_parent=True, lo[0m
+[3m                                                      cost_c=0.100, cost_pow=1.00, cost_pct=50)                         [0m
+╭────────────────────┬────┬─────────┬────────┬───────────┬───────────┬────────────┬──────────┬──────────┬────────────┬──
+│[1m [0m[1marm               [0m[1m [0m│[1m [0m[1m n[0m[1m [0m│[1m [0m[1m n_cost[0m[1m [0m│[1m [0m[1m   div[0m[1m [0m│[1m [0m[1m log mean[0m[1m [0m│[1m [0m[1m tot_cost[0m[1m [0m│[1m [0m[1m mean_cost[0m[1m [0m│[1m [0m[1m exploit[0m[1m [0m│[1m [0m[1m explore[0m[1m [0m│[1m [0m[1m score_raw[0m[1m [0m│[1m [0m[1m [0m
+├────────────────────┼────┼─────────┼────────┼───────────┼───────────┼────────────┼──────────┼──────────┼────────────┼──
+│ claude-haiku-4-5   │  3 │       2 │  1.521 │   -0.7175 │    0.0515 │     0.0258 │   0.7203 │   1.2871 │     2.0074 │  
+│ gpt-5.1-codex-mini │  1 │       1 │  0.698 │      -inf │    0.0174 │     0.0174 │   0.0000 │   2.2293 │     2.2293 │  
+│ gpt-5-nano         │  6 │       6 │  2.452 │   -3.0556 │    0.0194 │     0.0032 │   0.0695 │   0.9101 │     0.9796 │  
+│ gemini-3-flash-pr… │  2 │       2 │  1.724 │      -inf │    0.0180 │     0.0090 │   0.0000 │   1.5764 │     1.5764 │  
+╰────────────────────┴────┴─────────┴────────┴───────────┴───────────┴────────────┴──────────┴──────────┴────────────┴──
+2026-04-08 23:25:46 - shinka.core.async_runner - INFO - ✅ JOB COMPLETE: Finished processing ProcessWithLogging(PID: 37437) - program e992540d-c319-428e-876b-cf5cc6d82a5f added (gen 8)
+2026-04-08 23:25:46 - shinka.core.async_runner - INFO - ✅ Successfully processed 1/1 jobs
+2026-04-08 23:25:46 - shinka.core.async_runner - INFO - ✅ Completed generations updated: 7 -> 9 (cost: $0.1162)
+2026-04-08 23:25:46 - shinka.core.async_runner - INFO - Proposal target=2 (sampling_ewma=64.78s, evaluation_ewma=6.88s, timing_samples=8, active_proposals=1, running_jobs=0)
+2026-04-08 23:25:50 - shinka.core.async_runner - INFO - 🔍 Meta task check: completed_gens=9, target=10, pending_work=1, running_eval_jobs=0, running_proposal_jobs=1, api_costs=$0.1162, should_stop=False, is_stuck=False, stuck_count=0, time_since_progress=4.0s
+2026-04-08 23:26:08 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0272
+2026-04-08 23:26:08 - shinka.core.async_runner - INFO - Applying patch with language: python
+2026-04-08 23:26:09 - shinka.core.async_runner - INFO - Patch type for application: diff
+[3m                         [0m[1;3mPatch Metadata - Gen 9/10 - Novelty: 1/3 - Resample: 1/3 - Patch: 1/1[0m[3m                          [0m
+╭──────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────╮
+│[1m [0m[1mField                   [0m[1m [0m│[1m [0m[1mValue                                                                                    [0m[1m [0m│
+├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┤
+│[1m [0m[1mpatch_type              [0m[1m [0m│ diff                                                                                      │
+│[1m [0m[1mpatch_name              [0m[1m [0m│ greedy_radius_aware_optimization                                                          │
+│[1m [0m[1mpatch_description       [0m[1m [0m│ The current approach optimizes circle positions randomly, but doesn't leverage the key    │
+│[1m                          [0m│ insight that optimal packings use variable-sized circles strategically. I propose:        │
+│[1m                          [0m│                                                                                           │
+│[1m                          [0m│ 1. Replace the structured ring initialization with a greedy algorithm that places circles │
+│[1m                          [0m│ incrementally, prioritizing positions that allow larger radii                             │
+│[1m                          [0m│ 2. Make the relaxation radius-aware: larger circles should contribute more to repulsion   │
+│[1m                          [0m│ forces                                                                                    │
+│[1m                          [0m│ 3. Implement a two-phase approach: first get good spatial distribution, then fine-tune    │
+│[1m                          [0m│ with explicit radius optimization                                                         │
+│[1m                          [0m│ 4. Add a phase that spreads circles toward boundaries (corners/edges give more room for   │
+│[1m                          [0m│ radii due to wall constraints)                                                            │
+│[1m                          [0m│                                                                                           │
+│[1m                          [0m│ This should substantially improve packing density by ensuring high-value (large-radius)   │
+│[1m                          [0m│ circles get priority placement.                                                           │
+│[1m [0m[1mnum_applied             [0m[1m [0m│ 2                                                                                         │
+│[1m [0m[1mapi_costs               [0m[1m [0m│ $0.0272                                                                                   │
+│[1m [0m[1merror_attempt           [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1msystem_prompt_id        [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1mmodel_name              [0m[1m [0m│ openrouter/anthropic/claude-haiku-4-5                                                     │
+│[1m [0m[1mtemperature             [0m[1m [0m│ 0.5                                                                                       │
+│[1m [0m[1mmax_output_tokens       [0m[1m [0m│ 16384                                                                                     │
+│[1m [0m[1mdiff_summary            [0m[1m [0m│ added: 71; deleted: 0; modified: 60;                                                      │
+╰──────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────╯
+2026-04-08 23:26:09 - shinka.core.async_runner - INFO - Getting code embedding for generation 9...
+2026-04-08 23:26:09 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-08 23:26:09 - shinka.embed.embedding - WARNING - Embedding model 'openrouter/openai/text-embedding-3-small' has no pricing entry. Defaulting embedding cost to 0.
+2026-04-08 23:26:09 - shinka.core.async_runner - INFO - Code embedding completed for generation 9 (cost: $0.0000)
+2026-04-08 23:26:09 - shinka.core.async_novelty_judge - INFO - Top-5 similarity scores: ['0.98', '0.97', '0.97', '0.96', '0.92']
+2026-04-08 23:26:09 - shinka.core.async_novelty_judge - INFO - NOVELTY CHECK: Accepting program due to low similarity (0.982 <= 0.99)
+2026-04-08 23:26:09 - shinka.launch.local - INFO - Submitted local process with PID: 37458
+2026-04-08 23:26:09 - shinka.launch.local - INFO - Launched local command: bash -lc set -e; source "/Users/mp2557/Documents/Research/ShinkaEvolve/.venv/bin/activate"; exec python evaluate.py --program_path results/circpack_20260408_231736/gen_9/main.py --results_dir results/circpack_20260408_231736/gen_9/results
+2026-04-08 23:26:09 - shinka.core.async_runner - INFO - Proposal → Eval: gen 9 submitted for eval (cost: $0.0272, total: $0.1434). Running jobs: 1/2, Proposals: 1/1
+2026-04-08 23:26:22 - shinka.core.async_runner - INFO - ✅ Job ProcessWithLogging(PID: 37458) completed (gen 9) after 38.2s
+2026-04-08 23:26:22 - shinka.core.async_runner - INFO - 🔄 Processing 1 completed jobs: gens [9] (cost: $0.1434)
+2026-04-08 23:26:22 - shinka.core.async_runner - INFO - 🔄 SAFE PROCESSING: Starting job ProcessWithLogging(PID: 37458) (gen 9)
+2026-04-08 23:26:22 - shinka.launch.local - INFO - Monitoring local process with PID: 37458...
+2026-04-08 23:26:22 - shinka.launch.local - INFO - Process 37458 completed with return code: 0
+2026-04-08 23:26:22 - shinka.core.async_runner - INFO - 📂 RESULTS: Got results for ProcessWithLogging(PID: 37458): True
+2026-04-08 23:26:22 - shinka.core.async_runner - INFO - ✅ VALID RESULTS: ProcessWithLogging(PID: 37458) has valid results - correct=True, score=1.9676790516667773
+2026-04-08 23:26:22 - shinka.core.async_runner - INFO - 💾 DB ADD: Adding program to database for ProcessWithLogging(PID: 37458) (gen 9)...
+2026-04-08 23:26:22 - shinka.database.dbase - INFO - Program 292f019c-07d8-4cb0-bbcd-52d609380c04 added to DB - score: 1.9676790516667773.
+[3m                                 [0m[1;3mProgram Evaluation Summary - Gen 9 | Total Cost: $0.14[0m[3m                                 [0m
+╭─────────────┬─────────┬───────────────┬─────────┬─────────────────────────────────┬────────┬────────┬─────────┬──────╮
+│[1m [0m[1m GenID: 9  [0m[1m [0m│[1m [0m[1mIsland [0m[1m [0m│[1m [0m[1m   Status    [0m[1m [0m│[1m [0m[1m  Score[0m[1m [0m│[1m [0m[1mPatch Name                     [0m[1m [0m│[1m [0m[1mType  [0m[1m [0m│[1m [0m[1mCompl…[0m[1m [0m│[1m [0m[1m   Cost[0m[1m [0m│[1m [0m[1mTime[0m[1m [0m│
+├─────────────┼─────────┼───────────────┼─────────┼─────────────────────────────────┼────────┼────────┼─────────┼──────┤
+│ Best: [1m2.579[0m │   I-0   │   [1m✓ Correct[0m   │   [1m1.968[0m │ greedy_radius_aware_optimizati  │ diff   │    1.0 │  $0.027 │ 13.… │
+╰─────────────┴─────────┴───────────────┴─────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────╯
+2026-04-08 23:26:22 - shinka.database.async_dbase - INFO - Scheduled embedding recomputation after 10 program additions
+2026-04-08 23:26:22 - shinka.core.async_runner - INFO - ✅ DB SUCCESS: Program 292f019c-07d8-4cb0-bbcd-52d609380c04 successfully added to database for ProcessWithLogging(PID: 37458) (gen 9)
+2026-04-08 23:26:22 - shinka.core.summarizer - INFO - Added program 292f019c-07d8-4cb0-bbcd-52d609380c04 to meta memory tracking (correct=True, total: 10)
+2026-04-08 23:26:22 - shinka.core.async_runner - INFO - Updating meta memory...
+2026-04-08 23:26:22 - shinka.core.async_summarizer - INFO - ==> Step 1 - Processing 10 programs with async batch query
+2026-04-08 23:26:22 - shinka.llm.llm - INFO - ==> SAMPLING 10 SAMPLES:
+  openrouter/openai/o4-mini        1.0000
+2026-04-08 23:26:22 - shinka.llm.llm - INFO - ==> SAMPLING: 1/10 ['openrouter/openai/o4-mini', '0.75', '4096']
+2026-04-08 23:26:22 - shinka.llm.llm - INFO - ==> SAMPLING: 2/10 ['openrouter/openai/o4-mini', '0.75', '4096']
+2026-04-08 23:26:22 - shinka.llm.llm - INFO - ==> SAMPLING: 3/10 ['openrouter/openai/o4-mini', '0.75', '4096']
+2026-04-08 23:26:22 - shinka.llm.llm - INFO - ==> SAMPLING: 4/10 ['openrouter/openai/o4-mini', '0.75', '4096']
+2026-04-08 23:26:22 - shinka.llm.llm - INFO - ==> SAMPLING: 5/10 ['openrouter/openai/o4-mini', '0.75', '4096']
+2026-04-08 23:26:22 - shinka.llm.llm - INFO - ==> SAMPLING: 6/10 ['openrouter/openai/o4-mini', '0.75', '4096']
+2026-04-08 23:26:22 - shinka.llm.llm - INFO - ==> SAMPLING: 7/10 ['openrouter/openai/o4-mini', '0.75', '4096']
+2026-04-08 23:26:22 - shinka.llm.llm - INFO - ==> SAMPLING: 8/10 ['openrouter/openai/o4-mini', '0.75', '4096']
+2026-04-08 23:26:22 - shinka.llm.llm - INFO - ==> SAMPLING: 9/10 ['openrouter/openai/o4-mini', '0.75', '4096']
+2026-04-08 23:26:22 - shinka.llm.llm - INFO - ==> SAMPLING: 10/10 ['openrouter/openai/o4-mini', '0.75', '4096']
+2026-04-08 23:26:22 - shinka.database.dbase - INFO - Recomputing PCA-reduced embedding features for 11 programs.
+2026-04-08 23:26:22 - shinka.database.dbase - INFO - Computing 2D PCA reduction...
+2026-04-08 23:26:23 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:26:23 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:26:23 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:26:23 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:26:23 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:26:23 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:26:23 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:26:23 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:26:23 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:26:23 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:26:24 - shinka.database.dbase - INFO - 2D PCA reduction completed
+2026-04-08 23:26:24 - shinka.database.dbase - INFO - Computing 3D PCA reduction...
+2026-04-08 23:26:24 - shinka.database.dbase - INFO - 3D PCA reduction completed
+2026-04-08 23:26:24 - shinka.database.dbase - INFO - Computing GMM clustering with 4 clusters...
+2026-04-08 23:26:26 - shinka.database.dbase - INFO - GMM clustering completed
+2026-04-08 23:26:26 - shinka.database.dbase - INFO - Successfully updated embedding features for 11 programs.
+2026-04-08 23:26:26 - shinka.database.async_dbase - INFO - Background embedding recomputation completed
+2026-04-08 23:26:38 - shinka.llm.llm - INFO - ==> SAMPLING: Individual API costs: ['0.0060', '0.0068', '0.0055', '0.0051', '0.0060', '0.0051', '0.0074', '0.0086', '0.0041', '0.0089']
+2026-04-08 23:26:38 - shinka.llm.llm - INFO - ==> SAMPLING: Total API costs: $0.0635
+2026-04-08 23:26:38 - shinka.core.async_summarizer - INFO - ==> Step 1 - 10/10 individual summaries generated (cost: $0.0635)
+2026-04-08 23:26:38 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/openai/o4-mini', '0.75', '4096']
+2026-04-08 23:26:38 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:26:49 - shinka.core.async_runner - WARNING - 🚨 STUCK SYSTEM DETECTED (#1/3): No progress for 63.3s. running_eval_jobs=0, running_proposal_jobs=0, should_stop=False, pending_work=1 (target=10, completed=9)
+2026-04-08 23:26:49 - shinka.core.async_runner - INFO - 🔧 ATTEMPTING RECOVERY: Force-starting proposal generation...
+2026-04-08 23:26:49 - shinka.core.async_runner - INFO - Started proposal task for generation 10 (cost: $0.1434)
+2026-04-08 23:26:49 - shinka.core.async_runner - INFO - ✅ Recovery attempt: Started 1 proposal(s)
+2026-04-08 23:26:49 - shinka.core.async_runner - INFO - Generating proposal for generation 10
+2026-04-08 23:26:49 - shinka.core.async_runner - INFO - Getting meta recs for gen 10, sample_single_meta_rec=True
+2026-04-08 23:26:49 - shinka.core.summarizer - INFO - get_sampled_recommendation called, meta_recommendations exists: False
+2026-04-08 23:26:49 - shinka.core.summarizer - INFO - No meta recommendations available to sample from
+2026-04-08 23:26:49 - shinka.core.async_runner - INFO - meta_recs result: False
+2026-04-08 23:26:49 - shinka.database.parents - INFO - Island 1 => Probabilities: [3.3532737895379593e-07, 1.0088768113173776e-05, 0.333329858634836, 0.666659717269672]
+2026-04-08 23:26:49 - shinka.database.parents - INFO - Island 1 => Scores: [1.8212275215939195, 1.942528608676178, 2.5793498873309244, 2.5793498873309244]
+2026-04-08 23:26:49 - shinka.database.parents - INFO - Sampled parent 5a683897-6928-404a-8ccb-92550a552e1a (Gen: 6, Score: 2.5793, Children: 1, Island: 1)
+2026-04-08 23:26:49 - shinka.database.inspirations - INFO - Sampled 1 archive inspirations: ['91dfa11c-12f7-4c8a-b2ae-dfc4236594e9 (Gen: 7, Score: 2.5793, Island: 1)']
+2026-04-08 23:26:49 - shinka.database.inspirations - INFO - Selected 1 top-k inspirations from archive on island 1: ['9f91441e-5b24-4b9f-9b59-59a56a530dd3 (Gen: 1, Score: 1.9425, Island: 1)']
+[3m              [0m[1;3mParent & Context Sampling Summary - Gen 10 | Total Cost: $0.14 (Novelty: 1/3, Resample: 1/3)[0m[3m              [0m
+┏━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━┓
+┃[1m [0m[1mRole       [0m[1m [0m┃[1m [0m[1mGen [0m[1m [0m┃[1m [0m[1mIsland [0m[1m [0m┃[1m [0m[1m ✓/✗ [0m[1m [0m┃[1m [0m[1m   Score[0m[1m [0m┃[1m [0m[1mPatch Name                     [0m[1m [0m┃[1m [0m[1mType  [0m[1m [0m┃[1m [0m[1mCompl…[0m[1m [0m┃[1m [0m[1m   Cost[0m[1m [0m┃[1m [0m[1mTime[0m[1m [0m┃
+┡━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━┩
+│[1m [0m[1mPARENT[0m[1m     [0m[1m [0m│  6   │   I-1   │   [1m✓[0m   │    [1m2.579[0m │ multi_start_adaptive_radii      │ diff   │    1.0 │  $0.033 │ 5.7s │
+│[1m [0m[1mArchive-1  [0m[1m [0m│  7   │   I-1   │   [1m✓[0m   │    [1m2.579[0m │ sim_anneal_refine_in_packing    │ diff   │    1.0 │  $0.011 │ 12.… │
+│[1m [0m[1mTopK-1     [0m[1m [0m│  1   │   I-1   │   [1m✓[0m   │    [1m1.943[0m │ none                            │ diff   │    1.0 │  $0.019 │ 4.2s │
+└─────────────┴──────┴─────────┴───────┴──────────┴─────────────────────────────────┴────────┴────────┴─────────┴──────┘
+2026-04-08 23:26:49 - shinka.database.inspirations - INFO - Built context: 2 programs (ascending, scores: ['1.9425', '2.5793'])
+2026-04-08 23:26:49 - shinka.core.async_runner - INFO - Generated patch type: diff
+2026-04-08 23:26:49 - shinka.llm.llm - INFO - ==> SAMPLING:
+  openrouter/anthropic/claude-haiku-4-5   0.0000
+  openrouter/openai/gpt-5.1-codex-mini   1.0000
+  openrouter/openai/gpt-5-nano     0.0000
+  openrouter/google/gemini-3-flash-preview   0.0000
+2026-04-08 23:26:49 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/openai/gpt-5.1-codex-mini', '1.0', '16384']
+2026-04-08 23:26:50 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:26:50 - shinka.core.async_runner - INFO - 🔍 Meta task check: completed_gens=9, target=10, pending_work=1, running_eval_jobs=0, running_proposal_jobs=1, api_costs=$0.1434, should_stop=False, is_stuck=False, stuck_count=1, time_since_progress=0.7s
+2026-04-08 23:26:54 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0160
+2026-04-08 23:26:54 - shinka.core.async_summarizer - INFO - ==> Step 2 - Global insights generated (cost: $0.0160)
+2026-04-08 23:26:54 - shinka.llm.llm - INFO - ==> QUERYING: ['openrouter/openai/o4-mini', '0.75', '4096']
+2026-04-08 23:26:54 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/responses "HTTP/1.1 200 OK"
+2026-04-08 23:27:03 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0107
+2026-04-08 23:27:03 - shinka.core.async_summarizer - INFO - ==> Step 3 - Recommendations generated (cost: $0.0107)
+2026-04-08 23:27:03 - shinka.core.async_summarizer - INFO - ==> Meta-analysis completed successfully with 3-step process (total cost: $0.0902)
+2026-04-08 23:27:03 - shinka.core.async_summarizer - INFO - Processed and cleared 10 programs from meta memory (total processed: 10)
+2026-04-08 23:27:03 - shinka.core.async_summarizer - INFO - Wrote meta output to results/circpack_20260408_231736/meta/meta_10.txt
+2026-04-08 23:27:03 - shinka.core.async_runner - INFO - Meta recommendation cost: $0.0902
+[3m     AsymmetricUCB (c=1.000, eps=0.200, adaptive=True, asym=True, exp_base=1.000, shift_base=True, shift_parent=True, lo[0m
+[3m                                                      cost_c=0.100, cost_pow=1.00, cost_pct=50)                         [0m
+╭────────────────────┬────┬─────────┬────────┬───────────┬───────────┬────────────┬──────────┬──────────┬────────────┬──
+│[1m [0m[1marm               [0m[1m [0m│[1m [0m[1m n[0m[1m [0m│[1m [0m[1m n_cost[0m[1m [0m│[1m [0m[1m   div[0m[1m [0m│[1m [0m[1m log mean[0m[1m [0m│[1m [0m[1m tot_cost[0m[1m [0m│[1m [0m[1m mean_cost[0m[1m [0m│[1m [0m[1m exploit[0m[1m [0m│[1m [0m[1m explore[0m[1m [0m│[1m [0m[1m score_raw[0m[1m [0m│[1m [0m[1m [0m
+├────────────────────┼────┼─────────┼────────┼───────────┼───────────┼────────────┼──────────┼──────────┼────────────┼──
+│ claude-haiku-4-5   │  3 │       3 │  2.395 │   -1.2535 │    0.0787 │     0.0262 │   0.4587 │   1.3077 │     1.7663 │  
+│ gpt-5.1-codex-mini │  2 │       1 │  0.663 │      -inf │    0.0174 │     0.0174 │   0.0000 │   1.6015 │     1.6015 │  
+│ gpt-5-nano         │  6 │       6 │  2.329 │   -3.0613 │    0.0194 │     0.0032 │   0.0752 │   0.9247 │     0.9999 │  
+│ gemini-3-flash-pr… │  2 │       2 │  1.638 │      -inf │    0.0180 │     0.0090 │   0.0000 │   1.6015 │     1.6015 │  
+╰────────────────────┴────┴─────────┴────────┴───────────┴───────────┴────────────┴──────────┴──────────┴────────────┴──
+2026-04-08 23:27:03 - shinka.core.async_runner - INFO - ✅ JOB COMPLETE: Finished processing ProcessWithLogging(PID: 37458) - program 292f019c-07d8-4cb0-bbcd-52d609380c04 added (gen 9)
+2026-04-08 23:27:03 - shinka.core.async_runner - INFO - ✅ Successfully processed 1/1 jobs
+2026-04-08 23:27:03 - shinka.core.async_runner - INFO - ✅ Completed generations updated: 9 -> 10 (cost: $0.2336)
+2026-04-08 23:27:03 - shinka.core.async_runner - INFO - ✅ Progress detected, resetting stuck detection count (was 1)
+2026-04-08 23:27:03 - shinka.core.async_runner - INFO - Proposal target=2 (sampling_ewma=52.88s, evaluation_ewma=8.74s, timing_samples=9, active_proposals=1, running_jobs=0)
+2026-04-08 23:27:09 - shinka.llm.llm - INFO - ==> QUERY: API cost: $0.0097
+2026-04-08 23:27:09 - shinka.core.async_runner - INFO - Applying patch with language: python
+2026-04-08 23:27:09 - shinka.core.async_runner - INFO - Patch type for application: diff
+[3m                         [0m[1;3mPatch Metadata - Gen 10/10 - Novelty: 1/3 - Resample: 1/3 - Patch: 1/1[0m[3m                         [0m
+╭──────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────╮
+│[1m [0m[1mField                   [0m[1m [0m│[1m [0m[1mValue                                                                                    [0m[1m [0m│
+├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┤
+│[1m [0m[1mpatch_type              [0m[1m [0m│ diff                                                                                      │
+│[1m [0m[1mpatch_name              [0m[1m [0m│ basinhopping_refinement                                                                   │
+│[1m [0m[1mpatch_description       [0m[1m [0m│ Introduced a basin-hopping refinement phase that perturbs circle centers and uses         │
+│[1m                          [0m│ L-BFGS-B to explore global configurations, enabling escape from local optima. This change │
+│[1m                          [0m│ also imports `basinhopping` and integrates the refinement step after boosting radii,      │
+│[1m                          [0m│ aiming to increase the overall sum of radii.                                              │
+│[1m [0m[1mnum_applied             [0m[1m [0m│ 3                                                                                         │
+│[1m [0m[1mapi_costs               [0m[1m [0m│ $0.0097                                                                                   │
+│[1m [0m[1merror_attempt           [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1msystem_prompt_id        [0m[1m [0m│ [2mNone[0m                                                                                      │
+│[1m [0m[1mmodel_name              [0m[1m [0m│ openrouter/openai/gpt-5.1-codex-mini                                                      │
+│[1m [0m[1mtemperature             [0m[1m [0m│ 0.5                                                                                       │
+│[1m [0m[1mmax_output_tokens       [0m[1m [0m│ 16384                                                                                     │
+│[1m [0m[1mdiff_summary            [0m[1m [0m│ added: 49; deleted: 0; modified: 1;                                                       │
+╰──────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────╯
+2026-04-08 23:27:09 - shinka.core.async_runner - INFO - Getting code embedding for generation 10...
+2026-04-08 23:27:09 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-08 23:27:09 - shinka.embed.embedding - WARNING - Embedding model 'openrouter/openai/text-embedding-3-small' has no pricing entry. Defaulting embedding cost to 0.
+2026-04-08 23:27:09 - shinka.core.async_runner - INFO - Code embedding completed for generation 10 (cost: $0.0000)
+2026-04-08 23:27:09 - shinka.core.async_novelty_judge - INFO - Top-5 similarity scores: ['0.94', '0.89', '0.86', '0.85', '0.80']
+2026-04-08 23:27:09 - shinka.core.async_novelty_judge - INFO - NOVELTY CHECK: Accepting program due to low similarity (0.935 <= 0.99)
+2026-04-08 23:27:09 - shinka.launch.local - INFO - Submitted local process with PID: 37494
+2026-04-08 23:27:09 - shinka.launch.local - INFO - Launched local command: bash -lc set -e; source "/Users/mp2557/Documents/Research/ShinkaEvolve/.venv/bin/activate"; exec python evaluate.py --program_path results/circpack_20260408_231736/gen_10/main.py --results_dir results/circpack_20260408_231736/gen_10/results
+2026-04-08 23:27:09 - shinka.core.async_runner - INFO - Proposal → Eval: gen 10 submitted for eval (cost: $0.0097, total: $0.2433). Running jobs: 1/2, Proposals: 1/1
+2026-04-08 23:27:20 - shinka.core.async_runner - INFO - 🔍 Meta task check: completed_gens=10, target=10, pending_work=0, running_eval_jobs=1, running_proposal_jobs=0, api_costs=$0.2433, should_stop=False, is_stuck=False, stuck_count=0, time_since_progress=16.7s
+2026-04-08 23:32:20 - shinka.core.async_runner - INFO - 🔍 Meta task check: completed_gens=10, target=10, pending_work=0, running_eval_jobs=1, running_proposal_jobs=0, api_costs=$0.2433, should_stop=False, is_stuck=False, stuck_count=0, time_since_progress=316.7s
+2026-04-08 23:37:20 - shinka.core.async_runner - INFO - 🔍 Meta task check: completed_gens=10, target=10, pending_work=0, running_eval_jobs=1, running_proposal_jobs=0, api_costs=$0.2433, should_stop=False, is_stuck=False, stuck_count=0, time_since_progress=616.8s
+2026-04-08 23:40:57 - shinka.database.async_dbase - INFO - 🔧 Closing async database with monitoring...
+2026-04-08 23:40:57 - shinka.database.async_dbase - INFO - Async database closed
+2026-04-09 00:08:01 - ipykernel.comm - ERROR - No such comm target registered: jupyter.widget.control
+2026-04-09 00:08:01 - Comm - WARNING - No such comm: 609f5d91-c0fc-4b15-96ae-9d8d92df57e8
+2026-04-09 08:51:09 - ipykernel.comm - ERROR - No such comm target registered: jupyter.widget.control
+2026-04-09 08:51:09 - Comm - WARNING - No such comm: 9eee2a89-858b-43eb-83bc-c52d1cfe5875
+2026-04-09 09:37:20 - ipykernel.comm - ERROR - No such comm target registered: jupyter.widget.control
+2026-04-09 09:37:20 - Comm - WARNING - No such comm: f288beac-f593-4548-91ec-da519a83f58c
+2026-04-09 10:20:42 - ipykernel.comm - ERROR - No such comm target registered: jupyter.widget.control
+2026-04-09 10:20:42 - Comm - WARNING - No such comm: 3d13c69a-0c52-4bfb-aafd-4d6ac8c370d7
+2026-04-09 11:53:35 - ipykernel.comm - ERROR - No such comm target registered: jupyter.widget.control
+2026-04-09 11:53:35 - Comm - WARNING - No such comm: 9059791c-820d-4437-a547-fe56e5d1fafa
+2026-04-09 12:55:36 - ipykernel.comm - ERROR - No such comm target registered: jupyter.widget.control
+2026-04-09 12:55:36 - Comm - WARNING - No such comm: da34b6b2-dcc3-45ef-a6fb-087db024105e
+2026-04-09 13:35:39 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-9471' coro=<Event.wait() running at /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/locks.py:213> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-04-09 13:35:39 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-9472' coro=<Event.wait() running at /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/locks.py:213> wait_for=<Future pending cb=[Task.task_wakeup()]>>
