@@ -2,6 +2,12 @@
 
 This repository contains some tutorials which will help you get started with using ShinkaEvolve for the Yale FDS Workshop [AI for Scientific Discovery](https://yalefds.swoogo.com/aiforscientificdiscovery/11264716).
 
+Some helpful links
+
+-   [ShinkaEvolve Github repository](https://github.com/SakanaAI/ShinkaEvolve)
+
+-   [ShinkaEvolve getting started instructions](https://sakanaai.github.io/ShinkaEvolve/getting_started/)
+
 
 ## Getting started with iPython notebooks using pip (Linux / Mac)
 
@@ -9,7 +15,7 @@ A simple way to start using ShinkaEvolve is through [iPython notebooks](https://
 
 **Prerequisites** - Before continuing make sure you have the following ready
 
-- Python version >= 3.11 installed locally on your machine
+-   Python version >= 3.11 installed locally on your machine
 
 
 **Instructions** - To get started, we will first create a virtual environment to do our development in. Open a terminal, and navigate to where this repository is located. Then, do the following.
@@ -42,7 +48,7 @@ Once you've done this you're ready to go! Run `jupyter lab` to start the web UI 
 
 ## Getting started with iPython notebooks (Windows)
 
-TODO(antaresc)
+TODO
 
 
 
