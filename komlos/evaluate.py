@@ -12,8 +12,6 @@ so finding larger values represents harder instances.
 import os
 import argparse
 import numpy as np
-from typing import Dict, Any, List, Optional, Tuple
-
 from shinka.core import run_shinka_eval
 
 N = int(os.environ.get("N", "8"))
@@ -25,9 +23,7 @@ def get_experiment_kwargs(run_idx: int) -> dict:
     return {"n": N, "random_seed": int(np.random.randint(0, 2**31))}
 
 
-def validate_fn(
-    result: Tuple[np.ndarray, float, np.ndarray],
-) -> Tuple[bool, Optional[str]]:
+def validate_fn(result: tuple[np.ndarray, float, np.ndarray]) -> tuple[bool, str | None]:
     if not isinstance(result, tuple) or len(result) != 3:
         return False, "Result should be a tuple of (vectors, cost, signs)"
 
@@ -60,10 +56,7 @@ def validate_fn(
     return True, None
 
 
-def aggregate_metrics(
-    results: List[Tuple[np.ndarray, float, np.ndarray]],
-    results_dir: str,
-) -> Dict[str, Any]:
+def aggregate_metrics(results: list[tuple[np.ndarray, float, np.ndarray]]) -> dict:
     INVALID_PENALTY = -1000.0
 
     if not results:
@@ -102,7 +95,7 @@ def aggregate_metrics(
     }
 
 
-def main(program_path: str, results_dir: str) -> None:
+def main(program_path: str, results_dir: str):
     os.makedirs(results_dir, exist_ok=True)
     metrics, correct, error_msg = run_shinka_eval(
         program_path=program_path,
@@ -112,7 +105,7 @@ def main(program_path: str, results_dir: str) -> None:
         run_workers=NUM_WORKERS,
         get_experiment_kwargs=get_experiment_kwargs,
         validate_fn=validate_fn,
-        aggregate_metrics_fn=lambda results: aggregate_metrics(results, results_dir),
+        aggregate_metrics_fn=aggregate_metrics,
     )
     print("OK" if correct else f"FAILED: {error_msg}")
 

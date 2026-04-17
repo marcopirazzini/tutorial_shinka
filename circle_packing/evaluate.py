@@ -6,7 +6,6 @@ combined_score = sum of radii (higher is better; best known ≈ 2.635)
 import os
 import argparse
 import numpy as np
-from typing import Dict, Any, List, Optional, Tuple
 
 from shinka.core import run_shinka_eval
 
@@ -14,10 +13,8 @@ N_CIRCLES = 26
 ATOL = 1e-6
 
 
-def validate_packing(
-    run_output: Tuple[np.ndarray, np.ndarray, float],
-) -> Tuple[bool, Optional[str]]:
-    centers, radii, reported_sum = run_output
+def validate_packing(result: tuple[np.ndarray, np.ndarray, float]) -> tuple[bool, str | None]:
+    centers, radii, reported_sum = result
 
     if not isinstance(centers, np.ndarray):
         centers = np.asarray(centers, dtype=float)
@@ -50,10 +47,7 @@ def validate_packing(
     return True, None
 
 
-def aggregate_metrics(
-    results: List[Tuple[np.ndarray, np.ndarray, float]],
-    results_dir: str,
-) -> Dict[str, Any]:
+def aggregate_metrics(results: list[tuple[np.ndarray, np.ndarray, float]]) -> dict:
     centers, radii, reported_sum = results[0]
     sum_radii = float(np.sum(radii))
     n = len(radii)
@@ -101,7 +95,7 @@ def main(program_path: str, results_dir: str) -> None:
         num_runs=1,
         get_experiment_kwargs=lambda i: {}, # This is necessary because otherwise we need "run_packing" to take "seed" as argument.
         validate_fn=validate_packing,
-        aggregate_metrics_fn=lambda results: aggregate_metrics(results, results_dir),
+        aggregate_metrics_fn=aggregate_metrics,
     )
     print("OK" if correct else f"FAILED: {error_msg}")
 
