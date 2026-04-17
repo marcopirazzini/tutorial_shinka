@@ -8,6 +8,10 @@ Some helpful links
 
 -   [ShinkaEvolve getting started instructions](https://sakanaai.github.io/ShinkaEvolve/getting_started/)
 
+-   [ShinkaEvolve paper](https://arxiv.org/abs/2509.19349)
+
+-   [ShinkaEvolve talk video](https://www.youtube.com/watch?v=dAOIer_1INo)
+
 
 ## Getting started with iPython notebooks using pip (Linux / Mac)
 
@@ -49,6 +53,18 @@ Once you've done this you're ready to go! Run `jupyter lab` to start the web UI 
 ## Getting started with iPython notebooks (Windows)
 
 TODO
+
+## In this repository
+
+- Circle packing example
+- Komlos conjecture example
+
+## TODO
+- Add other examples (optimization, quantum circuit design, neural networks for stellar evolution, etc...)
+- Make notebooks for Bouchet and Conda (this should be very minimal change)
+- Make slides
+- Add short tutorials for connecting to Bouchet, installing Claude Code and adding Shinka skills, using Shinka through notebooks and CLI ...
+- Add description of core Shinka hyperparameters
 
 
 
