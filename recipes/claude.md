@@ -1,6 +1,6 @@
 # Claude Code
 
-In this short guide we will discuss [Claude Code](https://www.anthropic.com/product/claude-code), an **agentic coding tool** that can be used in your local programming environment through a terminal or IDE. It is an AI-powered development assistent that can *autonomously* plan and execute multi-step programming tasks. What makes it *agentic* is the fact that it acts in a loop. Through a chat interface, the developer uses *natural language* to prompt or assign tasks to Claude code. Claude code then performs appropriate actions to either answer the prompt or execute the task, providing feedback to the user through the same chat interface.
+This guide will discuss [Claude Code](https://www.anthropic.com/product/claude-code), an **agentic coding tool** that can be used in your local programming environment through a terminal or IDE. It is an AI-powered development assistent that can *autonomously* plan and execute multi-step programming tasks. What makes it *agentic* is the fact that it acts in a loop. Through a chat interface, the developer uses *natural language* to prompt Claude Code with questions, or assign development tasks. Claude code then performs appropriate actions to either answer the prompt or execute the task. Feedback is then provided to the user through the same chat interface.
 
 This tutorial is split into two steps
 
@@ -67,12 +67,12 @@ Use these steps to get started using Bouchet.
 
 1.  Navigate to YCRC's **[Open OnDemand](https://ood-bouchet.ycrc.yale.edu/)** page and click **remote desktop**.
 
-    ![Click remote desktop on Open OnDemand](assets/claude_bouchet_ood.png)
+    ![Click remote desktop on Open OnDemand](assets/bouchet_ood.png)
 
 2.  You will be brought to a page for requesting a *compute node*. YCRC has provisioned every registered attendee with priority access to nodes on Bouchet.
 
     - Select your *number of hours* to be `1`.
-    - Select your *number of CPU cores per node* to be `16`
+    - Select your *number of CPU cores per node* to be `4`
     - Select your *memory per CPU code* to be `10`
     - Select your *partition* to be `devel` **This is important (!)**
 
@@ -134,4 +134,4 @@ And now you are ready to get started!
 
 Now that you have Claude Code enabled on your system, try using some of Claude Code's agentic coding capabilities.
 
--   See [Using ShinkaEvolve Agentically](./shinka_agentic.md) to see how to use ShinkaEvolve through Claude Code.
+-   Read [Using ShinkaEvolve Agentically](./shinka_agentic.md) to see how to use ShinkaEvolve through Claude Code.
