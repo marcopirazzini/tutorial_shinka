@@ -1,8 +1,8 @@
-# Using ShinkaEvolve on Bouchet
+# Setting up ShinkaEvolve on Bouchet
 
 This guide will discuss **how to use ShinkaEvolve** on the **Bouchet High-performance Computing (HPC) cluster**. The Bouchet HPC cluster is a shared-use computing resource managed by the **[Yale Center for Research Computing](https://research.computing.yale.edu/)** (YCRC). The cluster runs **[Redhat Linux](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux)**, and a desktop environment on the cluster can be accessed through your **web browser** using **[Open OnDemand](https://docs.ycrc.yale.edu/clusters-at-yale/access/ood/)**.
 
-YCRC has kindly allocated additional compute resources for the purposes of this Hackathon. Registered attendants will have *priority access* to compute nodes on the Bouchet HPC cluster during the event. Each attendant will have shortened wait times when requesting nodes with up to
+YCRC has kindly dedicated compute resources for this Hackathon. Registered attendants will have *priority access* to compute nodes on the Bouchet HPC cluster during the event. Each attendant will have shortened wait times when requesting nodes with resources up to
 
 -   **TODO(antaresc) - Figure out what resources are allocated**
 
@@ -11,7 +11,7 @@ Each registered attendant will also have an account on Bouchet with **ShinkaEvol
 -   The environment will come **pre-loaded** with an **API key for [OpenRouter](https://openrouter.ai/)** so that you can get immediately get started with using ShinkaEvolve.
 
 
-This tutorial is focused on setting up your environment with ShinkaEvolve on Bouchet. It is split into three steps.
+This tutorial is focused on **setting up your ShinkaEvolve environment on Bouchet**. It is split into three steps.
 
 -   Step 1 - Logging into your Bouchet desktop environment.
 
@@ -172,7 +172,7 @@ You're now ready to use ShikaEvolve on Bouchet!
 
 -   Read [Using ShinkaEvolve Agentically](./shinka_agentic.md) to see how to use ShinkaEvolve through Claude Code.
 
--   Read [Using ShinkaEvolve in Jupyter Notebooks](./shinka_via_jupyter.md) to see how to use ShinkaEvolve in a Jupyter notebook.
+-   Read [Using ShinkaEvolve through Jupyter Notebooks](./shinka_via_jupyter.md) to see how to use ShinkaEvolve in a Jupyter notebook.
 
 -   Read [Scripting with ShinkaEvolve](./shinka_via_script.md) to see how to use ShinkaEvolve using Python scripts, and on how to develop code inside the ShinkaEvolve repository.
 

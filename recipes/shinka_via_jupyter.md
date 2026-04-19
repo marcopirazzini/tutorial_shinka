@@ -1,1 +1,1 @@
-# Using ShinkaEvolve in Jupyter Notebooks
+# Using ShinkaEvolve through Jupyter Notebooks
