@@ -41,6 +41,8 @@ A simple way to start using ShinkaEvolve is through [iPython notebooks](https://
     python -c "from shinka.core import ShinkaEvolveRunner; print('OK')"
     ```
 
+    From here you will also be able to use ShinkaEvolve tools such as `shinka_launch` and `shinka_visualize` directly from the commandlines, while you're in the virtual environment.
+
 4.  Create a `.env` file containing your OpenRouter API key to the root of this repository. You can do this by running the following bash command.
 
     ```bash
