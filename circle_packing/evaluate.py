@@ -61,9 +61,6 @@ def aggregate_metrics(results: list[tuple[np.ndarray, np.ndarray, float]]) -> di
         for (cx, cy), r in zip(centers, radii)
     ]))
 
-    np.savez(os.path.join(results_dir, "extra.npz"),
-             centers=centers, radii=radii, reported_sum=reported_sum)
-
     return {
         "combined_score": sum_radii,
         "public": {
@@ -81,7 +78,7 @@ def aggregate_metrics(results: list[tuple[np.ndarray, np.ndarray, float]]) -> di
             "reported_sum_of_radii": float(reported_sum),
             "actual_sum_of_radii": sum_radii,
         },
-        "extra_data": {},
+        "extra_data": {"centers": centers, "radii": radii, "reported_sum": reported_sum},
         "text_feedback": f"sum_radii={sum_radii:.6f} | min_gap={min_gap:.6f} | wall_slack_min={wall_slack_min:.6f}",
     }
 
