@@ -132,7 +132,7 @@ def aggregate_metrics(results: List[Dict[str, Any]], results_dir: str) -> Dict[s
     # If not, add a massive penalty based on how much it missed the target.
     penalty = 0
     if max_res > 0.00079:
-        penalty = 1000 * (max_res - 0.00079)
+        penalty = 1000 * (max_res - 0.00079)   #maybe we can play around with this penalty, balancing residual error vs validation accuracy
     
     combined_score = -val_loss - penalty
 
@@ -167,15 +167,6 @@ def main(program_path: str, results_dir: str) -> None:
         print(f"SUCCESS | Fitness Score: {metrics['combined_score']:.6f}")
     else:
         print(f"FAILED: {error_msg}")
-
-if __name__ == "__main__":
-    import sys
-    if len(sys.argv) != 3:
-        print("Usage: python evaluate.py <program_path> <results_dir>")
-        sys.exit(1)
-    program_path = sys.argv[1]
-    results_dir = sys.argv[2]
-    main(program_path, results_dir)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
