@@ -4,6 +4,8 @@
 # By default, don't commit result folders
 results/
 
+.DS_Store
+
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
