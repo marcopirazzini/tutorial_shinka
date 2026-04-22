@@ -60,6 +60,8 @@ TODO
 
 - Circle packing example
 - Komlos conjecture example
+- Neural Network + Stellar Evolution example (Naomi Gluck)
+- Quantum Machine Learning example (Allen Mi)
 
 ## TODO
 - Add other examples (optimization, quantum circuit design, neural networks for stellar evolution, etc...)
