@@ -129,16 +129,94 @@ conda activate shinka_ai4sd26
 
 # Part 2: Setting up ShinkaEvolve to solve search problems
 
-**TODO(marcop, antaresc)** - Finish writing this
+To get started using ShinkaEvolve on your own system, navigate to your **working directory**. This will contain all code that implements the experiments you want to run with ShinkaEvolve. For this tutorial, we will be using this tutorial repository as our working environment.
 
-# Part 3: Setting up ShinkaEvolve to solve search problems
+```bash
+cd <PATH TO...>/tutorial_shinka
+```
 
-**TODO(marcop, antaresc)** - Refactor this part into this markdown file
+Now, start with **creating a virtual environment** using your package manager of choice. We will use `uv`.
 
-This notebook works is specific for the circle packing task, but it can serve as a blueprint for making other tasks. Start by creating a separate folder with the following ingredients:
+```bash
+uv venv --python 3.11
+```
 
-1. `initial_program.py`: This must contain the generator code for your task inside the `EVOLVE-BLOCK-START` / `EVOLVE-BLOCK-END` markers. Outside these you must add a `run_task()` function that returns the constructed object, its score, and possibly other statistics you might want to keep track of. You can also add any auxiliary functions you want here.
-2. `evaluate.py`: This must contain a `validate_task(run_output)` function that must validate the correctness of the output of the `run_task()` function in the program of interest. It must also contain an `aggregate_metrics(results, results_dir)` function that returns a dictionary of evaluation metrics associated to the program. The most important one is `combined_score`, which is the score that is ultimately used to judge the quality of the program.
-3. `shinka_launch.ipynb`: This one will be much closer to the current notebook, the only parameter that is task-specific is `TASK_SYS_MSG` in the `EvolutionConfig` instance. Another one I like to change is the name of the results databases, but it's not required. The visualization code at the end of this notebook is also specific for the circle packing task, but it is only used for a posteriori analysis of the solution found, not for running Shinka.
+This will create a virtual environment named `venv`. **Activate the virtual environment** by executing the activate script.
 
----
+```bash
+source .venv/bin/activate
+```
+
+Your screen might look like this now.
+
+![Create and activate the virtual environment](assets/virtual_env_activate.png)
+
+Finally, **install ShinkaEvolve** using pip
+
+```bash
+uv pip install shinka-evolve
+```
+
+You are now ready to go! Make sure everything is installed properly by running the following command
+
+```bash
+shinka_launch --help
+```
+
+![ShinkaEvolve help text](assets/shinka_launch_help.png)
+
+
+# Part 3: Setting up ShinkaEvolve for development
+
+Here are some instructions on how to get started with editing the implementation of ShinkaEvolve. Here, you will want to find a suitable location on your machine where you can setup a simple development environment. Once you've navigated to there, **clone the ShinkaEvolve Github repository**.
+
+```bash
+git clone https://github.com/SakanaAI/ShinkaEvolve
+```
+
+Now `change into the ShinkaEvolve directory`.
+
+```bash
+cd ShinkaEvolve
+```
+
+Once you're in the ShinkaEvolve directory, **create a virtual environment**.
+
+```bash
+uv venv --python 3.11
+```
+
+and **activate** the environment
+
+```bash
+source .venv/bin/activate
+```
+
+This is where *isolation* is helpful! You may have already installed the version of ShinkaEvolve that is a package that is *available through Python package manager indices* like that on `uv` or `pip`. So, if this package was installed *globally* on your machine, then perhaps you might edit the implementation, and hope to run ShinkaEvolve your edited version. But by default, your machine will first execute the *globally* installed one that does not have your implementation changes.
+
+Tell your new virtual environment to *install the version that you're editing* by running this command
+
+```
+uv pip install -e .
+```
+
+Now you should be able to change the implementation and test your changes. If you want to check that you're running the version of ShinkaEvolve that is implemented in your current directory, you can run the command
+
+```bash
+python -c "import shinka; print(shinka.__file__)"
+```
+
+The output should point to `ShinkaEvolve/shinka/__init__.py`
+
+![ShinkaEvolve help text](assets/shinka_repo_path.png)
+
+When testing out your local implementation of ShinkaEvolve, you will want to use ShinkaEvolve through scripting. See `recipes/shinka_via_script.md` for more information.
+
+
+# Where to go from here
+
+Now that you have ShinkaEvolve set up locally on your machine consider trying out the following.
+
+-   Check out `recipes/shinka_via_jupyter.md` to see how use ShinkaEvolve through Jupyter notebooks. This is helpful when using the tool to solve search problems in your own research.
+
+-   Check out `recipes/shinka_via_script.md` if you want to see how to write code which programmatically uses the ShinkaEvolve python package. Try hacking on the implementation of ShinkaEvolve. Implement different sampling algorithms when using an LLM to generate a mutation, or try implementing different novelty heuristics.
