@@ -22,6 +22,7 @@ Before beginning **make sure you have the following**
 
 -   If you are using the Bouchet HPC cluster, make sure you have your **Yale NetID** and **password**
 
+---
 
 ## Step 1: Installing Claude Code
 
@@ -88,6 +89,7 @@ Use these steps to get started using Bouchet.
 
     to download and run the **native installation package** for Claude Code.
 
+---
 
 ## Step 2: Using Claude Code for the first time
 
@@ -129,6 +131,7 @@ And now you are ready to get started!
 
 ![Evolve!](assets/claude_start.png)
 
+---
 
 ## Where to go from here
 

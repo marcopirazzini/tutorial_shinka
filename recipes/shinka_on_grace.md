@@ -33,6 +33,7 @@ Before beginning **make sure you have the following**
 
 -   You will need your **Yale NetID** and **password** to access Grace.
 
+---
 
 ## Step 1: Logging into Grace
 
@@ -70,6 +71,7 @@ Use these steps to get started using Grace.
 
     From here you're ready to go!
 
+---
 
 ## Step 2: Setting up ShinkaEvolve to solve search problems
 
@@ -100,6 +102,7 @@ shinka_launch --help
 
 ![shinka launch test](assets/grace_shinka.png)
 
+---
 
 ## Step 3: Hacking on the ShinkaEvolve implementation
 

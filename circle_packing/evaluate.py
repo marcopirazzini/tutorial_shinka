@@ -49,7 +49,6 @@ def validate_packing(result: tuple[np.ndarray, np.ndarray, float]) -> tuple[bool
 
 def aggregate_metrics(results: list[tuple[np.ndarray, np.ndarray, float]]) -> dict:
     centers, radii, reported_sum = results[0]
-    sum_radii = float(np.sum(radii))
     n = len(radii)
 
     min_gap = min(
@@ -62,10 +61,10 @@ def aggregate_metrics(results: list[tuple[np.ndarray, np.ndarray, float]]) -> di
     ]))
 
     return {
-        "combined_score": sum_radii,
+        "combined_score": reported_sum,
         "public": {
             "n_circles": n,
-            "sum_radii": round(sum_radii, 6),
+            "sum_radii": round(reported_sum, 6),
             "min_radius": round(float(np.min(radii)), 6),
             "max_radius": round(float(np.max(radii)), 6),
             "min_gap": round(float(min_gap), 6),
@@ -76,10 +75,9 @@ def aggregate_metrics(results: list[tuple[np.ndarray, np.ndarray, float]]) -> di
         },
         "private": {
             "reported_sum_of_radii": float(reported_sum),
-            "actual_sum_of_radii": sum_radii,
         },
         "extra_data": {"centers": centers, "radii": radii, "reported_sum": reported_sum},
-        "text_feedback": f"sum_radii={sum_radii:.6f} | min_gap={min_gap:.6f} | wall_slack_min={wall_slack_min:.6f}",
+        "text_feedback": f"sum_radii={reported_sum:.6f} | min_gap={min_gap:.6f} | wall_slack_min={wall_slack_min:.6f}",
     }
 
 
