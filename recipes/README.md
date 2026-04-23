@@ -6,6 +6,10 @@ In this directory, you'll find a number of markdown guides which will step throu
 
 -   `claude.md` - A short tutorial on how to install and use Claude code.
 
+-   `hyperparameters.md` - A user-friendly guide to ShinkaEvolve's hyperparameters, see the [official documentation](https://sakanaai.github.io/ShinkaEvolve/configuration/) for more detail.
+
+-   `openrouter.md` - A guide on obtaining an API key for multiple LLMs, and a sample list of available models.
+
 -   `shinka_on_local.md`
 
 -   `shinka_on_grace.md`
