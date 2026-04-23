@@ -14,25 +14,25 @@ Some links that might help with this tutorial
 
 -   [[link](https://code.claude.com/docs/en/quickstart)] The official Claude Code quickstart guide
 
--   [[link](https://docs.ycrc.yale.edu/clusters/bouchet/)] YCRC's Bouchet HPC cluster overview guide.
+-   [[link](https://docs.ycrc.yale.edu/clusters/grace/)] YCRC's Grace HPC cluster overview guide.
+
+-   [[link](https://sd26.ycrc.yale.edu/)] The Open OnDemand portal for Grace nodes specially provisioned for this hackathon.
 
 Before beginning **make sure you have the following**
 
--   A **Claude account** with a **Claude Pro, Max, Team or Enterprise subscription**. Yale FDS will have gifted you a Claude Pro subscription if you did not have one prior to this event!
+-   A **Claude account** with a **Claude Pro, Max, Team or Enterprise subscription**. If you did not have a subscription prior to the event, you will have been added to an FDS enterprise subscription!
 
--   If you are using the Bouchet HPC cluster, make sure you have your **Yale NetID** and **password**
+-   If you are using the Grace HPC cluster, make sure you have your **Yale NetID** and **password**
 
 ---
 
 ## Step 1: Installing Claude Code
 
-How you install Claude Code will depend on what system you are working on. This part of the tutorial is split between three environments.
+How you install Claude Code will depend on what system you are working on. This part of the tutorial is split between two environments.
 
 -   Mac / Linux
 
--   Windows
-
--   Yale's Bouchet HPC cluster
+-   Yale's Grace HPC cluster
 
 
 ### On Mac / Linux
@@ -57,49 +57,43 @@ brew install --cask claude-code
 This replaces the `curl` command used to download the native installation package.
 
 
-### On Windows
+### On Grace
 
-**TODO(antaresc) - Complete**
+Claude has already been installed in your Grace account. So, to begin, start by accessing Grace
 
+1.  Navigate to YCRC's **[Open OnDemand](https://sd26.ycrc.yale.edu/)** page for the specially provisioned instance of Grace for this hackathon. Make sure your user ID takes the form `sd26_<netid>`. Note that this is a **different from the standard ood link for Grace** and it is specific for this workshop.
 
-### On Bouchet
+    ![Check user profile](assets/grace_landing.png)
 
-Use these steps to get started using Bouchet.
+2. Click on **Interactive Apps >  Remote Desktop** to launch a remote desktop session.
 
-1.  Navigate to YCRC's **[Open OnDemand](https://ood-bouchet.ycrc.yale.edu/)** page and click **remote desktop**.
+    ![Click on Remote Desktop](assets/grace_remotedesktop.png)
 
-    ![Click remote desktop on Open OnDemand](assets/bouchet_ood.png)
+3.  You will be brought to a page for requesting a *compute node*. YCRC has provisioned every registered attendee with priority access to nodes on Grace.
 
-2.  You will be brought to a page for requesting a *compute node*. YCRC has provisioned every registered attendee with priority access to nodes on Bouchet.
+    - Select your *Number of hours* to be `6`. Note that resources will be available until 8pm on 4/24, so request at most 20-[current time] hours.
+    - Select your *Number of CPU cores per node* to be `6`
+    - Select your *Memory per CPU code* to be `7`
+    - Select your *Partition* to be `day` **This is important (!)**
+    - Under *Reservation (optional)*, type `--reservation=sd26`. This will give priority to your request.
 
-    - Select your *number of hours* to be `1`.
-    - Select your *number of CPU cores per node* to be `4`
-    - Select your *memory per CPU code* to be `10`
-    - Select your *partition* to be `devel` **This is important (!)**
+    ![Request resources for a compute node on Grace](assets/grace_request.png)
 
-    **TODO(antaresc) - Make sure that this is the correct amount of compute provisioned to every registered attendee**
+4.  Click `Launch` and wait briefly until the compute node is provisioned. Once the node is provisioned, click `Launch Remote Desktop`. *If the wait takes particularly long, please flag down an event organizer*
 
-3.  Click `Launch` and wait briefly until the compute node is provisioned. Once the node is provisioned, click `Launch Remote Desktop`. *If the wait takes particularly long, please flag down an event organizer*
-
-4.  Upon opening, your remote desktop will have a terminal window active. Run the following command
-
-    ```bash
-    curl -fsSL https://claude.ai/install.sh | bash
-    ```
-
-    to download and run the **native installation package** for Claude Code.
+    ![When your desktop environment is ready, click launch](assets/grace_launch.png)
 
 ---
 
 ## Step 2: Using Claude Code for the first time
 
-Before getting started, **navigate to your working directory**. This is the directory containing code you would like to write / ShinkaEvolve experiments you would like to run
+For this part of the tutorial, we will use this repostitory `tutorial_shinka` as our working directory. This Github repository has **already been cloned** into your home directory at the path `~/projects/tutorial_shinka`. **Change to this directory** to get started.
 
 ```bash
-cd path/to/working_directory/
+cd ~/projects/tutorial_shinka
 ```
 
-For security purposes, Claude Code *can only access contents* in the directory tree rooted at the path you start Claude Code in. To start Claude Code, run this command inside your working directory
+For security purposes, Claude Code *can only access contents* in the directory tree rooted at the path you start Claude Code in. To start Claude Code, run this command inside `tutorial_shinka`
 
 ```bash
 claude
@@ -111,11 +105,13 @@ Since this will be your first time opening Claude Code, some setup is required. 
 
     ![Click Claude account with subscription](assets/claude_login_terminal.png)
 
-This will bring you to a website. **Login to your anthropic account** with a Claude Pro, Max, Team or Enterprise subscription. If you did not have a subscription prior to the event, Anthropic will have emailed you a link with a gifted Claude Pro subscription.
+This will bring you to a website. **Login to your anthropic account** with a Claude Pro, Max, Team or Enterprise subscription. If you did not have a subscription prior to the event, Anthropic will have emailed you a request to join the **Yale FDS** enterprise organization. Make sure you have followed the instructions to join.
 
 ![Login to your Claude account](assets/claude_login_web_0.png)
 
-You will be asked connect Claude Code to your Claude Chat account. **Click `accept`**
+If you joined the Yale FDS organization, you will need to select this organization when authenticating with anthropic.
+
+Anthropic will ask to connect Claude Code to your Claude Chat account. **Click `accept`**
 
 ![Connect Claude chat to Claude Code](assets/claude_login_web_1.png)
 

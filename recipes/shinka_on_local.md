@@ -210,13 +210,13 @@ The output should point to `ShinkaEvolve/shinka/__init__.py`
 
 ![ShinkaEvolve help text](assets/shinka_repo_path.png)
 
-When testing out your local implementation of ShinkaEvolve, you will want to use ShinkaEvolve through scripting. See `recipes/shinka_via_script.md` for more information.
+When testing out your local implementation of ShinkaEvolve, you will want to use ShinkaEvolve through scripting. See the documentation on [CLI usage](https://sakanaai.github.io/ShinkaEvolve/cli_usage/) for more information.
 
 
 # Where to go from here
 
 Now that you have ShinkaEvolve set up locally on your machine consider trying out the following.
 
--   Check out `recipes/shinka_via_jupyter.md` to see how use ShinkaEvolve through Jupyter notebooks. This is helpful when using the tool to solve search problems in your own research.
+-   Check out [Using ShinkaEvolve through Jupyter Notebooks](./shinka_via_jupyter.md) to see how use ShinkaEvolve through Jupyter notebooks. This is helpful when using the tool to solve search problems in your own research.
 
--   Check out `recipes/shinka_via_script.md` if you want to see how to write code which programmatically uses the ShinkaEvolve python package. Try hacking on the implementation of ShinkaEvolve. Implement different sampling algorithms when using an LLM to generate a mutation, or try implementing different novelty heuristics.
+-   Check out documentation on [CLI usage](https://sakanaai.github.io/ShinkaEvolve/cli_usage/) if you want to see how to write code which programmatically uses the ShinkaEvolve python package. Try hacking on the implementation of ShinkaEvolve. Implement different sampling algorithms when using an LLM to generate a mutation, or try implementing different novelty heuristics.

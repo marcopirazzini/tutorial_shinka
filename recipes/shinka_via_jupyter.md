@@ -26,7 +26,7 @@ Here are some links which might help with this tutorial
 
 Before beginning **make sure you have the following**
 
--   You have **already installed ShinkaEvolve** on your machine. See `recipes/shinka_on_grace.md` for instructions on how to install ShinkaEvolve on Grace, and `recipes/shinka_on_local.md` for instructions on how to install ShinkaEvolve on your local machine.
+-   You have **already installed ShinkaEvolve** on your machine. See [Setting up ShinkaEvolve on Grace](./shinka_on_grace.md) for instructions on how to install ShinkaEvolve on Grace, and [Setting up ShinkaEvolve locally](./shinka_on_local.md) for instructions on how to install ShinkaEvolve on your local machine.
 
 ---
 
@@ -51,7 +51,7 @@ For this part we will be using `uv` and working on a Mac. To **install JupyterLa
 uv pip install jupyterlab
 ```
 
-If you are using a virtual environment, you will want to run this command *after creating and activating your virtual environment*. See `recipes/shinka_on_local.md` for more information. To start using jupyterlab, run the `jupyterlab` command.
+If you are using a virtual environment, you will want to run this command *after creating and activating your virtual environment*. See [Setting up ShinkaEvolve locally](./shinka_on_local.md) for more information. To start using jupyterlab, run the `jupyterlab` command.
 
 ```bash
 jupyter lab
@@ -66,7 +66,7 @@ This will open up JupyterLab in your web browser
 
 For this event, the Yale Center for Research Computing (YCRC) will have provided special accounts for you to use on Grace, one of the High Performance Computing clusters managed by YCRC.
 
-For more information on how to use Grace, see the guide in `recipes/shinka_on_grace.md`.
+For more information on how to use Grace, see the guide in [Setting up ShinkaEvolve on Grace](./shinka_on_grace.md).
 
 JupyterLab is pre-installed on your Grace account. To get started, load the `conda` module
 

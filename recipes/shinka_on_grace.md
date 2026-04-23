@@ -41,7 +41,7 @@ You can use the following steps to log into your Desktop environment on Grace.
 
 Use these steps to get started using Grace.
 
-1.  Navigate to YCRC's **Open OnDemand**: https://sd26.ycrc.yale.edu page and make sure your user ID is *sd_netid*. Note that this is a **different from the standard ood link for Grace** and it is specific for this workshop.
+1.  Navigate to YCRC's **Open OnDemand**: https://sd26.ycrc.yale.edu page and make sure your user ID is `sd26_<netid>`. Note that this is a **different from the standard ood link for Grace** and it is specific for this workshop.
 
     ![Check user profile](assets/grace_landing.png)
 
@@ -59,7 +59,7 @@ Use these steps to get started using Grace.
 
     ![Request resources for a compute node on Grace](assets/grace_request.png)
 
-    **TODO(antaresc) - Make sure that this is the correct amount of compute provisioned to every registered attendee**
+    **ATTENTION (!)** - Our event's reservation for Grace is set to begin at 7:30 am and end at 8 pm. If your reservation is failing, double check that you're not trying to request resources beyond the end of this workshop.
 
 4.  Click `Launch` and wait briefly until the compute node is provisioned. Once the node is provisioned, click `Launch Remote Desktop`. *If the wait takes particularly long, please flag down an event organizer*
 
@@ -75,11 +75,12 @@ Use these steps to get started using Grace.
 
 ## Step 2: Setting up ShinkaEvolve to solve search problems
 
-Now that you're logged into Grace, you can get started with setting up an environment where you can use ShinkaEvolve to solve search problems. To begin, **create** and **navigate to a working directory** where you will be implementing your search problems
+Now that you're logged into Grace, you can get started with setting up an environment where you can use ShinkaEvolve to solve search problems. Navigate to a working directory where you will be implementing your run of ShinkaEvolve.
+
+For this part of the tutorial, we will use this repostitory `tutorial_shinka` as our working directory. This Github repository has **already been cloned** into your home directory at the path `~/projects/tutorial_shinka`. **Change to this directory** to get started.
 
 ```bash
-mkdir /path/to/working_directory
-cd /path/to/working_directory
+cd ~/projects/tutorial_shinka
 ```
 
 **[Conda](https://docs.conda.io/projects/conda/en/stable/index.html)** is a package and environment manager commonly used across the physical sciences when writing code for different programming tasks. YCRC staff have already created a **Conda environment** with ShinkaEvolve pre-installed. You can use this by **loading the Conda module into your Desktop environment**
@@ -176,8 +177,6 @@ You're now ready to use ShikaEvolve on Grace!
 -   Read [Using ShinkaEvolve Agentically](./shinka_agentic.md) to see how to use ShinkaEvolve through Claude Code.
 
 -   Read [Using ShinkaEvolve through Jupyter Notebooks](./shinka_via_jupyter.md) to see how to use ShinkaEvolve in a Jupyter notebook.
-
--   Read [Scripting with ShinkaEvolve](./shinka_via_script.md) to see how to use ShinkaEvolve using Python scripts, and on how to develop code inside the ShinkaEvolve repository.
 
 -   Visit the notebooks in this repository to try out some working examples with ShinkaEvolve
 

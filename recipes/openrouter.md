@@ -12,7 +12,7 @@ One of the most important features of ShinkaEvolve is its ability to pool togeth
 
 [OpenRouter](https://openrouter.ai/) is an aggregator of most providers/models, and can be used to access all of them through a single API key. The "cons" are a very small latency and price markups relative to having a key and an account with each provider, but the convenience is a big pro.
 
-OpenRouter also offers access to some free models, but the more powerful models come at a cost. However, the most expensive models are not always the best models for ShinkaEvolve tasks, and a combination of powerful and cheap models is usually better. 
+OpenRouter also offers access to some free models, but the more powerful models come at a cost. However, the most expensive models are not always the best models for ShinkaEvolve tasks, and a combination of powerful and cheap models is usually better.
 
 Note that OpenRouter is not the only option for using multiple LLM providers, it is just the one we chose for this workshop.
 
@@ -22,7 +22,7 @@ For ShinkaEvolve, a good starting point is given by the LLMs used in the noteboo
 
 Prices are per million tokens (input / output). Check [openrouter.ai/models](https://openrouter.ai/models) for the most up-to-date pricing.
 
-### Budget 
+### Budget
 
 | Model ID | Input $/M | Output $/M |
 |---|---|---|
@@ -32,7 +32,7 @@ Prices are per million tokens (input / output). Check [openrouter.ai/models](htt
 | `openai/gpt-5.4-nano` | $0.20 | $1.25 |
 | `google/gemini-3.1-flash-lite-preview` | $0.25 | $1.50 |
 
-### Mid-range 
+### Mid-range
 
 | Model ID | Input $/M | Output $/M |
 |---|---|---|
@@ -42,7 +42,7 @@ Prices are per million tokens (input / output). Check [openrouter.ai/models](htt
 | `qwen/qwen3-max-thinking` | $0.78 | $3.90 |
 | `openai/gpt-5.2-codex` | $1.75 | $14.00 |
 
-### Premium 
+### Premium
 
 | Model ID | Input $/M | Output $/M |
 |---|---|---|
