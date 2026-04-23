@@ -12,7 +12,7 @@ In this directory, you'll find a number of markdown guides which will step throu
 
 -   `shinka_on_local.md`
 
--   `shinka_on_grace.md`
+-   `shinka_on_grace.md` - A walkthrough on how to connect to the Grace HPC and start using ShinkaEvolve on it.
 
 -   `shinka_agentic.md`
 
