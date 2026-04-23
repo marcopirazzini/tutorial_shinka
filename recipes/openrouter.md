@@ -4,6 +4,8 @@ ShinkaEvolve queries LLMs to generate mutations for the programs, and as such re
 
 One can obtain an API key directly from all major LLM providers, such as OpenAI (GPT), Google (Gemini), Anthropic (Claude), Alibaba (Qwen), Deepseek, xAI (Grok) etc. However, many of these keys will only work for the proprietary models of those providers, for example an OpenAI key can be used to query ChatGPT, and an xAI key can be used to query Grok, but not vice-versa.
 
+For using ShinkaEvolve, the key should be stored in a `.env` file in the same folder where the `.venv` file is (if you are using Python virtual environments), or in the same folder as the runner if you are usinv Conda.
+
 # OpenRouter
 
 One of the most important features of ShinkaEvolve is its ability to pool together knowledge across multiple LLMs by stacking together mutations coming from different models. Having an API key for each provider can be cumbersome, so we highlight a unified alternative.
