@@ -8,7 +8,7 @@ In this directory, you'll find a number of markdown guides which will step throu
 
 -   `shinka_on_local.md`
 
--   `shinka_on_bouchet.md`
+-   `shinka_on_grace.md`
 
 -   `shinka_agentic.md`
 

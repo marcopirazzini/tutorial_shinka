@@ -1,6 +1,14 @@
 # Using ShinkaEvolve Agentically
 
-**TODO(antaresc) - Make sure to write something about npm**
+AI driven coding agents have drastically changed how scientists and engineers approach programming. Tools like Claude Code vastly simplify learning to use new software packages, making the time it takes to use these packages in personal projects much shorter. This guide will provide a few workflows which use ShinkaEvolve through Claude Code.
+
+The guide is divided into three parts.
+
+-   Part 1 -
+
+-   Part 2 -
+
+-   Part 3 -
 
 ---
 

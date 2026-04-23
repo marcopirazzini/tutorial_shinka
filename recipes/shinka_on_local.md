@@ -148,7 +148,7 @@ source .venv/bin/activate
 ```
 
 Your screen might look like this now.
-
+g
 ![Create and activate the virtual environment](assets/virtual_env_activate.png)
 
 Finally, **install ShinkaEvolve** using pip
