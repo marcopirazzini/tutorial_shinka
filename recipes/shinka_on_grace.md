@@ -100,6 +100,11 @@ Then, **activate the `shinka_ai4sd26` environment**
 conda activate shinka
 ```
 
+If that does not work, try
+```bash
+conda activate shinka_ai4sd26
+```
+
 You can test that your environment has activated properly by checking if `shinka_launch` runs as a command
 
 ```bash
