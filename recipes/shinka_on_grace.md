@@ -83,6 +83,11 @@ For this part of the tutorial, we will use this repostitory `tutorial_shinka` as
 cd ~/projects/tutorial_shinka
 ```
 
+If that does not work, try 
+```bash
+cd ~/project/tutorial_shinka
+```
+
 **[Conda](https://docs.conda.io/projects/conda/en/stable/index.html)** is a package and environment manager commonly used across the physical sciences when writing code for different programming tasks. YCRC staff have already created a **Conda environment** with ShinkaEvolve pre-installed. You can use this by **loading the Conda module into your Desktop environment**
 
 ```bash
