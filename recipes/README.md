@@ -1,21 +1,20 @@
 # AI for Scientific Discovery 2026 - Recipe Book
 
-In this directory, you'll find a number of markdown guides which will step through common ways to use ShinkaEvolve as a standalone system, and agentically through Claude Code.
+In this directory, you'll find a number of markdown guides which will step through common ways to use ShinkaEvolve as a standalone system and agentically through Claude Code.
 
 ### What you'll find in this directory
 
--   `claude.md` - A short tutorial on how to install and use Claude code.
+-   [`shinka_on_local.md`](./shinka_on_local.md) - A guide on how to set up and use ShinkaEvolve in your personal development environment.
 
--   `hyperparameters.md` - A user-friendly guide to ShinkaEvolve's hyperparameters, see the [official documentation](https://sakanaai.github.io/ShinkaEvolve/configuration/) for more detail.
+-   [`shinka_on_grace.md`](./shinka_on_grace.md) - A walkthrough on how to connect to the Grace HPC and start using ShinkaEvolve on it.
 
--   `openrouter.md` - A guide on obtaining an API key for multiple LLMs, and a sample list of available models.
+-   [`claude.md`](./claude.md) - A short tutorial on how to install and use Claude code with ShinkaEvolve.
 
--   `shinka_on_local.md`
+-   [`shinka_via_jupyter.md`](./shinka_via_jupyter.md) - A guide on how to use ShinkaEvolve through Jupyter notebooks. Provides a guide of what components you need to implement to use ShinkaEvolve, as well as a detailed walk through of the notebook on [Circle Packing](../circle_packing/shinka_launcher.ipynb)
 
--   `shinka_on_grace.md` - A walkthrough on how to connect to the Grace HPC and start using ShinkaEvolve on it.
+-   [`developing_in_shinka.md`](./developing_in_shinka.md)
 
--   `shinka_agentic.md`
+-   [`hyperparameters.md`](./hyperparameters.md) - A user-friendly guide to ShinkaEvolve's hyperparameters, see the [official documentation](https://sakanaai.github.io/ShinkaEvolve/configuration/) for more detail.
 
--   `shinka_via_jupyter.md`
+-   [`openrouter.md`](./openrouter.md) - A guide on obtaining an API key for multiple LLMs, and a sample list of available models.
 
--   `shinka_via_script.md`

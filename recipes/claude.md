@@ -16,7 +16,7 @@ Some links that might help with this tutorial
 
 -   [[link](https://docs.ycrc.yale.edu/clusters/grace/)] YCRC's Grace HPC cluster overview guide.
 
--   [[link](https://sd26.ycrc.yale.edu/)] The Open OnDemand portal for Grace nodes specially provisioned for this hackathon.
+-   [[link](https://sd26.ycrc.yale.edu/)] The Open OnDemand portal for Grace nodes specially provisioned for this workshop.
 
 Before beginning **make sure you have the following**
 
@@ -61,7 +61,7 @@ This replaces the `curl` command used to download the native installation packag
 
 Claude has already been installed in your Grace account. So, to begin, start by accessing Grace
 
-1.  Navigate to YCRC's **[Open OnDemand](https://sd26.ycrc.yale.edu/)** page for the specially provisioned instance of Grace for this hackathon. Make sure your user ID takes the form `sd26_<netid>`. Note that this is a **different from the standard ood link for Grace** and it is specific for this workshop.
+1.  Navigate to YCRC's **[Open OnDemand](https://sd26.ycrc.yale.edu/)** page for the specially provisioned instance of Grace for this workshop. Make sure your user ID takes the form `sd26_<netid>`. Note that this is a **different from the standard ood link for Grace** and it is specific for this workshop.
 
     ![Check user profile](assets/grace_landing.png)
 
@@ -87,10 +87,10 @@ Claude has already been installed in your Grace account. So, to begin, start by 
 
 ## Step 2: Using Claude Code for the first time
 
-For this part of the tutorial, we will use this repostitory `tutorial_shinka` as our working directory. This Github repository has **already been cloned** into your home directory at the path `~/projects/tutorial_shinka`. **Change to this directory** to get started.
+For this part of the tutorial, we will use this repostitory `tutorial_shinka` as our working directory. This Github repository has **already been cloned** into your home directory at the path `~/project/tutorial_shinka`. **Change to this directory** to get started.
 
 ```bash
-cd ~/projects/tutorial_shinka
+cd ~/project/tutorial_shinka
 ```
 
 For security purposes, Claude Code *can only access contents* in the directory tree rooted at the path you start Claude Code in. To start Claude Code, run this command inside `tutorial_shinka`
@@ -129,8 +129,30 @@ And now you are ready to get started!
 
 ---
 
-## Where to go from here
+## Using ShinkaEvolve Agentically
 
 Now that you have Claude Code enabled on your system, try using some of Claude Code's agentic coding capabilities.
 
--   Read [Using ShinkaEvolve Agentically](./shinka_agentic.md) to see how to use ShinkaEvolve through Claude Code.
+-   Try working through the official tutorial on using ShinkaEvolve agentically [[link](https://sakanaai.github.io/ShinkaEvolve/agentic_usage/)]
+
+A few suggestions to make Claude Code work much better with ShinkaEvolve when working with the environments used in this workshop:
+
+-   By default, Claude Code will look for a `.venv` file for Python environments, so if you are using Conda make sure to specify that and what is the name of the Conda environment (e.g. `shinka_ai4sd26`)
+
+-   By default, Claude Code will set up ShinkaEvolve experiment usign `OPENAI_API_KEY`. If using OpenRouter, it helps to specify that you don't have an OpenAI key but an OpenRouter one, and to use the notebooks in this repo as a template for which LLMs to query.
+
+-   Also make sure to specify that you want the agentically created Shinka experiments to be stored in a new folder.
+
+-   If you would like to use Claude to create a ShinkaEvolve run for Circle Packing, try out this prompt.
+
+    ```
+    Please scaffold an experiment in ShinkaEvolve using shinka-
+    setup and shinka-run. My task consists in finding 26
+    disjoint circles fully contained in the unit square with
+    the goal of maximizing their sum of radii. Save the
+    initial_program.py and evaluate.py files in a folder called
+    "circle_packing_cc" and immediately start the evolution
+    when everything is ready. Note also that this is being run
+    in a Conda environment “shinka_ai4sd26” which already has
+    shinka-evolve installed as a Python package.
+    ```

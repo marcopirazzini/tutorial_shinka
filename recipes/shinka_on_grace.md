@@ -2,20 +2,18 @@
 
 This guide will discuss **how to use ShinkaEvolve** on the **Grace High-performance Computing (HPC) cluster**. The Grace HPC cluster is a shared-use computing resource managed by the **[Yale Center for Research Computing](https://research.computing.yale.edu/)** (YCRC). The cluster runs **[Redhat Linux](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux)**, and a desktop environment on the cluster can be accessed through your **web browser** using **[Open OnDemand](https://docs.ycrc.yale.edu/clusters-at-yale/access/ood/)**.
 
-YCRC has kindly dedicated compute resources for this Hackathon. Registered attendants will have *priority access* to compute nodes on the Grace HPC cluster during the event. Each attendant will have shortened wait times when requesting nodes with resources up to 8 cores and 7 GB of memory per core on the `day` partition of Grace.
+YCRC has kindly dedicated compute resources for this workshop. Registered attendants will have *priority access* to compute nodes on the Grace HPC cluster during the event. Each attendant will have shortened wait times when requesting nodes with resources up to 8 cores and 7 GB of memory per core on the `day` partition of Grace.
 
 Each registered attendant will also have an account on Grace with **ShinkaEvolve pre-installed** through a Conda environment.
 
 -   The environment will come **pre-loaded** with an **API key for [OpenRouter](https://openrouter.ai/)** so that you can get immediately get started with using ShinkaEvolve.
 
 
-This tutorial is focused on **setting up your ShinkaEvolve environment on Grace**. It is split into three steps.
+This tutorial is focused on **setting up your ShinkaEvolve environment on Grace**. It is split into two steps.
 
 -   Step 1 - Logging into your Grace desktop environment.
 
 -   Step 2 - Creating an environment on Grace where you can **run ShinkaEvolve** to **solve search problems**.
-
--   Step 3 - Creating an environment on Grace where you can **hack** on the **implementation of ShinkaEvolve**.
 
 Some links that might help with this tutorial
 
@@ -77,13 +75,8 @@ Use these steps to get started using Grace.
 
 Now that you're logged into Grace, you can get started with setting up an environment where you can use ShinkaEvolve to solve search problems. Navigate to a working directory where you will be implementing your run of ShinkaEvolve.
 
-For this part of the tutorial, we will use this repostitory `tutorial_shinka` as our working directory. This Github repository has **already been cloned** into your home directory at the path `~/projects/tutorial_shinka`. **Change to this directory** to get started.
+For this part of the tutorial, we will use this repostitory `tutorial_shinka` as our working directory. This Github repository has **already been cloned** into your home directory at the path `~/project/tutorial_shinka`. **Change to this directory** to get started.
 
-```bash
-cd ~/projects/tutorial_shinka
-```
-
-If that does not work, try 
 ```bash
 cd ~/project/tutorial_shinka
 ```
@@ -97,15 +90,10 @@ module load miniconda
 Then, **activate the `shinka_ai4sd26` environment**
 
 ```bash
-conda activate shinka
-```
-
-If that does not work, try
-```bash
 conda activate shinka_ai4sd26
 ```
 
-You can test that your environment has activated properly by checking if `shinka_launch` runs as a command
+This environment comes with `shinka-evolve` and other packages like `jupyter` pre-installed. You can test that your environment has activated properly by checking if `shinka_launch --help` outputs the help text
 
 ```bash
 shinka_launch --help
@@ -113,81 +101,19 @@ shinka_launch --help
 
 ![shinka launch test](assets/grace_shinka.png)
 
----
-
-## Step 3: Hacking on the ShinkaEvolve implementation
-
-To get started developing in the ShinkaEvolve repository, follow these steps.
-
-1.  First, navigate to a directory which will hold the [ShinkaEvolve Github repository](https://github.com/SakanaAI/ShinkaEvolve). This tutorial will be using `~/project`
-
-2.  Clone the repository by running the command
-
-    ```bash
-    git clone https://github.com/SakanaAI/ShinkaEvolve
-    ```
-
-    ![shinka clone](assets/grace_clone.png)
-
-3.  Change to the `ShinkaEvolve` directory containing your freshly cloned repository.
-
-    ```bash
-    cd ShinkaEvolve
-    ```
-
-4.  Create a **virtual environment** using Conda
-
-    ```bash
-    conda create --name shinka python=3.11 uv nodejs notebook
-    ```
-
-    Virtual environments are helpful for enforcing *isolation*, e.g. they help prevent software dependency conflicts between different coding projects.
-
-    ![shinka conda](assets/grace_conda1.png)
-
-    After the virtual environment has been created, you will see instructions to activate it.
-
-    ![shinka conda 2](assets/grace_conda2.png)
-
-5.  Activate your new Conda virtual environment
-
-    ```bash
-    conda activate shinka
-    ```
-
-    and install all project dependencies
-
-    ```bash
-    uv pip install -e .
-    ```
-
-6.  Create an `.env` file at the root the cloned repository. This file will contain your [OpenRouter](https://openrouter.ai/) API key.
-
-    ```bash
-    touch .env && echo 'OPENROUTER_API_KEY="<your-key-here>"' > .env
-    ```
-
-    **Having this API key is important (!)**. This key is **uniquely assigned** and is what allows ShinkaEvolve to query different Large Language Models as it executes evolutionary search for your task.
-
-    You should have been assigned an API key for this workshop, contact the organizers if you cannot find it.
-
-7.  Once you've added your API key, you're now ready to develop in the ShinkaEvolve repository. You can test that you've set up your environment properly by **running the repository's default evolution task**
-
-    ```bash
-    shinka_launch
-    ```
+**NOTE (!)** - Running `shinka_launch` by itself will run ShinkaEvolve with a default evolution task. The default task requires an OpenAI API key instead of an OpenRouter API key. For more information, see ShinkaEvolve's documentation on [using OpenRouter models](https://sakanaai.github.io/ShinkaEvolve/support_local_models/?h=openrouter).
 
 
 ## Where to go from here
 
-You're now ready to use ShikaEvolve on Grace!
+You're now ready to use ShinkaEvolve on Grace!
 
--   Read [Getting Started with Claude Code](./claude.md) to see how to setup Claude Code on Grace.
+-   Read [Getting Started with Claude Code](./claude.md) to see how to setup Claude Code on Grace and some tips on using ShinkaEvolve agentically.
 
--   Read [Using ShinkaEvolve Agentically](./shinka_agentic.md) to see how to use ShinkaEvolve through Claude Code.
+-   Read [Using ShinkaEvolve through Jupyter Notebooks](./shinka_via_jupyter.md) for a detailed walk through on how to use ShinkaEvolve using Jupyter Notebooks.
 
--   Read [Using ShinkaEvolve through Jupyter Notebooks](./shinka_via_jupyter.md) to see how to use ShinkaEvolve in a Jupyter notebook.
+-   Read [Developing in ShinkaEvolve](./developing_in_shinka.md) for instructions on how to setup your environment if you would like to modify the ShinkaEvolve implementation.
 
 -   Visit the notebooks in this repository to try out some working examples with ShinkaEvolve
 
--   Read the [Getting Started](https://sakanaai.github.io/ShinkaEvolve/getting_started/) guide to see how to build within the ShinkaEvolve repository.
+-   Read the official [Getting Started](https://sakanaai.github.io/ShinkaEvolve/getting_started/) guide from Sakana.ai to see how to build within the ShinkaEvolve repository.

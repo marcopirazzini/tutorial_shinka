@@ -1,12 +1,10 @@
 # Setting up ShinkaEvolve locally
 
-This guide will discuss **how to use ShinkaEvolve** on your personal computer. It contains three parts:
+This guide will discuss **how to use ShinkaEvolve** on your personal computer. It contains two parts:
 
 -   Part 1 - A quick guide to Python package managers.
 
 -   Part 2 - How to create a personal environment where you can **run ShinkaEvolve** for your own experiments.
-
--   Step 3 - How to create a personal environment where you can **hack** on the **implementation of ShinkaEvolve**.
 
 Some links that might help with this tutorial
 
@@ -120,12 +118,12 @@ For example, this command creates a new Conda environment named `shinka` with Ju
 conda create -n shinka python=3.11 notebook uv
 ```
 
-During this hackathon, your account on Grace will have access to a Conda environment with `uv`, `shinka-evolve` and other helpful packages already installed. The environment is named `shinka_ai4sd26` and you can **activate it** by running the following command **in a terminal on Grace**
-
+During this workshop, your account on Grace will have access to a Conda environment with `uv`, `shinka-evolve` and other helpful packages already installed. The environment is named `shinka_ai4sd26` and you can **activate it** by running the following command **in a terminal on Grace**
 
 ```bash
 conda activate shinka_ai4sd26
 ```
+
 
 # Part 2: Setting up ShinkaEvolve to solve search problems
 
@@ -148,7 +146,7 @@ source .venv/bin/activate
 ```
 
 Your screen might look like this now.
-g
+
 ![Create and activate the virtual environment](assets/virtual_env_activate.png)
 
 Finally, **install ShinkaEvolve** using pip
@@ -164,53 +162,6 @@ shinka_launch --help
 ```
 
 ![ShinkaEvolve help text](assets/shinka_launch_help.png)
-
-
-# Part 3: Setting up ShinkaEvolve for development
-
-Here are some instructions on how to get started with editing the implementation of ShinkaEvolve. Here, you will want to find a suitable location on your machine where you can setup a simple development environment. Once you've navigated to there, **clone the ShinkaEvolve Github repository**.
-
-```bash
-git clone https://github.com/SakanaAI/ShinkaEvolve
-```
-
-Now `change into the ShinkaEvolve directory`.
-
-```bash
-cd ShinkaEvolve
-```
-
-Once you're in the ShinkaEvolve directory, **create a virtual environment**.
-
-```bash
-uv venv --python 3.11
-```
-
-and **activate** the environment
-
-```bash
-source .venv/bin/activate
-```
-
-This is where *isolation* is helpful! You may have already installed the version of ShinkaEvolve that is a package that is *available through Python package manager indices* like that on `uv` or `pip`. So, if this package was installed *globally* on your machine, then perhaps you might edit the implementation, and hope to run ShinkaEvolve your edited version. But by default, your machine will first execute the *globally* installed one that does not have your implementation changes.
-
-Tell your new virtual environment to *install the version that you're editing* by running this command
-
-```
-uv pip install -e .
-```
-
-Now you should be able to change the implementation and test your changes. If you want to check that you're running the version of ShinkaEvolve that is implemented in your current directory, you can run the command
-
-```bash
-python -c "import shinka; print(shinka.__file__)"
-```
-
-The output should point to `ShinkaEvolve/shinka/__init__.py`
-
-![ShinkaEvolve help text](assets/shinka_repo_path.png)
-
-When testing out your local implementation of ShinkaEvolve, you will want to use ShinkaEvolve through scripting. See the documentation on [CLI usage](https://sakanaai.github.io/ShinkaEvolve/cli_usage/) for more information.
 
 
 # Where to go from here
