@@ -155,13 +155,21 @@ Finally, **install ShinkaEvolve** using pip
 uv pip install shinka-evolve
 ```
 
-You are now ready to go! Make sure everything is installed properly by running the following command
+Make sure everything is installed properly by running the following command
 
 ```bash
 shinka_launch --help
 ```
 
 ![ShinkaEvolve help text](assets/shinka_launch_help.png)
+
+Finally, to make sure that you're ready to use the notebooks in this repository, you'll need an [OpenRouter](https://openrouter.ai/) API key. This key will need to be placed in a `.env` file in root of the `tutorial_shinka` repository. To do this, copy your key in the command below and execute it in the `tutorial_shinka` directory.
+
+```bash
+touch .env && echo 'OPENROUTER_API_KEY="<your-key-here>"' > .env
+```
+
+**Having this API key is important (!)**. This key is what allows ShinkaEvolve to query different Large Language Models as it executes evolutionary search for your task. You should have been assigned an API key for this workshop.
 
 
 # Where to go from here
