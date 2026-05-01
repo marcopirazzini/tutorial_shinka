@@ -1,7 +1,7 @@
 # AI for Scientific Discovery 2026 Starter Package
 
 > [!IMPORTANT]
-> **(4/28/2026)** - Instructional accounts on Grace will be deleted after **Monday 5/4/2026**. Please make sure to offload any data you might have stored on these accounts as you will not have access after this date.
+> **(4/28/2026)** - Instructional accounts on Grace will be deleted after **Monday 5/4/2026**. Please make sure to offload any data you might have stored on these accounts as you will not have access after this date. For instructions on how to download your files, see [this guide](https://docs.ycrc.yale.edu/clusters-at-yale/access/ood/#file-browser) from YCRC. You will want to access **FileBrowser** from the [special link](https://sd26.ycrc.yale.edu) we used to access OOD.
 >
 > Additionally, API keys for OpenRouter as well as enterprise access to Anthropic will be discontinued after **Friday 5/22/2026**.
 >
