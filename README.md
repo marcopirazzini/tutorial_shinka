@@ -22,7 +22,7 @@ This repository contains tutorial material used during the Yale FDS Workshop on 
 
 ### References
 
-Some helpful links
+References for ShinkaEvolve
 
 -   [ShinkaEvolve Github repository](https://github.com/SakanaAI/ShinkaEvolve)
 
@@ -31,5 +31,17 @@ Some helpful links
 -   [ShinkaEvolve paper](https://arxiv.org/abs/2509.19349)
 
 -   [ShinkaEvolve talk video](https://www.youtube.com/watch?v=dAOIer_1INo)
+
+Stellar Evolution references
+
+-   ([Hon, Li & Ong, 2024](https://arxiv.org/abs/2407.09427)) *Flow Based Generative Emulation of Grids of Stellar Evolutionary Models*
+
+-   ([Ying et. al., 2025](https://arxiv.org/abs/2604.06348)) *Dartmouth Stellar Evolution Emulator (DSEE) 1: Generative Stellar Evolution Model Database*
+
+-   ([Christensen-Dalsgaard, 2007](https://arxiv.org/abs/0710.3114)) *ASTEC -- the Aarhus STellar Evolution Code*
+
+-   [Official MESA Documentation](https://docs.mesastar.org/en/26.4.1/about.html)
+
+References to YCRC resources
 
 -   [YCRC's Grace HPC cluster overview guide](https://docs.ycrc.yale.edu/clusters/grace/)
